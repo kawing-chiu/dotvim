@@ -37,6 +37,17 @@ set formatoptions+=aorw
 
 " Key mappings
 nnoremap <C-a> :set paste! paste?<CR>
+
+nnoremap <C-]> g<C-]>
+nnoremap g<C-]> <C-]>
+vnoremap <C-]> g<C-]>
+vnoremap g<C-]> <C-]>
+
+nnoremap j gj
+nnoremap gj j
+nnoremap k gk
+nnoremap gk k
+
 imap <C-a> <C-o><C-a>
 
 " not so important ones:
