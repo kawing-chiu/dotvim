@@ -148,12 +148,18 @@ add_str_if(snip, t[2], ")")
 	${0:pass}
 endsnippet
 
-
 snippet cls2 "class definition py2 version" b
 class $1(${2:object}):
 	${0:pass}
 endsnippet
 
+snippet __init__ "__init__ method" b
+def __init__(self`!p
+add_str_if(snip, t[2], ", ")
+refresh(snip)
+`$2):
+	${0:pass}
+endsnippet
 
 
 

@@ -53,13 +53,17 @@ snippet /* "long comment" b
 endsnippet
 
 snippet #ifndef "#ifndef" b
-#ifndef $0
-#endif
+#ifndef $1
+#endif`!p
+add_str_if(snip, t[1], ' // ')
+`$1
 endsnippet
 
 snippet #ifdef "#ifdef" b
-#ifdef $0
-#endif
+#ifdef $1
+#endif`!p
+add_str_if(snip, t[1], ' // ')
+`$1
 endsnippet
 
 snippet #elif "#elif" b
@@ -93,7 +97,7 @@ snip.rv = guard_name
 $0
 
 
-#endif // End of `!p
+#endif // `!p
 snip.rv = guard_name
 `
 endsnippet
@@ -120,6 +124,10 @@ endsnippet
 
 snippet stdint.h "#include <stdint.h>" b
 #include <stdint.h>
+endsnippet
+
+snippet stdbool.h "#include <stdbool.h>" b
+#include <stdbool.h>
 endsnippet
 
 snippet printf "printf function" w
