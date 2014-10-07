@@ -1,19 +1,29 @@
+" GUI related settings
 set guifont=WenQuanYi\ Micro\ Hei\ Mono\ 16
 set winaltkeys=no
 set mouse=
 
+" The pathogen plugin
+call pathogen#infect('plugins/{}')
+call pathogen#helptags()
+
+" Common options
+set hls ic scs is et
+set sts=4 sw=4
+
+syntax on
 filetype plugin indent on
 
 set fileencodings^=utf8,gb18030
-set grepprg=egrep\ -n\ -s\ -irI\ --exclude-dir=\".svn\"\ --exclude-dir=\"doc\"\ $*\ /dev/null
 
+" Set search paths
 set path^=~/work/**
 set path^=~/exercise/**
 set path^=~/notes/**/original/**
 set tags=./tags;,~/.ctags.std
 
-" 设置DoxygenToolkit.vim
-let g:DoxygenToolkit_compactDoc = "yes"
+" Helper programs
+set grepprg=egrep\ -n\ -s\ -irI\ --exclude-dir=\".svn\"\ --exclude-dir=\"doc\"\ $*\ /dev/null
 
 
 " 下面以Alt键开头的快捷键还不能在terminal下使用，需要改进
