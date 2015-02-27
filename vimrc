@@ -23,7 +23,7 @@ set fileencodings^=utf8,gb18030
 set path^=~/work/**
 set path^=~/exercise/**
 set path^=~/notes/**
-set tags=./tags;,~/.ctags.xxx
+set tags=./tags;,~/.tags.python
 
 " Set grep program
 "set grepprg=egrep\ -n\ -s\ -irI\ --exclude-dir=\".svn\"\ --exclude-dir=\"doc\"\ $*\ /dev/null
@@ -33,6 +33,7 @@ set tags=./tags;,~/.ctags.xxx
 let g:netrw_liststyle = 3
 let g:netrw_winsize = 25
 let g:netrw_browse_split = 4
+let g:netrw_banner = 0
 
 nnoremap <C-n> :Lexplore<CR>
 
@@ -40,8 +41,7 @@ nnoremap <C-n> :Lexplore<CR>
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#enable_auto_select = 1
-let g:neocomplete#auto_completion_start_length = 3
-
+let g:neocomplete#auto_completion_start_length = 2
 
 if !exists('g:neocomplete#force_omni_input_patterns')
   let g:neocomplete#force_omni_input_patterns = {}
@@ -62,8 +62,12 @@ let g:UltiSnipsExpandTrigger = "<C-Enter>"
 let g:ctrlp_working_path_mode = 'a'
 
 " The taglist plugin
-let tlist_tex_settings = 'latex;s:sections;g:graphics;l:labels'
-let tlist_php_settings = 'php;c:class;f:function'
+let g:tlist_tex_settings = 'latex;s:sections;g:graphics;l:labels'
+let g:tlist_php_settings = 'php;c:class;f:function'
+
+" The tern_for_vim plugin
+autocmd FileType javascript nnoremap <buffer> <C-]> :TernDef<CR>
+autocmd FileType javascript nnoremap <buffer> <C-t> <C-o>
 
 
 " 快捷键
