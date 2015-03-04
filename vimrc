@@ -55,8 +55,11 @@ inoremap <expr> <Tab> pumvisible() ? neocomplete#close_popup() : "\<Tab>"
 inoremap <expr> <CR> pumvisible() ? neocomplete#cancel_popup()."\<CR>" : "\<CR>"
 
 " The ultisnips plugin
-let g:UltiSnipsSnippetsDir = '~/.vim/snippets'
-let g:UltiSnipsExpandTrigger = "<C-Enter>"
+"let g:UltiSnipsEnableSnipMate = 0
+let g:UltiSnipsEditSplit = 'vertical'
+let g:UltiSnipsSnippetsDir = '~/.vim/ultisnips'
+let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/ultisnips']
+let g:UltiSnipsExpandTrigger = "<C-j>"
 
 " The ctrlp plugin
 let g:ctrlp_working_path_mode = 'a'
