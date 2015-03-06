@@ -14,6 +14,8 @@ call pathogen#helptags()
 set hls ic scs is
 set sts=4 sw=4 et
 
+autocmd FileType html,tex set sts=2 sw=2
+
 syntax on
 filetype plugin indent on
 
@@ -51,15 +53,32 @@ let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
 inoremap <expr> <C-g> neocomplete#undo_completion()
 inoremap <expr> <C-l> neocomplete#complete_common_string()
 
-inoremap <expr> <Tab> pumvisible() ? neocomplete#close_popup() : "\<Tab>"
+function Neocomplete_Select_Candidate()
+  if pumvisible()
+    return neocomplete#close_popup()
+  else
+    return ""
+  endif
+endfunction
+
+inoremap <expr> <S-Tab> pumvisible() ? neocomplete#close_popup() : "\<S-Tab>"
 inoremap <expr> <CR> pumvisible() ? neocomplete#cancel_popup()."\<CR>" : "\<CR>"
 
 " The ultisnips plugin
-"let g:UltiSnipsEnableSnipMate = 0
 let g:UltiSnipsEditSplit = 'vertical'
 let g:UltiSnipsSnippetsDir = '~/.vim/ultisnips'
 let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/ultisnips']
-let g:UltiSnipsExpandTrigger = "<C-j>"
+let g:UltiSnipsExpandTrigger = "<C-Tab>"
+
+let g:ulti_expand_res = 0
+function Ultisnips_Try_Expand()
+  call UltiSnips#ExpandSnippet()
+  return g:ulti_expand_res
+endfunction
+
+inoremap <silent> <Tab> <C-r>=(Ultisnips_Try_Expand() > 0) ? "" : Neocomplete_Select_Candidate()<CR>
+" Interestingly, the following will not work:
+" inoremap <expr> <Tab> (Ultisnips_Try_Expand() > 0) ? "" : Neocomplete_Select_Candidate()
 
 " The ctrlp plugin
 let g:ctrlp_working_path_mode = 'a'
@@ -101,4 +120,4 @@ nnoremap <M-r> mt$xxx`t
 inoremap <M-s> std::
 
 
-" vim: sts=2 sw=2 et
+" vim: set sts=2 sw=2 et:

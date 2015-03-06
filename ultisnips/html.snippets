@@ -1,0 +1,55 @@
+global !p
+
+def get_indent(shift=1):
+	old = snip.rv
+	snip.rv += "\n"
+	snip.shift(shift)
+	indent = snip.mkline()
+	snip.rv = old
+	return indent
+
+def start_new_line_if_present(tabstop):
+	if t[tabstop]:
+		if not t[tabstop].startswith("\n"):
+			snip.rv += "\n" + indent
+
+endglobal
+
+snippet "bt|basic template" "basic html template" br
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>${1:test page}</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+		<link rel="stylesheet" href="css/styles.css">
+	</head>
+	<body>
+		$0
+
+		<script src="js/jquery.js"></script>
+		<script src="js/bootstrap.js"></script>
+	</body>
+</html>
+endsnippet
+
+snippet "(^|(?<=\W))(dv|div)" "html div tag" r
+<div class="$1">`!p
+indent = get_indent()
+start_new_line_if_present(2)
+`$2
+</div>
+endsnippet
+
+snippet t "generic html tag" w
+<$1>$2</`!p snip.rv = t[1].split(" ")[0]`>
+endsnippet
+
+snippet "h(\d)" "html h tag" r
+<h`!p snip.rv = match.group(1)`>$1</h`!p snip.rv = match.group(1)`>
+endsnippet
+
+
+# vim: set ts=2:
