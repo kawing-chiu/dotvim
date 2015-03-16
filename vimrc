@@ -53,14 +53,6 @@ let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
 inoremap <expr> <C-g> neocomplete#undo_completion()
 inoremap <expr> <C-l> neocomplete#complete_common_string()
 
-function Neocomplete_Select_Candidate()
-  if pumvisible()
-    return neocomplete#close_popup()
-  else
-    return ""
-  endif
-endfunction
-
 inoremap <expr> <S-Tab> pumvisible() ? neocomplete#close_popup() : "\<S-Tab>"
 inoremap <expr> <CR> pumvisible() ? neocomplete#cancel_popup()."\<CR>" : "\<CR>"
 
@@ -74,6 +66,14 @@ let g:ulti_expand_res = 0
 function Ultisnips_Try_Expand()
   call UltiSnips#ExpandSnippet()
   return g:ulti_expand_res
+endfunction
+
+function Neocomplete_Select_Candidate()
+  if pumvisible()
+    return neocomplete#close_popup()
+  else
+    return "\<Tab>"
+  endif
 endfunction
 
 inoremap <silent> <Tab> <C-r>=(Ultisnips_Try_Expand() > 0) ? "" : Neocomplete_Select_Candidate()<CR>
