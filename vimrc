@@ -37,8 +37,6 @@ let g:netrw_winsize = 25
 let g:netrw_browse_split = 4
 let g:netrw_banner = 0
 
-nnoremap <C-n> :Lexplore<CR>
-
 " The neocomplete plugin
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
@@ -83,13 +81,16 @@ inoremap <silent> <Tab> <C-r>=(Ultisnips_Try_Expand() > 0) ? "" : Neocomplete_Se
 " The ctrlp plugin
 let g:ctrlp_working_path_mode = 'a'
 
-" The taglist plugin
-let g:tlist_tex_settings = 'latex;s:sections;g:graphics;l:labels'
-let g:tlist_php_settings = 'php;c:class;f:function'
+" The nerdtree plugin
+nnoremap <C-n> :NERDTreeToggle<CR>
 
 " The tern_for_vim plugin
 autocmd FileType javascript nnoremap <buffer> <C-]> :TernDef<CR>
 autocmd FileType javascript nnoremap <buffer> <C-t> <C-o>
+
+" The taglist plugin
+let g:tlist_tex_settings = 'latex;s:sections;g:graphics;l:labels'
+let g:tlist_php_settings = 'php;c:class;f:function'
 
 
 " 快捷键
