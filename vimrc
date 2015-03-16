@@ -21,14 +21,8 @@ filetype plugin indent on
 
 set fileencodings^=utf8,gb18030
 
-" Set search paths
-set path^=~/work/**
-set path^=~/exercise/**
-set path^=~/notes/**
+"set path^=~/work/**
 set tags=./tags;,~/.tags.python
-
-" Set grep program
-"set grepprg=egrep\ -n\ -s\ -irI\ --exclude-dir=\".svn\"\ --exclude-dir=\"doc\"\ $*\ /dev/null
 
 
 " Netrw settings
@@ -87,6 +81,9 @@ nnoremap <C-n> :NERDTreeToggle<CR>
 " The tern_for_vim plugin
 autocmd FileType javascript nnoremap <buffer> <C-]> :TernDef<CR>
 autocmd FileType javascript nnoremap <buffer> <C-t> <C-o>
+
+" The tagbar plugin
+nnoremap <C-k> :TagbarToggle<CR>
 
 " The taglist plugin
 let g:tlist_tex_settings = 'latex;s:sections;g:graphics;l:labels'
