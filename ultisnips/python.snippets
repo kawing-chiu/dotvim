@@ -1,0 +1,47 @@
+global !p
+from ultisnips_helpers import *
+endglobal
+
+snippet py2 "python 2 file template" b
+#!/usr/bin/env python2
+# encoding: utf-8
+"""$1
+"""
+from __future__ import print_function, division, unicode_literals
+$2
+
+__author__ = ("${3:Zhao Jiarong <zhaojiarong@baidu.com>}")
+
+
+$0
+
+endsnippet
+
+snippet py3 "python 3 file template" b
+#!/usr/bin/env python3
+"""$1
+"""
+$2
+
+__author__ = ("${3:Zhao Jiarong <zhaojiarong@baidu.com>}")
+
+
+$0
+
+endsnippet
+
+snippet "ifm|ifmain" "if main" r
+if __name__ == "__main__":
+	${1:pass}
+endsnippet
+
+snippet def "function definition" b
+def $1($2):`!p
+indent = get_indent(snip)
+add_str_if(snip, t[3], "\n" + indent + '"""')
+`$3`!p
+add_str_if(snip, t[3], '"""\n')
+``!p add_str(snip, "\n" + indent)`${0:pass}
+endsnippet
+
+

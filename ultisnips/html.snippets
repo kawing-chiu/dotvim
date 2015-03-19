@@ -1,33 +1,21 @@
 global !p
-
-def get_indent(shift=1):
-	old = snip.rv
-	snip.rv += "\n"
-	snip.shift(shift)
-	indent = snip.mkline()
-	snip.rv = old
-	return indent
-
-def refresh():
-	snip.rv += ""
-
-def start_new_line_if_present(tabstop, indent):
-	if t[tabstop]:
-		if not t[tabstop].startswith("\n"):
-			snip.rv += "\n" + indent
-
-def add_str_if_present(tabstop, string):
-	refresh()
-	if t[tabstop]:
-		snip.rv += string
-
+from ultisnips_helpers import *
 endglobal
 
 ####
 # testing
 snippet test ""
 hi ${1:this ${2:second ${3}}}$4
+$1
 $2
+$3
+$4
+endsnippet
+snippet m ""
+[ $1 $2 ] $1
+endsnippet
+snippet m1 ""
+ASnip $1 ASnip $2 ASnip
 endsnippet
 ###
 
@@ -53,8 +41,8 @@ endsnippet
 
 snippet "(^|(?<=\W))(dv|div)" "html div tag" r
 <div class="$1">`!p
-indent = get_indent()
-start_new_line_if_present(2, indent)
+indent = get_indent(snip)
+add_newline_if_not_beginswith(snip, t[2], indent)
 `$2
 </div>
 endsnippet
@@ -62,17 +50,17 @@ endsnippet
 # not usable yet, affected by ultisnips bug
 snippet t "generic html tag" w
 <$1`!p
-add_str_if_present(2, ' ')
+add_str_if(snip, t[2], ' ')
 `$2>$3</$1>
 endsnippet
 
 snippet tc "generic html tag with class" w
 <$1`!p
-add_str_if_present(2, ' class="')
+add_str_if(snip, t[2], ' class="')
 `${2}`!p
-add_str_if_present(2, '"')
+add_str_if(snip, t[2], '"')
 ``!p
-add_str_if_present(3, ' ')
+add_str_if(snip, t[3], ' ')
 `$3>$4</$1>
 endsnippet
 
@@ -81,13 +69,13 @@ snippet "h(\d)" "html h tag" r
 tag = "h" + match.group(1)
 snip.rv = tag
 ``!p
-add_str_if_present(1, ' ')
+add_str_if(snip, t[1], ' ')
 `$1>$2</`!p snip.rv = tag`>
 endsnippet
 
 snippet a "html a tag" w
 <a href="${1:#}"`!p
-add_str_if_present(2, ' ')
+add_str_if(snip, t[2], ' ')
 `$2>$3</a>
 endsnippet
 
