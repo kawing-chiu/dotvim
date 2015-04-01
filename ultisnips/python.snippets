@@ -9,8 +9,10 @@ snippet py2 "python 2 file template" b
 """
 from __future__ import print_function, division, unicode_literals
 from io import open
+import sys
 import os.path
 import logging.handlers
+from argparse import ArgumentParser
 $2
 
 __author__ = ("${3:Zhao Jiarong <zhaojiarong@baidu.com>}")
@@ -24,8 +26,10 @@ snippet py3 "python 3 file template" b
 #!/usr/bin/env python3
 """$1
 """
+import sys
 import os.path
 import logging.handlers
+from argparse import ArgumentParser
 $2
 
 __author__ = ("${3:Zhao Jiarong <zhaojiarong@baidu.com>}")
@@ -45,13 +49,12 @@ def $1($2):`!p
 indent = get_indent(snip)
 add_str_if_not_beginswith(snip, t[3], "\n", "\n" + indent + '"""')
 `$3`!p
-string = '"""\n'
+string = '"""'
 refresh(snip)
 if t[3] and is_ascii(t[3][0:1]):
     add_str_if_not_beginswith(snip, t[3], "\n", string)
 `
 	${0:pass}
-$3
 endsnippet
 
 snippet cls "class definition" b
@@ -101,17 +104,21 @@ add_str_if(snip, t[4], ",\n" + indent)
 `$4)
 endsnippet
 
-snippet init_log "logging initialization" b
-_default_log_path = ${1:"log/"}
-
+snippet create_dir "directory creation func" b
 def _create_dir(*paths):
 	for path in paths:
-		if not os.path.exists(path):
-			os.makedirs(os.path.abspath(path))
-		elif os.path.isdir(path):
-			pass
-		else:
-			raise Exception("{} already exists and not a directory.".format(path))
+		try:
+			os.makedirs(path)
+		except OSError as e:
+			if not os.path.isdir(path):
+				log.error("Directory '{}' cannot be created.".format(path))
+				raise
+
+$0
+endsnippet
+
+snippet init_log "logging initialization" b
+_default_log_path = ${1:"log/"}
 
 def _init_log(log_path):
 	log = logging.getLogger(__name__)
@@ -119,22 +126,31 @@ def _init_log(log_path):
 
 	ch = logging.StreamHandler()
 	ch.setFormatter(logging.Formatter("%(levelname)s: %(message)s"))
+	log.addHandler(ch)
 
-	_create_dir(log_path)
+	log_path_ready = True
+	try:
+		os.makedirs(os.path.abspath(log_path))
+	except OSError as e:
+		if not os.path.isdir(log_path):
+			log_path_ready = False
 	log_file = os.path.basename(__file__) + ".log"
 	log_file = os.path.join(log_path, log_file)
 
-	fh = logging.handlers.RotatingFileHandler(log_file, maxBytes=5 * 1024 * 1024,
-			backupCount=3)
-	fh.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - "
-			"%(name)s - %(message)s"))
-
-	log.addHandler(ch)
-	log.addHandler(fh)
+	if log_path_ready:
+		fh = logging.handlers.RotatingFileHandler(log_file, maxBytes=5 * 1024 * 1024,
+				backupCount=3)
+		fh.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - "
+				"%(name)s - %(message)s"))
+		log.addHandler(fh)
+	else:
+		log.warning("Log path '{}' not usable, "
+				"logging to file is disabled.".format(log_path))
 
 	return log, ch
 
 log, console_handler = _init_log(_default_log_path)
+
 
 $0
 endsnippet
