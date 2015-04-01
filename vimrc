@@ -24,6 +24,7 @@ set fileencodings^=utf8,gb18030
 "set path^=~/work/**
 set tags=./tags;,~/.tags.python
 
+set completeopt-=preview
 
 " Netrw settings
 let g:netrw_liststyle = 3
