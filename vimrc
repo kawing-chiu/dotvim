@@ -25,6 +25,13 @@ set fileencodings^=utf8,gb18030
 set tags=./tags;,~/.tags.python
 
 set completeopt-=preview
+set grepprg=ack\ -k\ --smart-case
+
+inoremap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
+
+" List of installed plugins:
+" ctrlp.vim neocomplete.vim nerdtree tagbar
+" tern_for_vim ultisnips 
 
 " Netrw settings
 let g:netrw_liststyle = 3
@@ -85,6 +92,7 @@ autocmd FileType javascript nnoremap <buffer> <C-t> <C-o>
 
 " The tagbar plugin
 nnoremap <C-k> :TagbarToggle<CR>
+let g:tagbar_sort = 0
 
 " The taglist plugin
 let g:tlist_tex_settings = 'latex;s:sections;g:graphics;l:labels'
@@ -115,8 +123,6 @@ nnoremap <M-k> i\lst<Bar><Esc>Ea<Bar><Esc>
 nnoremap <M-d> mt$a-d-<C-[>`t
 nnoremap <M-t> mt$a-t-<C-[>`t
 nnoremap <M-r> mt$xxx`t
-" C++输入快捷键
-inoremap <M-s> std::
 
 
 " vim: set sts=2 sw=2 et:

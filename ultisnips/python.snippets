@@ -40,8 +40,11 @@ $0
 endsnippet
 
 snippet "ifm|ifmain" "if main" r
+def run():
+	${0:pass}
+
 if __name__ == "__main__":
-	${1:pass}
+	run()
 endsnippet
 
 snippet def "function definition" b
@@ -134,13 +137,13 @@ def _init_log(log_path):
 	except OSError as e:
 		if not os.path.isdir(log_path):
 			log_path_ready = False
-	log_file = os.path.basename(__file__) + ".log"
+	log_file = os.path.splitext(os.path.basename(__file__))[0] + ".py.log"
 	log_file = os.path.join(log_path, log_file)
 
 	if log_path_ready:
 		fh = logging.handlers.RotatingFileHandler(log_file, maxBytes=5 * 1024 * 1024,
-				backupCount=3)
-		fh.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - "
+				backupCount=3, delay=True)
+		fh.setFormatter(logging.Formatter("%(asctime)s %(process)d - %(levelname)s - "
 				"%(name)s - %(message)s"))
 		log.addHandler(fh)
 	else:
