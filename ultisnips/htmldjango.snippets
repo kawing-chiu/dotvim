@@ -1,0 +1,79 @@
+extends html
+
+global !p
+from ultisnips_helpers import *
+endglobal
+
+snippet dbt "django basic template" bw
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{% block title %}Basic Template{% endblock %}</title>
+</head>
+<body>
+	{% block content %}{% endblock %}
+</body>
+</html>
+endsnippet
+
+snippet dbt-bootstrap "django basic template(bootstrap version)" bw
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{% block title %}Basic Template{% endblock %}</title>
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/site.css' %}">
+</head>
+<body>
+	{% block content %}{% endblock %}
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>
+endsnippet
+
+snippet dt "django template tag" w
+{% $1 %}
+endsnippet
+
+snippet dv "django template variable" w
+{{ $1 }}
+endsnippet
+
+snippet dc "django template comment" w
+{# $1 #}
+endsnippet
+
+snippet static "static template tag" w
+{% static '$1' %}
+endsnippet
+
+snippet url "url template tag" w
+{% url '$1'`!p
+add_str_if(snip, t[2], ' ')
+`$2 %}
+endsnippet
+
+snippet if "if tempalte tag" w
+{% if $1 %}$2{% endif %}
+endsnippet
+
+snippet "db|block" "block template tag" wr
+{% block $1 %}$2{% endblock $1 %}
+endsnippet
+
+snippet "dbm|blockm" "block template tag multiline" wr
+{% block $1 %}$2
+{% endblock $1 %}
+endsnippet
+
+
+# vim: set ts=4:

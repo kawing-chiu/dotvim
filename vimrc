@@ -14,7 +14,8 @@ call pathogen#helptags()
 set hls ic scs is
 set sts=4 sw=4 et
 
-autocmd FileType html,tex set sts=2 sw=2
+autocmd FileType tex set sts=2 sw=2
+autocmd FileType rst set textwidth=79
 
 syntax on
 filetype plugin indent on
@@ -31,7 +32,7 @@ inoremap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
 
 " List of installed plugins:
 " ctrlp.vim neocomplete.vim nerdtree tagbar
-" tern_for_vim ultisnips 
+" tern_for_vim ultisnips
 
 " Netrw settings
 let g:netrw_liststyle = 3
@@ -85,6 +86,7 @@ let g:ctrlp_working_path_mode = 'a'
 
 " The nerdtree plugin
 nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <C-h> :NERDTreeFind<CR>
 
 " The tern_for_vim plugin
 autocmd FileType javascript nnoremap <buffer> <C-]> :TernDef<CR>

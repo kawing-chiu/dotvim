@@ -19,7 +19,7 @@ ASnip $1 ASnip $2 ASnip
 endsnippet
 ###
 
-snippet "bt|basic template" "basic html template" br
+snippet bt "basic html template" bw
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -39,32 +39,66 @@ snippet "bt|basic template" "basic html template" br
 </html>
 endsnippet
 
-snippet "(^|(?<=\W))(dv|div)" "html div tag" r
-<div class="$1">`!p
-indent = get_indent(snip)
-add_str_if_not_beginswith(snip, t[2], "\n", "\n" + indent)
-`$2
-</div>
+snippet cls "class=" w
+class="$1"
 endsnippet
 
-# not usable yet, affected by ultisnips bug
-snippet t "generic html tag" w
+snippet id "id=" w
+id="$1"
+endsnippet
+
+snippet t' "generic html tag" w
 <$1`!p
 add_str_if(snip, t[2], ' ')
 `$2>$3</$1>
 endsnippet
 
-snippet tc "generic html tag with class" w
-<$1`!p
-add_str_if(snip, t[2], ' class="')
-`${2}`!p
-add_str_if(snip, t[2], '"')
-``!p
+snippet tc' "generic html tag with class" w
+<$1 class="$2"`!p
 add_str_if(snip, t[3], ' ')
 `$3>$4</$1>
 endsnippet
 
+snippet tm' "generic html tag multiline" w
+<$1`!p
+add_str_if(snip, t[2], ' ')
+`$2>$3
+</$1>
+endsnippet
+
+snippet tcm' "generic html tag with class" w
+<$1 class="$2"`!p
+add_str_if(snip, t[3], ' ')
+`$3>$4
+</$1>
+endsnippet
+
+snippet ts "generic html tag no closing" w
+<$1>
+endsnippet
+
+snippet ts' "generic html tag no closing" w
+<$1`!p
+add_str_if(snip, t[2], ' ')
+refresh(snip)
+`$2>
+endsnippet
+
 snippet "h(\d)" "html h tag" r
+<`!p 
+tag = "h" + match.group(1)
+snip.rv = tag
+`>$1</`!p snip.rv = tag`>
+endsnippet
+
+snippet "h(\d)c" "html h tag with class" r
+<`!p 
+tag = "h" + match.group(1)
+snip.rv = tag
+` class="$1">$2</`!p snip.rv = tag`>
+endsnippet
+
+snippet "h(\d)'" "html h tag" r
 <`!p 
 tag = "h" + match.group(1)
 snip.rv = tag
@@ -73,10 +107,103 @@ add_str_if(snip, t[1], ' ')
 `$1>$2</`!p snip.rv = tag`>
 endsnippet
 
+snippet p "html p tag" w
+<p>$1</p>
+endsnippet
+
+snippet b "html b tag" w
+<b>$1</b>
+endsnippet
+
 snippet a "html a tag" w
-<a href="${1:#}"`!p
+<a href="$1">$2</a>
+endsnippet
+
+snippet a' "html a tag" w
+<a href="$1"`!p
 add_str_if(snip, t[2], ' ')
 `$2>$3</a>
 endsnippet
 
-# vim: set ts=2:
+snippet ac "html a tag with class" w
+<a class="$1" href="$2">$3</a>
+endsnippet
+
+snippet ac' "html a tag with class" w
+<a class="$1" href="$2"`!p
+add_str_if(snip, t[3], ' ')
+`$3>$4</a>
+endsnippet
+
+snippet div "html div tag" w
+<div class="$1">$2
+</div>
+endsnippet
+
+snippet div' "html div tag" w
+<div class="$1"`!p
+add_str_if(snip, t[2], ' ')
+`$2>$3
+</div>
+endsnippet
+
+snippet span "html span tag" w
+<span class="$1">$2</span>
+endsnippet
+
+snippet span' "html span tag" w
+<span class="$1"`!p
+add_str_if(snip, t[2], ' ')
+`$2>$3</span>
+endsnippet
+
+snippet ul "html ul tag" w
+<ul class="$1">$2
+</ul>
+endsnippet
+
+snippet li' "html li tag" w
+<li`!p
+add_str_if(snip, t[1], ' ')
+`$1>$2
+</li>
+endsnippet
+
+snippet doctype "html doctype" w
+<!DOCTYPE html>
+endsnippet
+
+snippet meta "meta tag" w
+<meta ${1:charset="utf-8"}>
+endsnippet
+
+snippet link "link tag" w
+<link rel="${1:stylesheet}" href="$2">
+endsnippet
+
+snippet link4 "link tag" w
+<link rel="${1:stylesheet}" href="$2" type="text/css">
+endsnippet
+
+snippet script "script tag" w
+<script src="$1"></script>
+endsnippet
+
+snippet script4 "script tag" w
+<script src="$1" type="text/javascript">
+endsnippet
+
+snippet django-modeline "vim modeline" w
+<!-- vim: set filetype=htmldjango: -->
+endsnippet
+
+
+
+
+
+
+
+
+
+
+# vim: ts=4 filetype=snippets
