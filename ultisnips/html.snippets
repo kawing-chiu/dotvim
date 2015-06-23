@@ -47,6 +47,10 @@ snippet id "id=" w
 id="$1"
 endsnippet
 
+snippet t "generic html tag" w
+<$1>$2</$1>
+endsnippet
+
 snippet t' "generic html tag" w
 <$1`!p
 add_str_if(snip, t[2], ' ')
@@ -157,16 +161,68 @@ add_str_if(snip, t[2], ' ')
 `$2>$3</span>
 endsnippet
 
-snippet ul "html ul tag" w
+snippet button "html button tag" w
+<button class="$1" type="${2:button}">$3</button>
+endsnippet
+
+snippet form "html form tag" w
+<form class="$2" role="form">$3
+</form>
+endsnippet
+
+snippet action "action=" w
+action="$1"
+endsnippet
+
+snippet method "method=" w
+method="${1:post}"
+endsnippet
+
+snippet label "html label tag" w
+<label for="$1">$2</label>
+endsnippet
+
+snippet input "html input tag" w
+<input class="$1" type="$2" placeholder="$3" required="">
+endsnippet
+
+snippet input' "html input tag" w
+<input class="$1" type="$2" placeholder="$3" required=""`!p
+add_str_if(snip, t[4], ' ')
+`$4>
+endsnippet
+
+snippet autofocus "autofocus=" w
+autofocus=""
+endsnippet
+
+snippet autocomplete "autocomplete=" w
+autocomplete="${1:off}"
+endsnippet
+
+snippet ulc "html ul tag" w
 <ul class="$1">$2
 </ul>
 endsnippet
 
-snippet li' "html li tag" w
+snippet lic "html li tag" w
+<li class="$1">$2</li>
+endsnippet
+
+snippet lim' "html li tag" w
 <li`!p
 add_str_if(snip, t[1], ' ')
 `$1>$2
 </li>
+endsnippet
+
+snippet strong "html strong tag" w
+<strong>$1</strong>
+endsnippet
+
+snippet address "html address tag" w
+<address>$1
+</address>
 endsnippet
 
 snippet doctype "html doctype" w
@@ -175,6 +231,10 @@ endsnippet
 
 snippet meta "meta tag" w
 <meta ${1:charset="utf-8"}>
+endsnippet
+
+snippet metan "meta tag with name and content" w
+<meta name="$1" content="$2">
 endsnippet
 
 snippet link "link tag" w
@@ -187,6 +247,16 @@ endsnippet
 
 snippet script "script tag" w
 <script src="$1"></script>
+endsnippet
+
+snippet script-json "script tag for json" w
+<script id="$1" type="application/json">$2
+</script>
+endsnippet
+
+snippet script-html "script tag for html" w
+<script id="$1" type="text/html">$2
+</script>
 endsnippet
 
 snippet script4 "script tag" w

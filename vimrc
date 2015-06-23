@@ -29,10 +29,14 @@ set completeopt-=preview
 set grepprg=ack\ -k\ --smart-case
 
 inoremap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
+nnoremap <C-x>d :set filetype=htmldjango<CR>
+nnoremap <C-x>j :set filetype=javascript<CR>
+nnoremap <C-a> :set paste! paste?<CR>
 
 " List of installed plugins:
 " ctrlp.vim neocomplete.vim nerdtree tagbar
-" tern_for_vim ultisnips
+" tern_for_vim ultisnips vim-abolish vim-javascript
+" vim-jsx
 
 " Netrw settings
 let g:netrw_liststyle = 3
@@ -58,6 +62,8 @@ inoremap <expr> <S-Tab> pumvisible() ? neocomplete#close_popup() : "\<S-Tab>"
 inoremap <expr> <CR> pumvisible() ? neocomplete#cancel_popup()."\<CR>" : "\<CR>"
 
 " The ultisnips plugin
+"autocmd FileType javascript UltiSnipsAddFiletypes javascript.jsx
+
 let g:UltiSnipsEditSplit = 'vertical'
 let g:UltiSnipsSnippetsDir = '~/.vim/ultisnips'
 let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/ultisnips']
@@ -95,6 +101,9 @@ autocmd FileType javascript nnoremap <buffer> <C-t> <C-o>
 " The tagbar plugin
 nnoremap <C-k> :TagbarToggle<CR>
 let g:tagbar_sort = 0
+
+" The vim-jsx plugin
+let g:jsx_ext_required = 0
 
 " The taglist plugin
 let g:tlist_tex_settings = 'latex;s:sections;g:graphics;l:labels'

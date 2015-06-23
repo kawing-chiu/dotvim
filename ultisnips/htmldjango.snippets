@@ -12,10 +12,10 @@ snippet dbt "django basic template" bw
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>{% block title %}Basic Template{% endblock %}</title>
+	<title>{% block title %}${1:Basic Template}{% endblock %}</title>
 </head>
 <body>
-	{% block content %}{% endblock %}
+	{% block content %}$0{% endblock %}
 </body>
 </html>
 endsnippet
@@ -62,17 +62,55 @@ add_str_if(snip, t[2], ' ')
 `$2 %}
 endsnippet
 
-snippet if "if tempalte tag" w
+snippet if "if template tag" w
 {% if $1 %}$2{% endif %}
 endsnippet
 
-snippet "db|block" "block template tag" wr
+snippet ifm "if template tag multiline" w
+{% if $1 %}$2
+{% endif %}
+endsnippet
+
+snippet elif "elif template tag" w
+{% elif $1 %}
+endsnippet
+
+snippet else "else template tag" w
+{% else %}
+endsnippet
+
+snippet for "for template tag" w
+{% for $1 in $2 %}$3
+{% endfor %}
+endsnippet
+
+snippet counter "forloop counter" w
+forloop.counter
+endsnippet
+
+snippet counter0 "forloop counter0" w
+forloop.counter0
+endsnippet
+
+snippet load "load template tag" w
+{% load $1 %}
+endsnippet
+
+snippet block "block template tag" w
 {% block $1 %}$2{% endblock $1 %}
 endsnippet
 
-snippet "dbm|blockm" "block template tag multiline" wr
+snippet blockm "block template tag multiline" w
 {% block $1 %}$2
 {% endblock $1 %}
+endsnippet
+
+snippet include "include template tag" w
+{% include $1 %}
+endsnippet
+
+snippet lorem "lorem template tag" w
+{% lorem %}
 endsnippet
 
 
