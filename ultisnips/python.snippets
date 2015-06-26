@@ -9,10 +9,6 @@ snippet py2 "python 2 file template" b
 """
 from __future__ import print_function, division, unicode_literals
 from io import open
-import sys
-import os
-import logging.handlers
-from argparse import ArgumentParser
 $2
 
 __author__ = ("${3:Zhao Jiarong <zhaojiarong@baidu.com>}")
@@ -26,10 +22,6 @@ snippet py3 "python 3 file template" b
 #!/usr/bin/env python3
 """$1
 """
-import sys
-import os
-import logging.handlers
-from argparse import ArgumentParser
 $2
 
 __author__ = ("${3:Zhao Jiarong <zhaojiarong@baidu.com>}")
@@ -39,7 +31,7 @@ $0
 
 endsnippet
 
-snippet "ifm|ifmain" "if main" r
+snippet ifm "if main" bw
 def run():
 	${0:pass}
 
@@ -47,21 +39,21 @@ if __name__ == "__main__":
 	run()
 endsnippet
 
-####
-# testing
-snippet test "function definition" b
-def $1($2):`!p
-indent = get_indent(snip)
-add_str_if_not_beginswith(snip, t[3], "\n", "\n" + indent + '"""')
-`$3`!p
-string = '"""'
-refresh(snip)
-if t[3] and is_ascii(t[3][0:1]):
-    add_str_if_not_beginswith(snip, t[3], "\n", string)
-`
+snippet ifma "if main with arg parsing" bw
+def _parse_args():
+	from argparse import ArgumentParser
+	parser = ArgumentParser(description="$1")$2
+	args = parser.parse_args()
+	return args
+
+def run(args):
 	${0:pass}
+
+if __name__ == "__main__":
+	args = _parse_args()
+	run(args)
 endsnippet
-###
+
 
 snippet doc "docstring" w
 """$3`!p
@@ -190,3 +182,19 @@ log, console_handler = _init_log(_default_log_path)
 
 $0
 endsnippet
+
+####
+# testing
+snippet test "function definition" b
+def $1($2):`!p
+indent = get_indent(snip)
+add_str_if_not_beginswith(snip, t[3], "\n", "\n" + indent + '"""')
+`$3`!p
+string = '"""'
+refresh(snip)
+if t[3] and is_ascii(t[3][0:1]):
+    add_str_if_not_beginswith(snip, t[3], "\n", string)
+`
+	${0:pass}
+endsnippet
+###
