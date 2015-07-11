@@ -11,11 +11,25 @@ from __future__ import print_function, division, unicode_literals
 from io import open
 $2
 
-__author__ = ("${3:Zhao Jiarong <zhaojiarong@baidu.com>}")
-
 
 $0
 
+endsnippet
+
+snippet __author__ "author declaration" w
+__author__ = ("${1:Zhao Jiarong} ${2:<kawing.chiu.sysu@gmail.com>}")
+endsnippet
+
+snippet py2-enc "python 2 encoding" w
+# encoding: utf-8
+endsnippet
+
+snippet py2-future "python 2 __future__ import" w
+from __future__ import print_function, division, unicode_literals
+endsnippet
+
+snippet py2-io "python 2 io import" w
+from io import open
 endsnippet
 
 snippet py3 "python 3 file template" b
@@ -24,19 +38,17 @@ snippet py3 "python 3 file template" b
 """
 $2
 
-__author__ = ("${3:Zhao Jiarong <zhaojiarong@baidu.com>}")
-
 
 $0
 
 endsnippet
 
 snippet ifm "if main" bw
-def run():
+def main():
 	${0:pass}
 
 if __name__ == "__main__":
-	run()
+	main()
 endsnippet
 
 snippet ifma "if main with arg parsing" bw
@@ -46,12 +58,15 @@ def _parse_args():
 	args = parser.parse_args()
 	return args
 
-def run(args):
-	${0:pass}
+def main():
+	args = _parse_args()$0
 
 if __name__ == "__main__":
-	args = _parse_args()
-	run(args)
+	main()
+endsnippet
+
+snippet add_argument "add argument to parser" w
+parser.add_argument($1)
 endsnippet
 
 
@@ -71,6 +86,14 @@ endsnippet
 
 snippet defs "function definition with self" b
 def $1(self`!p
+add_str_if(snip, t[2], ", ")
+refresh(snip)
+`$2):
+	${0:pass}
+endsnippet
+
+snippet defc "function definition with cls" b
+def $1(cls`!p
 add_str_if(snip, t[2], ", ")
 refresh(snip)
 `$2):
@@ -99,26 +122,27 @@ endsnippet
 
 #########
 # some functions, still testing
-snippet add_args "add arguments to parser" b
-def add_arguments(parser):
-	${1:arg_add}$2
 
-$0
-endsnippet
-
-snippet parse_args "arg parse function" b
-def _parse_args():
-	parser = ArgumentParser(description="$1")`!p
-indent = get_indent(snip, 1)
-add_str_if_not_beginswith(snip, t[2], "\n", "\n" + indent)`$2
-	${3:#}add_arguments(parser)
-	args = parser.parse_args()
-	return args
-
-args = _parse_args()
-
-$0
-endsnippet
+#snippet add_args "add arguments to parser" b
+#def add_arguments(parser):
+#	${1:arg_add}$2
+#
+#$0
+#endsnippet
+#
+#snippet parse_args "arg parse function" b
+#def _parse_args():
+#	parser = ArgumentParser(description="$1")`!p
+#indent = get_indent(snip, 1)
+#add_str_if_not_beginswith(snip, t[2], "\n", "\n" + indent)`$2
+#	${3:#}add_arguments(parser)
+#	args = parser.parse_args()
+#	return args
+#
+#args = _parse_args()
+#
+#$0
+#endsnippet
 
 snippet arg_add "add an argument" b
 parser.add_argument("$1",`!p
@@ -145,43 +169,43 @@ def _create_dir(*paths):
 $0
 endsnippet
 
-snippet init_log "logging initialization" b
-_default_log_path = ${1:"log/"}
-
-def _init_log(log_path):
-	log = logging.getLogger(__name__)
-	log.setLevel(logging.DEBUG)
-
-	ch = logging.StreamHandler()
-	ch.setFormatter(logging.Formatter("%(levelname)s: %(message)s"))
-	log.addHandler(ch)
-
-	log_path_ready = True
-	try:
-		os.makedirs(os.path.abspath(log_path))
-	except OSError as e:
-		if not os.path.isdir(log_path):
-			log_path_ready = False
-	log_file = os.path.splitext(os.path.basename(__file__))[0] + ".py.log"
-	log_file = os.path.join(log_path, log_file)
-
-	if log_path_ready:
-		fh = logging.handlers.RotatingFileHandler(log_file, maxBytes=5 * 1024 * 1024,
-				backupCount=3, delay=True)
-		fh.setFormatter(logging.Formatter("%(asctime)s %(process)d - %(levelname)s - "
-				"%(name)s - %(message)s"))
-		log.addHandler(fh)
-	else:
-		log.warning("Log path '{}' not usable, "
-				"logging to file is disabled.".format(log_path))
-
-	return log, ch
-
-log, console_handler = _init_log(_default_log_path)
-
-
-$0
-endsnippet
+#snippet init_log "logging initialization" b
+#_default_log_path = ${1:"log/"}
+#
+#def _init_log(log_path):
+#	log = logging.getLogger(__name__)
+#	log.setLevel(logging.DEBUG)
+#
+#	ch = logging.StreamHandler()
+#	ch.setFormatter(logging.Formatter("%(levelname)s: %(message)s"))
+#	log.addHandler(ch)
+#
+#	log_path_ready = True
+#	try:
+#		os.makedirs(os.path.abspath(log_path))
+#	except OSError as e:
+#		if not os.path.isdir(log_path):
+#			log_path_ready = False
+#	log_file = os.path.splitext(os.path.basename(__file__))[0] + ".py.log"
+#	log_file = os.path.join(log_path, log_file)
+#
+#	if log_path_ready:
+#		fh = logging.handlers.RotatingFileHandler(log_file, maxBytes=5 * 1024 * 1024,
+#				backupCount=3, delay=True)
+#		fh.setFormatter(logging.Formatter("%(asctime)s %(process)d - %(levelname)s - "
+#				"%(name)s - %(message)s"))
+#		log.addHandler(fh)
+#	else:
+#		log.warning("Log path '{}' not usable, "
+#				"logging to file is disabled.".format(log_path))
+#
+#	return log, ch
+#
+#log, console_handler = _init_log(_default_log_path)
+#
+#
+#$0
+#endsnippet
 
 ####
 # testing

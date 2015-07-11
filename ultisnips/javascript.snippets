@@ -1,0 +1,16 @@
+global !p
+from ultisnips_helpers import *
+endglobal
+
+snippet cls "es6 class" w
+class $1`!p
+#indent = get_indent(snip, shift=0)
+add_str_if(snip, t[2], ' extends ')
+refresh(snip)
+`$2 {$3
+}
+endsnippet
+
+
+
+# vim: set ts=4:

@@ -14,11 +14,13 @@ call pathogen#helptags()
 set hls ic scs is
 set sts=4 sw=4 et
 
-autocmd FileType tex set sts=2 sw=2
+autocmd FileType tex,javascript,html set sts=2 sw=2
 autocmd FileType rst set textwidth=79
 
 syntax on
 filetype plugin indent on
+
+autocmd BufEnter * :syntax sync fromstart
 
 set fileencodings^=utf8,gb18030
 
@@ -28,10 +30,14 @@ set tags=./tags;,~/.tags.python
 set completeopt-=preview
 set grepprg=ack\ -k\ --smart-case
 
-inoremap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
+
+" Key mappings
 nnoremap <C-x>d :set filetype=htmldjango<CR>
 nnoremap <C-x>j :set filetype=javascript<CR>
+
 nnoremap <C-a> :set paste! paste?<CR>
+
+inoremap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
 
 " List of installed plugins:
 " ctrlp.vim neocomplete.vim nerdtree tagbar

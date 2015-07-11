@@ -2,23 +2,6 @@ global !p
 from ultisnips_helpers import *
 endglobal
 
-####
-# testing
-snippet test ""
-hi ${1:this ${2:second ${3}}}$4
-$1
-$2
-$3
-$4
-endsnippet
-snippet m ""
-[ $1 $2 ] $1
-endsnippet
-snippet m1 ""
-ASnip $1 ASnip $2 ASnip
-endsnippet
-###
-
 snippet bt "basic html template" bw
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +9,23 @@ snippet bt "basic html template" bw
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>${1:test page}</title>
+		<title>${1:Test Project}</title>
+	</head>
+	<body>$0
+		<script src="/static/vendor.js"></script>
+		<script src="/static/app.js"></script>
+	</body>
+</html>
+endsnippet
+
+snippet bt-bootstrap "basic html template for bootstrap" bw
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>${1:Test Project}</title>
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 		<link rel="stylesheet" href="css/styles.css">
 	</head>
@@ -39,7 +38,29 @@ snippet bt "basic html template" bw
 </html>
 endsnippet
 
-snippet cls "class=" w
+snippet div "html div tag" w
+<div$1>$2
+</div>
+endsnippet
+
+snippet divc "html div tag with class" w
+<div `!p
+if 'jsx' in snip.ft:
+	snip.rv = 'className'
+else:
+	snip.rv = 'class'
+`="$1"$2>$3
+</div>
+endsnippet
+
+#snippet div' "html div tag" w
+#<div class="$1"`!p
+#add_str_if(snip, t[2], ' ')
+#`$2>$3
+#</div>
+#endsnippet
+
+snippet class "class=" w
 class="$1"
 endsnippet
 
@@ -47,69 +68,269 @@ snippet id "id=" w
 id="$1"
 endsnippet
 
-snippet t "generic html tag" w
-<$1>$2</$1>
+snippet span "html span tag" w
+<span$1>$2</span>
 endsnippet
 
-snippet t' "generic html tag" w
-<$1`!p
-add_str_if(snip, t[2], ' ')
-`$2>$3</$1>
+snippet role "role=" w
+role="$1"
 endsnippet
 
-snippet tc' "generic html tag with class" w
-<$1 class="$2"`!p
-add_str_if(snip, t[3], ' ')
-`$3>$4</$1>
+snippet role-nav "role=navigation" w
+role="navigation"
 endsnippet
 
-snippet tm' "generic html tag multiline" w
-<$1`!p
-add_str_if(snip, t[2], ' ')
-`$2>$3
-</$1>
+snippet role-form "role=form" w
+role="form"
 endsnippet
 
-snippet tcm' "generic html tag with class" w
-<$1 class="$2"`!p
-add_str_if(snip, t[3], ' ')
-`$3>$4
-</$1>
+#snippet spanc "html span tag" w
+#<span class="$1">$2</span>
+#endsnippet
+#
+#snippet span' "html span tag" w
+#<span class="$1"`!p
+#add_str_if(snip, t[2], ' ')
+#`$2>$3</span>
+#endsnippet
+
+snippet a "html a tag" w
+<a$1>$2</a>
 endsnippet
 
-snippet ts "generic html tag no closing" w
-<$1>
+snippet href "href=" w
+href="${1:#}"
 endsnippet
 
-snippet ts' "generic html tag no closing" w
-<$1`!p
-add_str_if(snip, t[2], ' ')
-refresh(snip)
-`$2>
+snippet ac "html a tag with class" w
+<a `!p
+if 'jsx' in snip.ft:
+	snip.rv = 'className'
+else:
+	snip.rv = 'class'
+`="$1"$2>$3</a>
 endsnippet
+
+#snippet a' "html a tag" w
+#<a href="$1"`!p
+#add_str_if(snip, t[2], ' ')
+#`$2>$3</a>
+#endsnippet
+#
+#snippet ac' "html a tag with class" w
+#<a class="$1" href="$2"`!p
+#add_str_if(snip, t[3], ' ')
+#`$3>$4</a>
+#endsnippet
+
+snippet button "html button tag" w
+<button$1>$2</button>
+endsnippet
+
+snippet type "type=" w
+type="$1"
+endsnippet
+
+snippet type-button "type=button" w
+type="button"
+endsnippet
+
+snippet type-text "type=text" w
+type="text"
+endsnippet
+
+#snippet buttonct "html button tag with class and type" w
+#<button `!p
+#if 'jsx' in snip.ft:
+#	snip.rv = 'className'
+#else:
+#	snip.rv = 'class'
+#`="$1" type="${2:button}">$3</button>
+#endsnippet
+
 
 snippet "h(\d)" "html h tag" r
 <`!p 
 tag = "h" + match.group(1)
 snip.rv = tag
-`>$1</`!p snip.rv = tag`>
+`$1>$2</`!p snip.rv = tag`>
 endsnippet
 
 snippet "h(\d)c" "html h tag with class" r
 <`!p 
 tag = "h" + match.group(1)
 snip.rv = tag
-` class="$1">$2</`!p snip.rv = tag`>
+` `!p
+if 'jsx' in snip.ft:
+	snip.rv = 'className'
+else:
+	snip.rv = 'class'
+`="$1"$2>$3</`!p snip.rv = tag`>
 endsnippet
 
-snippet "h(\d)'" "html h tag" r
-<`!p 
-tag = "h" + match.group(1)
-snip.rv = tag
-``!p
-add_str_if(snip, t[1], ' ')
-`$1>$2</`!p snip.rv = tag`>
+#snippet "h(\d)'" "html h tag" r
+#<`!p 
+#tag = "h" + match.group(1)
+#snip.rv = tag
+#``!p
+#add_str_if(snip, t[1], ' ')
+#`$1>$2</`!p snip.rv = tag`>
+#endsnippet
+
+snippet t "generic single html tag" w
+<$1$2 />
 endsnippet
+
+snippet tt "generic html tag" w
+<$1$2>$3</$1>
+endsnippet
+
+snippet ttt "generic html tag multiline" w
+<$1$2>$3
+</$1>
+endsnippet
+
+snippet form "html form tag" w
+<form$1>$2
+</form>
+endsnippet
+
+snippet formc "html form tag with class" w
+<form `!p
+if 'jsx' in snip.ft:
+	snip.rv = 'className'
+else:
+	snip.rv = 'class'
+`="$1"$2>$3
+</form>
+endsnippet
+
+snippet input "html input tag" w
+<input$1 />
+endsnippet
+
+snippet placeholder "placeholder=" w
+placeholder="$1"
+endsnippet
+
+snippet table "html table tag" w
+<table$1>$2
+</table>
+endsnippet
+
+snippet tablec "html table tag with class" w
+<table `!p
+if 'jsx' in snip.ft:
+	snip.rv = 'className'
+else:
+	snip.rv = 'class'
+`="$1"$2>$3
+</table>
+endsnippet
+
+snippet thead "html thead tag" w
+<thead$1>$2
+</thead>
+endsnippet
+
+snippet tbody "html tbody tag" w
+<tbody$1>$2
+</tbody>
+endsnippet
+
+snippet tr "html tr tag" w
+<tr$1>$2
+</tr>
+endsnippet
+
+snippet th "html th tag" w
+<th$1>$2</th>
+endsnippet
+
+snippet td "html td tag" w
+<td$1>$2</td>
+endsnippet
+
+snippet ul "html ul tag" w
+<ul$1>$2
+</ul>
+endsnippet
+
+snippet ulc "html ul tag with class" w
+<ul `!p
+if 'jsx' in snip.ft:
+	snip.rv = 'className'
+else:
+	snip.rv = 'class'
+`="$1"$2>$3
+</ul>
+endsnippet
+
+snippet li "html li tag" w
+<li$1>$2</li>
+endsnippet
+
+snippet lic "html li tag with class" w
+<li `!p
+if 'jsx' in snip.ft:
+	snip.rv = 'className'
+else:
+	snip.rv = 'class'
+`="$1"$2>$3</li>
+endsnippet
+
+snippet lim' "html li tag" w
+<li`!p
+add_str_if(snip, t[1], ' ')
+`$1>$2
+</li>
+endsnippet
+
+####################################
+
+#snippet input "html input tag" w
+#<input class="$1" type="$2" placeholder="$3" required="">
+#endsnippet
+#
+#snippet input' "html input tag" w
+#<input class="$1" type="$2" placeholder="$3" required=""`!p
+#add_str_if(snip, t[4], ' ')
+#`$4>
+#endsnippet
+
+#snippet t' "generic html tag" w
+#<$1`!p
+#add_str_if(snip, t[2], ' ')
+#`$2>$3</$1>
+#endsnippet
+
+#snippet tc' "generic html tag with class" w
+#<$1 class="$2"`!p
+#add_str_if(snip, t[3], ' ')
+#`$3>$4</$1>
+#endsnippet
+#
+#snippet tm' "generic html tag multiline" w
+#<$1`!p
+#add_str_if(snip, t[2], ' ')
+#`$2>$3
+#</$1>
+#endsnippet
+#
+#snippet tcm' "generic html tag with class" w
+#<$1 class="$2"`!p
+#add_str_if(snip, t[3], ' ')
+#`$3>$4
+#</$1>
+#endsnippet
+#
+#snippet ts' "generic html tag no closing" w
+#<$1`!p
+#add_str_if(snip, t[2], ' ')
+#refresh(snip)
+#`$2>
+#endsnippet
+
 
 snippet p "html p tag" w
 <p>$1</p>
@@ -117,57 +338,6 @@ endsnippet
 
 snippet b "html b tag" w
 <b>$1</b>
-endsnippet
-
-snippet a "html a tag" w
-<a href="$1">$2</a>
-endsnippet
-
-snippet a' "html a tag" w
-<a href="$1"`!p
-add_str_if(snip, t[2], ' ')
-`$2>$3</a>
-endsnippet
-
-snippet ac "html a tag with class" w
-<a class="$1" href="$2">$3</a>
-endsnippet
-
-snippet ac' "html a tag with class" w
-<a class="$1" href="$2"`!p
-add_str_if(snip, t[3], ' ')
-`$3>$4</a>
-endsnippet
-
-snippet div "html div tag" w
-<div class="$1">$2
-</div>
-endsnippet
-
-snippet div' "html div tag" w
-<div class="$1"`!p
-add_str_if(snip, t[2], ' ')
-`$2>$3
-</div>
-endsnippet
-
-snippet span "html span tag" w
-<span class="$1">$2</span>
-endsnippet
-
-snippet span' "html span tag" w
-<span class="$1"`!p
-add_str_if(snip, t[2], ' ')
-`$2>$3</span>
-endsnippet
-
-snippet button "html button tag" w
-<button class="$1" type="${2:button}">$3</button>
-endsnippet
-
-snippet form "html form tag" w
-<form class="$2" role="form">$3
-</form>
 endsnippet
 
 snippet action "action=" w
@@ -182,15 +352,6 @@ snippet label "html label tag" w
 <label for="$1">$2</label>
 endsnippet
 
-snippet input "html input tag" w
-<input class="$1" type="$2" placeholder="$3" required="">
-endsnippet
-
-snippet input' "html input tag" w
-<input class="$1" type="$2" placeholder="$3" required=""`!p
-add_str_if(snip, t[4], ' ')
-`$4>
-endsnippet
 
 snippet autofocus "autofocus=" w
 autofocus=""
@@ -200,21 +361,6 @@ snippet autocomplete "autocomplete=" w
 autocomplete="${1:off}"
 endsnippet
 
-snippet ulc "html ul tag" w
-<ul class="$1">$2
-</ul>
-endsnippet
-
-snippet lic "html li tag" w
-<li class="$1">$2</li>
-endsnippet
-
-snippet lim' "html li tag" w
-<li`!p
-add_str_if(snip, t[1], ' ')
-`$1>$2
-</li>
-endsnippet
 
 snippet strong "html strong tag" w
 <strong>$1</strong>
@@ -267,6 +413,23 @@ snippet django-modeline "vim modeline" w
 <!-- vim: set filetype=htmldjango: -->
 endsnippet
 
+
+####
+# testing
+#snippet test ""
+#hi ${1:this ${2:second ${3}}}$4
+#$1
+#$2
+#$3
+#$4
+#endsnippet
+#snippet m ""
+#[ $1 $2 ] $1
+#endsnippet
+#snippet m1 ""
+#ASnip $1 ASnip $2 ASnip
+#endsnippet
+###
 
 
 
