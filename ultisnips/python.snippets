@@ -44,11 +44,11 @@ $0
 endsnippet
 
 snippet ifm "if main" bw
-def main():
+def run():
 	${0:pass}
 
 if __name__ == "__main__":
-	main()
+	run()
 endsnippet
 
 snippet ifma "if main with arg parsing" bw
@@ -58,11 +58,11 @@ def _parse_args():
 	args = parser.parse_args()
 	return args
 
-def main():
+def run():
 	args = _parse_args()$0
 
 if __name__ == "__main__":
-	main()
+	run()
 endsnippet
 
 snippet add_argument "add argument to parser" w

@@ -10,6 +10,8 @@ snippet bt "basic html template" bw
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>${1:Test Project}</title>
+		<link rel="stylesheet" type="text/css" href="/static/vendor.css">
+		<link rel="stylesheet" type="text/css" href="/static/app.css">
 	</head>
 	<body>$0
 		<script src="/static/vendor.js"></script>
@@ -27,7 +29,7 @@ snippet bt-bootstrap "basic html template for bootstrap" bw
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>${1:Test Project}</title>
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-		<link rel="stylesheet" href="css/styles.css">
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
 	</head>
 	<body>
 		$0
@@ -61,7 +63,12 @@ endsnippet
 #endsnippet
 
 snippet class "class=" w
-class="$1"
+`!p
+if 'jsx' in snip.ft:
+	snip.rv = 'className'
+else:
+	snip.rv = 'class'
+`="$1"
 endsnippet
 
 snippet id "id=" w
@@ -70,6 +77,15 @@ endsnippet
 
 snippet span "html span tag" w
 <span$1>$2</span>
+endsnippet
+
+snippet spanc "html span tag with class" w
+<span `!p
+if 'jsx' in snip.ft:
+	snip.rv = 'className'
+else:
+	snip.rv = 'class'
+`="$1"$2>$3</span>
 endsnippet
 
 snippet role "role=" w
@@ -83,16 +99,6 @@ endsnippet
 snippet role-form "role=form" w
 role="form"
 endsnippet
-
-#snippet spanc "html span tag" w
-#<span class="$1">$2</span>
-#endsnippet
-#
-#snippet span' "html span tag" w
-#<span class="$1"`!p
-#add_str_if(snip, t[2], ' ')
-#`$2>$3</span>
-#endsnippet
 
 snippet a "html a tag" w
 <a$1>$2</a>
@@ -127,6 +133,15 @@ snippet button "html button tag" w
 <button$1>$2</button>
 endsnippet
 
+snippet buttonc "html button tag with class" w
+<button `!p
+if 'jsx' in snip.ft:
+	snip.rv = 'className'
+else:
+	snip.rv = 'class'
+`="$1"$2>$3</button>
+endsnippet
+
 snippet type "type=" w
 type="$1"
 endsnippet
@@ -137,6 +152,10 @@ endsnippet
 
 snippet type-text "type=text" w
 type="text"
+endsnippet
+
+snippet type-submit "type=submit" w
+type="submit"
 endsnippet
 
 #snippet buttonct "html button tag with class and type" w
@@ -178,14 +197,14 @@ endsnippet
 #endsnippet
 
 snippet t "generic single html tag" w
-<$1$2 />
+<$1 />
 endsnippet
 
 snippet tt "generic html tag" w
 <$1$2>$3</$1>
 endsnippet
 
-snippet ttt "generic html tag multiline" w
+snippet tt-m "generic html tag multiline" w
 <$1$2>$3
 </$1>
 endsnippet
@@ -279,14 +298,41 @@ else:
 `="$1"$2>$3</li>
 endsnippet
 
-snippet lim' "html li tag" w
-<li`!p
-add_str_if(snip, t[1], ' ')
-`$1>$2
-</li>
+snippet label "html label tag" w
+<label$1>$2</label>
 endsnippet
 
+snippet labelc "html label tag with class" w
+<label `!p
+if 'jsx' in snip.ft:
+	snip.rv = 'className'
+else:
+	snip.rv = 'class'
+`="$1"$2>$3</label>
+endsnippet
+
+snippet for "for=" w
+`!p
+if 'jsx' in snip.ft:
+	snip.rv = 'htmlFor'
+else:
+	snip.rv = 'for'
+`="$1"
+endsnippet
+
+snippet p "html p tag" w
+<p$1>$2</p>
+endsnippet
+
+
 ####################################
+
+#snippet lim' "html li tag" w
+#<li`!p
+#add_str_if(snip, t[1], ' ')
+#`$1>$2
+#</li>
+#endsnippet
 
 #snippet input "html input tag" w
 #<input class="$1" type="$2" placeholder="$3" required="">
@@ -332,10 +378,6 @@ endsnippet
 #endsnippet
 
 
-snippet p "html p tag" w
-<p>$1</p>
-endsnippet
-
 snippet b "html b tag" w
 <b>$1</b>
 endsnippet
@@ -346,10 +388,6 @@ endsnippet
 
 snippet method "method=" w
 method="${1:post}"
-endsnippet
-
-snippet label "html label tag" w
-<label for="$1">$2</label>
 endsnippet
 
 

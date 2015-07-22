@@ -5,8 +5,20 @@ global !p
 from ultisnips_helpers import *
 endglobal
 
-snippet classname "className=" w
-className="$1"
+snippet classnames "className=" w
+className={classNames($1)}
+endsnippet
+
+snippet constructor "class constructor" w
+constructor($1) {
+	super($1);$2
+}
+endsnippet
+
+snippet constructor-react "class constructor for react" w
+constructor(props, context) {
+	super(props, context);$2
+}
 endsnippet
 
 snippet render "render function" w
@@ -16,6 +28,36 @@ render() {
 }
 endsnippet
 
+###
+# react-router snippets
+snippet Router "react-router Router" w
+<Router$1 />
+endsnippet
+snippet Router-m "react-router Router multiline" w
+<Router$1>$2
+</Router>
+endsnippet
 
+snippet Route "react-router Route" w
+<Route$1 />
+endsnippet
+
+snippet Route-m "react-router Route multiline" w
+<Route$1>$2
+</Route>
+endsnippet
+
+snippet path "path=" w
+path="$1"
+endsnippet
+
+snippet history "history=" w
+history={$1}
+endsnippet
+
+snippet component "component=" w
+component={$1}
+endsnippet
+###
 
 # vim: set ts=4:
