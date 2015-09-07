@@ -324,8 +324,37 @@ snippet p "html p tag" w
 <p$1>$2</p>
 endsnippet
 
+snippet script "html script tag" w
+<script$1>$2</script>
+endsnippet
+
+snippet src "src=" w
+src="$1"
+endsnippet
+
+snippet type-json "type=application/json" w
+type="application/json"
+endsnippet
 
 ####################################
+
+#snippet script "script tag" w
+#<script src="$1"></script>
+#endsnippet
+#
+#snippet script-json "script tag for json" w
+#<script id="$1" type="application/json">$2
+#</script>
+#endsnippet
+#
+#snippet script-html "script tag for html" w
+#<script id="$1" type="text/html">$2
+#</script>
+#endsnippet
+#
+#snippet script4 "script tag" w
+#<script src="$1" type="text/javascript">
+#endsnippet
 
 #snippet lim' "html li tag" w
 #<li`!p
@@ -429,23 +458,6 @@ snippet link4 "link tag" w
 <link rel="${1:stylesheet}" href="$2" type="text/css">
 endsnippet
 
-snippet script "script tag" w
-<script src="$1"></script>
-endsnippet
-
-snippet script-json "script tag for json" w
-<script id="$1" type="application/json">$2
-</script>
-endsnippet
-
-snippet script-html "script tag for html" w
-<script id="$1" type="text/html">$2
-</script>
-endsnippet
-
-snippet script4 "script tag" w
-<script src="$1" type="text/javascript">
-endsnippet
 
 snippet django-modeline "vim modeline" w
 <!-- vim: set filetype=htmldjango: -->

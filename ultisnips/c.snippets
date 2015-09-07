@@ -1,0 +1,42 @@
+global !p
+from ultisnips_helpers import *
+endglobal
+
+snippet main "C main function" w
+int main() {
+	${0:;}
+}
+endsnippet
+
+snippet maina "C main function with arguments" w
+int main(int argc, char **argv) {
+	${0:;}
+}
+endsnippet
+
+snippet inc "#include" w
+#include <$1>
+endsnippet
+
+snippet incl "#include quotes version" w
+#include "$1"
+endsnippet
+
+snippet stdio "#include <stdio.h>" w
+#include <stdio.h>
+endsnippet
+
+snippet stdlib "#include <stdlib.h>" w
+#include <stdlib.h>
+endsnippet
+
+snippet dlfcn "#include <dlfcn.h>" w
+#include <dlfcn.h>
+endsnippet
+
+snippet printf "printf function" w
+printf("$1"`!p
+add_str_if(snip, t[2], ", ")
+refresh(snip)
+`$2);
+endsnippet
