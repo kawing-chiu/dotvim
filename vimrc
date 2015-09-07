@@ -39,18 +39,14 @@ nnoremap <C-a> :set paste! paste?<CR>
 
 inoremap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
 
-" List of installed plugins:
-" ctrlp.vim neocomplete.vim nerdtree tagbar
-" tern_for_vim ultisnips vim-abolish vim-javascript
-" vim-jsx
 
-" Netrw settings
+" netrw
 let g:netrw_liststyle = 3
 let g:netrw_winsize = 25
 let g:netrw_browse_split = 4
 let g:netrw_banner = 0
 
-" The neocomplete plugin
+" neocomplete
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#enable_auto_select = 1
@@ -59,7 +55,7 @@ let g:neocomplete#auto_completion_start_length = 2
 if !exists('g:neocomplete#force_omni_input_patterns')
   let g:neocomplete#force_omni_input_patterns = {}
 endif
-let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
+"let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
 
 inoremap <expr> <C-g> neocomplete#undo_completion()
 inoremap <expr> <C-l> neocomplete#complete_common_string()
@@ -67,9 +63,7 @@ inoremap <expr> <C-l> neocomplete#complete_common_string()
 inoremap <expr> <S-Tab> pumvisible() ? neocomplete#close_popup() : "\<S-Tab>"
 inoremap <expr> <CR> pumvisible() ? neocomplete#cancel_popup()."\<CR>" : "\<CR>"
 
-" The ultisnips plugin
-"autocmd FileType javascript UltiSnipsAddFiletypes javascript.jsx
-
+" ultisnips
 let g:UltiSnipsEditSplit = 'vertical'
 let g:UltiSnipsSnippetsDir = '~/.vim/ultisnips'
 let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/ultisnips']
@@ -93,27 +87,41 @@ inoremap <silent> <Tab> <C-r>=(Ultisnips_Try_Expand() > 0) ? "" : Neocomplete_Se
 " Interestingly, the following will not work:
 " inoremap <expr> <Tab> (Ultisnips_Try_Expand() > 0) ? "" : Neocomplete_Select_Candidate()
 
-" The ctrlp plugin
+" ctrlp
 let g:ctrlp_working_path_mode = 'a'
 
-" The nerdtree plugin
+" nerdtree
 nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <C-h> :NERDTreeFind<CR>
 
-" The tern_for_vim plugin
-autocmd FileType javascript nnoremap <buffer> <C-]> :TernDef<CR>
-autocmd FileType javascript nnoremap <buffer> <C-t> <C-o>
-
-" The tagbar plugin
+" tagbar
 nnoremap <C-k> :TagbarToggle<CR>
 let g:tagbar_sort = 0
 
-" The vim-jsx plugin
+" vim-jsx
 let g:jsx_ext_required = 0
+
+" jedi
+" don't forget to run `git submodule update --init` inside jedi's directory
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#completions_enabled = 0
+
+autocmd FileType python setlocal omnifunc=jedi#completions
+
+let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+
+
+
+" other plugins
 
 " The taglist plugin
 let g:tlist_tex_settings = 'latex;s:sections;g:graphics;l:labels'
 let g:tlist_php_settings = 'php;c:class;f:function'
+
+" tern not quite working
+" The tern_for_vim plugin
+"autocmd FileType javascript nnoremap <buffer> <C-]> :TernDef<CR>
+"autocmd FileType javascript nnoremap <buffer> <C-t> <C-o>
 
 
 " 快捷键
@@ -121,25 +129,25 @@ let g:tlist_php_settings = 'php;c:class;f:function'
 " Run Python interpreter
 ":vnoremap <F5> :!python<Enter>
 
-" 下面以Alt键开头的快捷键还不能在terminal下使用，需要改进
-" xelatex编译快捷键
-nnoremap <M-x> :silent !(atril %:p:h/pdf/%:t.pdf &)<CR>
-nnoremap <M-c> :silent !(cd %:p:h; xelatex -output-directory=pdf %:t &)<CR>
-" 在insert mode下开新行/跳到下一个词的输入位置
-inoremap <M-o> <C-[>o
-inoremap <M-j> <C-[>Ea<Space>
-" \myitem系列快捷键
-inoremap <M-i> \myitem[]<C-o>h<C-o>l
-inoremap <M-I> \myitem<C-[>o
-" \lstlisting系列快捷键
-inoremap <M-l> \begin{lstlisting}<Enter>
-inoremap <M-L> \end{lstlisting}<Enter>
-inoremap <M-k> \lst<Bar><Bar><C-[>i
-nnoremap <M-k> i\lst<Bar><Esc>Ea<Bar><Esc>
-" 增加toc高亮快捷键
-nnoremap <M-d> mt$a-d-<C-[>`t
-nnoremap <M-t> mt$a-t-<C-[>`t
-nnoremap <M-r> mt$xxx`t
+"" 下面以Alt键开头的快捷键还不能在terminal下使用，需要改进
+"" xelatex编译快捷键
+"nnoremap <M-x> :silent !(atril %:p:h/pdf/%:t.pdf &)<CR>
+"nnoremap <M-c> :silent !(cd %:p:h; xelatex -output-directory=pdf %:t &)<CR>
+"" 在insert mode下开新行/跳到下一个词的输入位置
+"inoremap <M-o> <C-[>o
+"inoremap <M-j> <C-[>Ea<Space>
+"" \myitem系列快捷键
+"inoremap <M-i> \myitem[]<C-o>h<C-o>l
+"inoremap <M-I> \myitem<C-[>o
+"" \lstlisting系列快捷键
+"inoremap <M-l> \begin{lstlisting}<Enter>
+"inoremap <M-L> \end{lstlisting}<Enter>
+"inoremap <M-k> \lst<Bar><Bar><C-[>i
+"nnoremap <M-k> i\lst<Bar><Esc>Ea<Bar><Esc>
+"" 增加toc高亮快捷键
+"nnoremap <M-d> mt$a-d-<C-[>`t
+"nnoremap <M-t> mt$a-t-<C-[>`t
+"nnoremap <M-r> mt$xxx`t
 
 
 " vim: set sts=2 sw=2 et:
