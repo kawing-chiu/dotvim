@@ -1,3 +1,6 @@
 [submodule "plugins/neocomplete"]
 	path = plugins/neocomplete
 	url = git@github.com:Shougo/neocomplete.vim.git
+[submodule "plugins/ultisnips"]
+	path = plugins/ultisnips
+	url = git@github.com:SirVer/ultisnips.git
