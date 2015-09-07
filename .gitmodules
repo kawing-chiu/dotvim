@@ -1,0 +1,3 @@
+[submodule "plugins/neocomplete"]
+	path = plugins/neocomplete
+	url = git@github.com:Shougo/neocomplete.vim.git

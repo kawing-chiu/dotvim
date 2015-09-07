@@ -1,6 +1,8 @@
-.netrwhist
-ultisnips/examples/
+/.netrwhist
+/ultisnips/examples/
 *.swp
 *.pyc
-tags
-plugins/
+/tags
+
+/plugins/*
+!/plugins/neocomplete
