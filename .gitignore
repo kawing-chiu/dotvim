@@ -7,3 +7,6 @@
 /plugins/*
 !/plugins/neocomplete
 !/plugins/ultisnips
+!/plugins/ctrlp
+!/plugins/nerdtree
+!/plugins/tagbar
