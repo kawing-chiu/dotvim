@@ -10,3 +10,5 @@
 !/plugins/ctrlp
 !/plugins/nerdtree
 !/plugins/tagbar
+!/plugins/vim-jsx
+!/plugins/vim-javascript

@@ -13,3 +13,9 @@
 [submodule "plugins/tagbar"]
 	path = plugins/tagbar
 	url = git@github.com:majutsushi/tagbar.git
+[submodule "plugins/vim-jsx"]
+	path = plugins/vim-jsx
+	url = git@github.com:mxw/vim-jsx.git
+[submodule "plugins/vim-javascript"]
+	path = plugins/vim-javascript
+	url = git@github.com:pangloss/vim-javascript.git
