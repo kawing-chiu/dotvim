@@ -30,6 +30,8 @@ set tags=./tags;,~/.tags.python
 set completeopt-=preview
 set grepprg=ack\ -k\ --smart-case
 
+set formatoptions-=t
+set formatoptions+=a
 
 " Key mappings
 nnoremap <C-x>d :set filetype=htmldjango<CR>
@@ -60,7 +62,7 @@ endif
 inoremap <expr> <C-g> neocomplete#undo_completion()
 inoremap <expr> <C-l> neocomplete#complete_common_string()
 
-inoremap <expr> <S-Tab> pumvisible() ? neocomplete#close_popup() : "\<S-Tab>"
+"inoremap <expr> <S-Tab> pumvisible() ? neocomplete#close_popup() : "\<S-Tab>"
 inoremap <expr> <CR> pumvisible() ? neocomplete#cancel_popup()."\<CR>" : "\<CR>"
 
 " ultisnips
@@ -110,6 +112,15 @@ autocmd FileType python setlocal omnifunc=jedi#completions
 
 let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
 
+" when using vim-python3, the following is not needed
+"py << EOF
+"import sys
+"import os
+"sys.path[:0] = [
+"    os.path.expanduser('~/.local/lib/python3.4/site-packages'),
+"    '/usr/lib/python3.4/site-packages'
+"]
+"EOF
 
 
 " other plugins

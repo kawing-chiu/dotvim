@@ -16,10 +16,6 @@ $0
 
 endsnippet
 
-snippet __author__ "author declaration" w
-__author__ = ("${1:Zhao Jiarong} ${2:<kawing.chiu.sysu@gmail.com>}")
-endsnippet
-
 snippet py2-enc "python 2 encoding" w
 # encoding: utf-8
 endsnippet
@@ -41,6 +37,43 @@ $2
 
 $0
 
+endsnippet
+
+snippet py "python file template" b
+#!/usr/bin/env python
+"""$1
+"""
+$2
+
+
+$0
+
+endsnippet
+
+snippet license-agpl "AGPL license statement" w
+# Copyright (C) `!p
+import datetime
+snip.rv += str(datetime.date.today().year)
+` Zhao Jiarong <kawing.chiu.sysu at gmail dot com>
+#
+# This file is part of $1.
+# 
+# $1 is free software: you can redistribute it and/or modify it under
+# the terms of the GNU Affero General Public License as published by the Free
+# Software Foundation, either version 3 of the License, or (at your option) any
+# later version.
+# 
+# $1 is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
+# details.
+# 
+# You should have received a copy of the GNU Affero General Public License
+# along with $1. If not, see <http://www.gnu.org/licenses/>.
+endsnippet
+
+snippet __author__ "author declaration" w
+__author__ = ("${1:Zhao Jiarong} ${2:<kawing.chiu.sysu@gmail.com>}")
 endsnippet
 
 snippet ifm "if main" bw
