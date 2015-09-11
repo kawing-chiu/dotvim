@@ -31,13 +31,14 @@ set completeopt-=preview
 set grepprg=ack\ -k\ --smart-case
 
 set formatoptions-=t
-set formatoptions+=a
+set formatoptions+=aorw
 
 " Key mappings
+nnoremap <C-a> :set paste! paste?<CR>
+
+" not so important ones:
 nnoremap <C-x>d :set filetype=htmldjango<CR>
 nnoremap <C-x>j :set filetype=javascript<CR>
-
-nnoremap <C-a> :set paste! paste?<CR>
 
 inoremap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
 
@@ -121,6 +122,18 @@ let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*f
 "    '/usr/lib/python3.4/site-packages'
 "]
 "EOF
+
+" vim-clang
+" don't forget to install clang
+let g:clang_auto = 0
+let g:clang_c_completeopt = 'menuone'
+let g:clang_cpp_completeopt = 'menuone'
+
+let g:clang_c_options = '-std=gnu99'
+let g:clang_cpp_options = '-std=c++11'
+
+let g:neocomplete#force_omni_input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
 
 
 " other plugins

@@ -22,3 +22,6 @@
 [submodule "plugins/jedi"]
 	path = plugins/jedi
 	url = git@github.com:davidhalter/jedi-vim.git
+[submodule "plugins/vim-clang"]
+	path = plugins/vim-clang
+	url = git@github.com:justmao945/vim-clang.git
