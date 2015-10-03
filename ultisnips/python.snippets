@@ -117,7 +117,7 @@ def $1($2):
 	${0:pass}
 endsnippet
 
-snippet defs "function definition with self" b
+snippet defs "instance method" b
 def $1(self`!p
 add_str_if(snip, t[2], ", ")
 refresh(snip)
@@ -125,7 +125,7 @@ refresh(snip)
 	${0:pass}
 endsnippet
 
-snippet defc "function definition with cls" b
+snippet defc "class method" b
 def $1(cls`!p
 add_str_if(snip, t[2], ", ")
 refresh(snip)
@@ -145,7 +145,7 @@ refresh(snip)
 endsnippet
 
 
-snippet cls2 "class definition" b
+snippet cls2 "class definition py2 version" b
 class $1(${2:object}):
 	${0:pass}
 endsnippet

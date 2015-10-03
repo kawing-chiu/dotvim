@@ -1,5 +1,6 @@
 """Helper functions for ultisnips"""
 import time
+import vim
 
 def is_ascii(s):
     return all(ord(c) < 128 for c in s)
@@ -31,4 +32,7 @@ def add_str_if_not_beginswith(snip, tabstop, char, string):
             snip.rv += string
     refresh(snip)
                                         
+def get_buffer_file():
+    return vim.current.buffer.name
+
 
