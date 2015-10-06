@@ -97,6 +97,8 @@ let g:ctrlp_working_path_mode = 'a'
 nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <C-h> :NERDTreeFind<CR>
 
+nnoremap <C-j> :let g:NERDTreeQuitOnOpen = 1 - g:NERDTreeQuitOnOpen<CR>
+
 let g:NERDTreeQuitOnOpen = 1
 
 " tagbar
