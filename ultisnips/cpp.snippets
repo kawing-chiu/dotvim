@@ -24,6 +24,10 @@ snippet chrono "#include <chrono>" w
 #include <chrono>
 endsnippet
 
+snippet ustd "using namespace std" w
+using namespace std;
+endsnippet
+
 snippet size_of_array "size_of_array function" w
 template<typename T, size_t N>
 constexpr size_t size_of_array(T (&)[N]) {
@@ -31,31 +35,18 @@ constexpr size_t size_of_array(T (&)[N]) {
 }
 endsnippet
 
-snippet header-guard "header guard" w
-#ifndef `!p
-import os
-buffer_file = get_buffer_file()
-buffer_file = os.path.basename(buffer_file).upper()
-guard_name = '__' + buffer_file.replace('.', '_') + '__'
-snip.rv = guard_name
-`
-#define `!p
-snip.rv = guard_name
-`
-
-$0
-
-
-#endif
-endsnippet
-
 snippet cls "class definition" b
 class $1`!p
 add_str_if(snip, t[2], " : ")
 refresh(snip)
 `$2 {
-	${0:pass}
+	${0:;}
 };
+endsnippet
+
+snippet namespace "namespace definition" w
+namespace $1 {$0
+}
 endsnippet
 
 

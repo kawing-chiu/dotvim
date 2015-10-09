@@ -22,6 +22,26 @@ snippet incl "#include quotes version" w
 #include "$1"
 endsnippet
 
+snippet header-guard "header guard" w
+#ifndef `!p
+import os
+buffer_file = get_buffer_file()
+buffer_file = os.path.basename(buffer_file).upper()
+guard_name = '_' + buffer_file.replace('.', '_')
+snip.rv = guard_name
+`
+#define `!p
+snip.rv = guard_name
+`
+
+$0
+
+
+#endif // End of `!p
+snip.rv = guard_name
+`
+endsnippet
+
 snippet stdio "#include <stdio.h>" w
 #include <stdio.h>
 endsnippet
