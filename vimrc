@@ -37,8 +37,9 @@ set formatoptions+=aorw
 nnoremap <C-a> :set paste! paste?<CR>
 
 " not so important ones:
-nnoremap <C-x>d :set filetype=htmldjango<CR>
-nnoremap <C-x>j :set filetype=javascript<CR>
+"nnoremap <C-x>d :set filetype=htmldjango<CR>
+nnoremap <C-x>js :set filetype=javascript<CR>
+nnoremap <C-x>cpp :set filetype=cpp<CR>
 
 inoremap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
 
