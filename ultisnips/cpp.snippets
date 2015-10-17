@@ -5,43 +5,55 @@ global !p
 from ultisnips_helpers import *
 endglobal
 
-snippet iostream "#include <iostream>" w
+snippet iostream "#include <iostream>" b
 #include <iostream>
 endsnippet
 
-snippet thread "#include <thread>" w
+snippet thread "#include <thread>" b
 #include <thread>
 endsnippet
 
-snippet mutex "#include <mutex>" w
+snippet mutex "#include <mutex>" b
 #include <mutex>
 endsnippet
 
-snippet memory "#include <memory>" w
+snippet memory "#include <memory>" b
 #include <memory>
 endsnippet
 
-snippet map "#include <map>" w
+snippet utility "#include <utility>" b
+#include <utility>
+endsnippet
+
+snippet functional "#include <functional>" b
+#include <functional>
+endsnippet
+
+snippet tuple "#include <tuple>" b
+#include <tuple>
+endsnippet
+
+snippet map "#include <map>" b
 #include <map>
 endsnippet
 
-snippet string "#include <string>" w
+snippet string "#include <string>" b
 #include <string>
 endsnippet
 
-snippet condition_variable "#include <condition_variable>" w
+snippet condition_variable "#include <condition_variable>" b
 #include <condition_variable>
 endsnippet
 
-snippet chrono "#include <chrono>" w
+snippet chrono "#include <chrono>" b
 #include <chrono>
 endsnippet
 
-snippet ustd "using namespace std" w
+snippet ustd "using namespace std" b
 using namespace std;
 endsnippet
 
-snippet size_of_array "size_of_array function" w
+snippet size_of_array "size_of_array function" b
 template<typename T, size_t N>
 constexpr size_t size_of_array(T (&)[N]) {
 	return N;
@@ -57,7 +69,12 @@ refresh(snip)
 };
 endsnippet
 
-snippet namespace "namespace definition" w
+snippet tpl "template definition" b
+template<$1>
+$2
+endsnippet
+
+snippet namespace "namespace definition" b
 namespace $1 {$0
 }
 endsnippet

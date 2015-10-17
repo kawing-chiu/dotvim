@@ -28,7 +28,8 @@ set fileencodings^=utf8,gb18030
 set tags=./tags;,~/.tags.python
 
 set completeopt-=preview
-set grepprg=ack\ -k\ --smart-case
+"set grepprg=ack\ -k\ --smart-case
+set grepprg=ack\ --smart-case
 
 set formatoptions-=t
 set formatoptions+=aorw
