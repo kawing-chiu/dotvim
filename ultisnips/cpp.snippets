@@ -37,8 +37,16 @@ snippet map "#include <map>" b
 #include <map>
 endsnippet
 
+snippet vector "#include <vector>" b
+#include <vector>
+endsnippet
+
 snippet string "#include <string>" b
 #include <string>
+endsnippet
+
+snippet numeric "#include <numeric>" b
+#include <numeric>
 endsnippet
 
 snippet condition_variable "#include <condition_variable>" b
@@ -69,9 +77,8 @@ refresh(snip)
 };
 endsnippet
 
-snippet tpl "template definition" b
-template<$1>
-$2
+snippet tpl "template definition" w
+template<$1>$0
 endsnippet
 
 snippet namespace "namespace definition" b
@@ -79,4 +86,6 @@ namespace $1 {$0
 }
 endsnippet
 
-
+snippet dynamic_cast "dynamic_cast" w
+dynamic_cast<$1>($2)
+endsnippet

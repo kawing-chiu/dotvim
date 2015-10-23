@@ -14,15 +14,53 @@ int main(int argc, char **argv) {
 }
 endsnippet
 
-snippet inc "#include" w
+snippet def "function definition" b
+$1($2)`!p
+add_str_if(snip, t[3], " ")
+`$3 {
+	${0:;}
+}
+endsnippet
+
+snippet for "for loop" b
+for ($1; $2; $3) {
+	$4
+}
+endsnippet
+
+snippet typedef "typedef" b
+typedef $0
+endsnippet
+
+snippet size_t "size_t" w
+size_t $0
+endsnippet
+
+snippet inc "#include" b
 #include <$1>
 endsnippet
 
-snippet incl "#include quotes version" w
+snippet /* "long comment" b
+/*
+ * $1
+ */
+$0
+endsnippet
+
+snippet #ifndef "#ifndef" b
+#ifndef $1
+#endif
+endsnippet
+
+snippet #def "#define" b
+#define $0
+endsnippet
+
+snippet incl "#include quotes version" b
 #include "$1"
 endsnippet
 
-snippet header-guard "header guard" w
+snippet header-guard "header guard" b
 #ifndef `!p
 import os
 buffer_file = get_buffer_file()
@@ -42,19 +80,19 @@ snip.rv = guard_name
 `
 endsnippet
 
-snippet stdio "#include <stdio.h>" w
+snippet stdio "#include <stdio.h>" b
 #include <stdio.h>
 endsnippet
 
-snippet stdlib "#include <stdlib.h>" w
+snippet stdlib "#include <stdlib.h>" b
 #include <stdlib.h>
 endsnippet
 
-snippet string "#include <string.h>" w
+snippet string "#include <string.h>" b
 #include <string.h>
 endsnippet
 
-snippet dlfcn "#include <dlfcn.h>" w
+snippet dlfcn "#include <dlfcn.h>" b
 #include <dlfcn.h>
 endsnippet
 
