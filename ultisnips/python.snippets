@@ -104,12 +104,18 @@ endsnippet
 
 
 snippet doc "docstring" w
-"""$3`!p
+"""$1`!p
 indent = get_indent(snip, shift=0)
-add_str_if(snip, "\n" in t[3], "\n" + indent)
+prefix = '\n\n' + indent
+add_str_if(snip, t[2], prefix)
+`$2`!p
+if not t[2]:
+    suffix = '"""' 
+else:
+    suffix = '\n' + indent + '"""'
+add_str(snip, suffix)
 refresh(snip)
-`"""
-$0
+`
 endsnippet
 
 snippet def "function definition" b
@@ -136,10 +142,8 @@ endsnippet
 snippet cls "class definition" b
 class $1`!p
 add_str_if(snip, t[2], "(")
-refresh(snip)
 `$2`!p
 add_str_if(snip, t[2], ")")
-refresh(snip)
 `:
 	${0:pass}
 endsnippet
@@ -241,17 +245,22 @@ endsnippet
 #endsnippet
 
 ####
+# almost works
 # testing
-snippet test "function definition" b
-def $1($2):`!p
-indent = get_indent(snip)
-add_str_if_not_beginswith(snip, t[3], "\n", "\n" + indent + '"""')
-`$3`!p
-string = '"""'
-refresh(snip)
-if t[3] and is_ascii(t[3][0:1]):
-    add_str_if_not_beginswith(snip, t[3], "\n", string)
-`
-	${0:pass}
-endsnippet
+#snippet test "function definition" b
+#def $1($2):`!p
+#indent = get_indent(snip)
+#prefix = '\n' + indent + '"""'
+#add_str_if_not_beginswith(snip, t[3], "\n", prefix)
+#`$3`!p
+#if '\n' not in t[3]:
+#    suffix = '"""' 
+#else:
+#    suffix = prefix
+##refresh(snip)
+#if t[3]: #and is_ascii(t[3][0:1]):
+#    add_str_if_not_beginswith(snip, t[3], "\n", suffix)
+#`
+#	${0:pass}
+#endsnippet
 ###

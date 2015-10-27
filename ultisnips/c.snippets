@@ -44,7 +44,6 @@ snippet /* "long comment" b
 /*
  * $1
  */
-$0
 endsnippet
 
 snippet #ifndef "#ifndef" b
@@ -80,20 +79,28 @@ snip.rv = guard_name
 `
 endsnippet
 
-snippet stdio "#include <stdio.h>" b
+snippet stdio.h "#include <stdio.h>" b
 #include <stdio.h>
 endsnippet
 
-snippet stdlib "#include <stdlib.h>" b
+snippet stdlib.h "#include <stdlib.h>" b
 #include <stdlib.h>
 endsnippet
 
-snippet string "#include <string.h>" b
+snippet string.h "#include <string.h>" b
 #include <string.h>
 endsnippet
 
-snippet dlfcn "#include <dlfcn.h>" b
+snippet assert.h "#include <assert.h>" b
+#include <assert.h>
+endsnippet
+
+snippet dlfcn.h "#include <dlfcn.h>" b
 #include <dlfcn.h>
+endsnippet
+
+snippet stdint.h "#include <stdint.h>" b
+#include <stdint.h>
 endsnippet
 
 snippet printf "printf function" w

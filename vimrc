@@ -136,8 +136,8 @@ let g:clang_auto = 0
 let g:clang_c_completeopt = 'menuone'
 let g:clang_cpp_completeopt = 'menuone'
 
-let g:clang_c_options = '-std=gnu99 -Wall -Wextra -Wno-unused-parameter'
-let g:clang_cpp_options = '-std=c++11 -Wall -Wextra -Wno-unused-parameter'
+let g:clang_c_options = '-std=gnu99 -Wall -Wextra -Wno-unused-parameter -Wno-unused-variable -Wno-unused-private-field'
+let g:clang_cpp_options = '-std=c++11 -Wall -Wextra -Wno-unused-parameter -Wno-unused-variable -Wno-unused-private-field'
 
 let g:neocomplete#force_omni_input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)\w*'
 "let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] 
