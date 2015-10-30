@@ -28,6 +28,12 @@ for ($1; $2; $3) {
 }
 endsnippet
 
+snippet if "if statement" b
+if ($1) {
+	$2
+}
+endsnippet
+
 snippet typedef "typedef" b
 typedef $0
 endsnippet
@@ -47,8 +53,21 @@ snippet /* "long comment" b
 endsnippet
 
 snippet #ifndef "#ifndef" b
-#ifndef $1
+#ifndef $0
 #endif
+endsnippet
+
+snippet #ifdef "#ifdef" b
+#ifdef $0
+#endif
+endsnippet
+
+snippet #elif "#elif" b
+#elif $0
+endsnippet
+
+snippet #else "#else" b
+#else$0
 endsnippet
 
 snippet #def "#define" b

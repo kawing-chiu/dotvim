@@ -40,8 +40,9 @@ imap <C-a> <C-o><C-a>
 
 " not so important ones:
 "nnoremap <C-x>d :set filetype=htmldjango<CR>
-nnoremap <C-x>js :set filetype=javascript<CR>
-nnoremap <C-x>cpp :set filetype=cpp<CR>
+nnoremap <C-x>js :set filetype=javascript filetype?<CR>
+nnoremap <C-x>cpp :set filetype=cpp filetype?<CR>
+nnoremap <C-x>c :set filetype=c filetype?<CR>
 
 inoremap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
 
