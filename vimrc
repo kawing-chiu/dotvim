@@ -21,6 +21,7 @@ syntax on
 filetype plugin indent on
 
 autocmd BufEnter * :syntax sync fromstart
+autocmd BufRead,BufNewFile *.tpl set filetype=jinja
 
 set fileencodings^=utf8,gb18030
 
@@ -43,6 +44,7 @@ imap <C-a> <C-o><C-a>
 nnoremap <C-x>js :set filetype=javascript filetype?<CR>
 nnoremap <C-x>cpp :set filetype=cpp filetype?<CR>
 nnoremap <C-x>c :set filetype=c filetype?<CR>
+nnoremap <C-x>jinja :set filetype=jinja filetype?<CR>
 
 inoremap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
 
@@ -101,7 +103,7 @@ let g:ctrlp_working_path_mode = 'a'
 nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <C-h> :NERDTreeFind<CR>
 
-nnoremap <C-j> :let g:NERDTreeQuitOnOpen = 1 - g:NERDTreeQuitOnOpen<CR>
+nnoremap <C-j> :let g:NERDTreeQuitOnOpen = 1 - g:NERDTreeQuitOnOpen<CR>:let g:NERDTreeQuitOnOpen<CR>
 
 let g:NERDTreeQuitOnOpen = 1
 
