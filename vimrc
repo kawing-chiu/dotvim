@@ -38,12 +38,14 @@ set formatoptions+=aorw
 nnoremap <C-a> :set paste! paste?<CR>
 imap <C-a> <C-o><C-a>
 
-" not so important ones:
-"nnoremap <C-x>d :set filetype=htmldjango<CR>
+nnoremap <C-h> 25zh
+nnoremap <C-l> 25zl
+
 nnoremap <C-x>js :set filetype=javascript filetype?<CR>
 nnoremap <C-x>cpp :set filetype=cpp filetype?<CR>
 nnoremap <C-x>c :set filetype=c filetype?<CR>
 
+" not so important ones:
 inoremap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
 
 
@@ -99,7 +101,7 @@ let g:ctrlp_working_path_mode = 'a'
 
 " nerdtree
 nnoremap <C-n> :NERDTreeToggle<CR>
-nnoremap <C-h> :NERDTreeFind<CR>
+nnoremap <C-m> :NERDTreeFind<CR>
 
 nnoremap <C-j> :let g:NERDTreeQuitOnOpen = 1 - g:NERDTreeQuitOnOpen<CR>
 
