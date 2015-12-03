@@ -58,6 +58,8 @@ nnoremap <C-x>cpp :set filetype=cpp filetype?<CR>
 nnoremap <C-x>c :set filetype=c filetype?<CR>
 nnoremap <C-x>jinja :set filetype=jinja filetype?<CR>
 
+nnoremap <C-x>wrap :set textwidth=79 formatoptions+=ta formatoptions-=c<CR>
+
 " not so important ones:
 inoremap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
 

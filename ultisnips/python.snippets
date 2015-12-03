@@ -139,6 +139,14 @@ refresh(snip)
 	${0:pass}
 endsnippet
 
+snippet defm "metaclass method" b
+def $1(meta`!p
+add_str_if(snip, t[2], ", ")
+refresh(snip)
+`$2):
+	${0:pass}
+endsnippet
+
 snippet cls "class definition" b
 class $1`!p
 add_str_if(snip, t[2], "(")
