@@ -2,6 +2,32 @@ global !p
 from ultisnips_helpers import *
 endglobal
 
+snippet shebang "shebang" b
+#!/usr/bin/env python
+endsnippet
+
+snippet py3 "python 3 file template" b
+#!/usr/bin/env python3
+"""$1
+"""
+$2
+
+
+$0
+
+endsnippet
+
+snippet py "python file template" b
+#!/usr/bin/env python
+"""$1
+"""
+$2
+
+
+$0
+
+endsnippet
+
 snippet py2 "python 2 file template" b
 #!/usr/bin/env python2
 # encoding: utf-8
@@ -26,28 +52,6 @@ endsnippet
 
 snippet py2-io "python 2 io import" w
 from io import open
-endsnippet
-
-snippet py3 "python 3 file template" b
-#!/usr/bin/env python3
-"""$1
-"""
-$2
-
-
-$0
-
-endsnippet
-
-snippet py "python file template" b
-#!/usr/bin/env python
-"""$1
-"""
-$2
-
-
-$0
-
 endsnippet
 
 snippet license-agpl "AGPL license statement" w
@@ -169,7 +173,21 @@ refresh(snip)
 	${0:pass}
 endsnippet
 
+# descriptor methods
+snippet __get__ "__get__ method" b
+def __get__(self, instance, owner):
+	${0:pass}
+endsnippet
 
+snippet __set__ "__set__ method" b
+def __set__(self, instance, value):
+	${0:pass}
+endsnippet
+
+snippet __delete__ "__delete__ method" b
+def __delete__(self, instance):
+	${0:pass}
+endsnippet
 
 #########
 # some functions, still testing
@@ -195,30 +213,30 @@ endsnippet
 #$0
 #endsnippet
 
-snippet arg_add "add an argument" b
-parser.add_argument("$1",`!p
-add_str_if_not_beginswith(snip, t[2], " ", " \"")
-`$2`!p
-indent = get_indent(snip, 2)
-add_str_if_not_beginswith(snip, t[2], " ", "\",")
-add_str(snip, "\n" + indent)
-`help="$3"`!p
-add_str_if(snip, t[4], ",\n" + indent)
-`$4)
-endsnippet
+#snippet arg_add "add an argument" b
+#parser.add_argument("$1",`!p
+#add_str_if_not_beginswith(snip, t[2], " ", " \"")
+#`$2`!p
+#indent = get_indent(snip, 2)
+#add_str_if_not_beginswith(snip, t[2], " ", "\",")
+#add_str(snip, "\n" + indent)
+#`help="$3"`!p
+#add_str_if(snip, t[4], ",\n" + indent)
+#`$4)
+#endsnippet
 
-snippet create_dir "directory creation func" b
-def _create_dir(*paths):
-	for path in paths:
-		try:
-			os.makedirs(path)
-		except OSError as e:
-			if not os.path.isdir(path):
-				log.error("Directory '{}' cannot be created.".format(path))
-				raise
-
-$0
-endsnippet
+#snippet create_dir "directory creation func" b
+#def _create_dir(*paths):
+#	for path in paths:
+#		try:
+#			os.makedirs(path)
+#		except OSError as e:
+#			if not os.path.isdir(path):
+#				log.error("Directory '{}' cannot be created.".format(path))
+#				raise
+#
+#$0
+#endsnippet
 
 #snippet init_log "logging initialization" b
 #_default_log_path = ${1:"log/"}
