@@ -116,7 +116,7 @@ let g:ctrlp_working_path_mode = 'a'
 
 " nerdtree
 nnoremap <C-n> :NERDTreeToggle<CR>
-nnoremap <C-m> :NERDTreeFind<CR>
+nnoremap <C-n>n :NERDTreeFind<CR>
 
 nnoremap <C-j> :let g:NERDTreeQuitOnOpen = 1 - g:NERDTreeQuitOnOpen<CR>:let g:NERDTreeQuitOnOpen<CR>
 
