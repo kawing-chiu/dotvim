@@ -19,8 +19,22 @@ snippet cwarn "console.warn" w
 console.warn($1)
 endsnippet
 
-snippet cerror "console.error" w
+snippet cerr "console.error" w
 console.error($1)
+endsnippet
+
+snippet doc "JSDoc style multi-line doc" b
+/**
+ * $1
+ */
+endsnippet
+
+snippet docs "JSDoc style one-line doc" b
+/** $1 */
+endsnippet
+
+snippet @param "JSDoc @param" w
+@param $0
 endsnippet
 
 
