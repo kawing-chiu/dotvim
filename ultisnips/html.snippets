@@ -40,20 +40,47 @@ snippet bt-bootstrap "basic html template for bootstrap" bw
 </html>
 endsnippet
 
+snippet t "generic single html tag" w
+<$1`!p
+add_str_if(snip, t[2], ' ')
+`$2 />
+endsnippet
+
+snippet tt "generic html tag" w
+<$1`!p
+add_str_if(snip, t[2], ' ')
+`$2>$3</$1>
+endsnippet
+
+snippet tm "generic html tag multiline" w
+<$1`!p
+add_str_if(snip, t[2], ' ')
+`$2>$3
+</$1>
+endsnippet
+
 snippet div "html div tag" w
-<div$1>$2
+<div`!p
+add_str_if(snip, t[1], ' ')
+`$1>$2</div>
+endsnippet
+
+snippet divm "html div tag multiline" w
+<div`!p
+add_str_if(snip, t[1], ' ')
+`$1>$2
 </div>
 endsnippet
 
-snippet divc "html div tag with class" w
-<div `!p
-if 'jsx' in snip.ft:
-	snip.rv = 'className'
-else:
-	snip.rv = 'class'
-`="$1"$2>$3
-</div>
-endsnippet
+#snippet divc "html div tag with class" w
+#<div `!p
+#if 'jsx' in snip.ft:
+#	snip.rv = 'className'
+#else:
+#	snip.rv = 'class'
+#`="$1"$2>$3
+#</div>
+#endsnippet
 
 #snippet div' "html div tag" w
 #<div class="$1"`!p
@@ -63,12 +90,7 @@ endsnippet
 #endsnippet
 
 snippet class "class=" w
-`!p
-if 'jsx' in snip.ft:
-	snip.rv = 'className'
-else:
-	snip.rv = 'class'
-`="$1"
+class="$1"
 endsnippet
 
 snippet id "id=" w
@@ -195,19 +217,6 @@ endsnippet
 #add_str_if(snip, t[1], ' ')
 #`$1>$2</`!p snip.rv = tag`>
 #endsnippet
-
-snippet t "generic single html tag" w
-<$1 />
-endsnippet
-
-snippet tt "generic html tag" w
-<$1$2>$3</$1>
-endsnippet
-
-snippet tt-m "generic html tag multiline" w
-<$1$2>$3
-</$1>
-endsnippet
 
 snippet form "html form tag" w
 <form$1>$2

@@ -35,6 +35,8 @@ set grepprg=ack\ --smart-case
 set formatoptions-=t
 set formatoptions+=aorw
 
+set timeoutlen=300
+
 " Key mappings
 nnoremap <C-a> :set paste! paste?<CR>
 

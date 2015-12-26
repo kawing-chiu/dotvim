@@ -5,46 +5,67 @@ global !p
 from ultisnips_helpers import *
 endglobal
 
-snippet classnames "className=" w
-className={classNames($1)}
+snippet class "class=" w
+className="$1"
 endsnippet
 
-snippet constructor "class constructor" w
-constructor($1) {
-	super($1);$2
+snippet class{ "class={}" w
+className={$1}
+endsnippet
+
+snippet ref "ref=" w
+ref="$1"
+endsnippet
+
+snippet ref{ "ref={}" w
+ref={$1}
+endsnippet
+
+snippet classNames "classNames() function" w
+classNames($1)
+endsnippet
+
+snippet dangerouslySetInnerHTML "dangerouslySetInnerHTML=" w
+dangerouslySetInnerHTML={$1}
+endsnippet
+
+snippet constructor "class constructor for react" b
+constructor(props) {
+	super(props);$1
 }
 endsnippet
 
-snippet constructor-react "class constructor for react" w
-constructor(props, context) {
-	super(props, context);$2
-}
-endsnippet
-
-snippet render "render function" w
+snippet render "render function" b
 render() {
 	return ($1
 	);
 }
 endsnippet
 
+snippet didmount "componentDidMount" b
+componentDidMount() {
+	${1:;}
+}
+endsnippet
+
 ###
 # react-router snippets
-snippet Router "react-router Router" w
-<Router$1 />
-endsnippet
-snippet Router-m "react-router Router multiline" w
-<Router$1>$2
+snippet Routerm "react-router Router multiline" b
+<Router history={createBrowserHistory()}>$1
 </Router>
 endsnippet
 
-snippet Route "react-router Route" w
-<Route$1 />
+snippet Route "react-router Route" b
+<Route path="$1" component={$2} />
 endsnippet
 
-snippet Route-m "react-router Route multiline" w
-<Route$1>$2
+snippet Routem "react-route Route multiline" b
+<Route path="$1" component={$2}>$3
 </Route>
+endsnippet
+
+snippet IndexRoute "react-router IndexRoute" b
+<IndexRoute component={$1} />
 endsnippet
 
 snippet path "path=" w
@@ -58,6 +79,20 @@ endsnippet
 snippet component "component=" w
 component={$1}
 endsnippet
+
+snippet Link "react-router Link" w
+<Link to="$1"`!p
+add_str_if(snip, t[2], " ")
+`$2>$3</Link>
+endsnippet
+
+snippet Linkm "react-router Link multiline" w
+<Link to="$1"`!p
+add_str_if(snip, t[2], " ")
+`$2>$3
+</Link>
+endsnippet
+
 ###
 
 # vim: set ts=4:
