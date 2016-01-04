@@ -2,6 +2,16 @@ global !p
 from ultisnips_helpers import *
 endglobal
 
+snippet ifm "if main" b
+function main() {
+	${0:;}
+}
+
+if (require.main === module) {
+	main();
+}
+endsnippet
+
 snippet cls "es6 class" w
 class $1`!p
 #indent = get_indent(snip, shift=0)
@@ -19,6 +29,14 @@ endsnippet
 
 snippet exd "export default" b
 export default 
+endsnippet
+
+snippet req "require()" w
+require('$1')
+endsnippet
+
+snippet mex "module.exports =" b
+module.exports = 
 endsnippet
 
 snippet clog "console.log" w
