@@ -72,43 +72,49 @@ add_str_if(snip, t[1], ' ')
 </div>
 endsnippet
 
-#snippet divc "html div tag with class" w
-#<div `!p
-#if 'jsx' in snip.ft:
-#	snip.rv = 'className'
-#else:
-#	snip.rv = 'class'
-#`="$1"$2>$3
-#</div>
-#endsnippet
-
-#snippet div' "html div tag" w
-#<div class="$1"`!p
-#add_str_if(snip, t[2], ' ')
-#`$2>$3
-#</div>
-#endsnippet
-
 snippet class "class=" w
 class="$1"
 endsnippet
 
-snippet id "id=" w
+snippet id" "id=" w
 id="$1"
+endsnippet
+
+snippet a "html a tag" w
+<a`!p
+add_str_if(snip, t[1], ' ')
+`$1>$2</a>
+endsnippet
+
+snippet am "html a tag multiline" w
+<a`!p
+add_str_if(snip, t[1], ' ')
+`$1>$2
+</a>
 endsnippet
 
 snippet span "html span tag" w
 <span$1>$2</span>
 endsnippet
 
-snippet spanc "html span tag with class" w
-<span `!p
-if 'jsx' in snip.ft:
-	snip.rv = 'className'
-else:
-	snip.rv = 'class'
-`="$1"$2>$3</span>
+snippet href" "href=" w
+href="${1:#}"
 endsnippet
+
+snippet ulm "html ul tag multiline" w
+<ul`!p
+add_str_if(snip, t[1], ' ')
+`$1>$2
+</ul>
+endsnippet
+
+snippet li "html li tag" w
+<li`!p
+add_str_if(snip, t[1], ' ')
+`$1>$2</li>
+endsnippet
+
+########################################
 
 snippet role "role=" w
 role="$1"
@@ -121,35 +127,6 @@ endsnippet
 snippet role-form "role=form" w
 role="form"
 endsnippet
-
-snippet a "html a tag" w
-<a$1>$2</a>
-endsnippet
-
-snippet href "href=" w
-href="${1:#}"
-endsnippet
-
-snippet ac "html a tag with class" w
-<a `!p
-if 'jsx' in snip.ft:
-	snip.rv = 'className'
-else:
-	snip.rv = 'class'
-`="$1"$2>$3</a>
-endsnippet
-
-#snippet a' "html a tag" w
-#<a href="$1"`!p
-#add_str_if(snip, t[2], ' ')
-#`$2>$3</a>
-#endsnippet
-#
-#snippet ac' "html a tag with class" w
-#<a class="$1" href="$2"`!p
-#add_str_if(snip, t[3], ' ')
-#`$3>$4</a>
-#endsnippet
 
 snippet button "html button tag" w
 <button$1>$2</button>
@@ -277,34 +254,6 @@ endsnippet
 
 snippet td "html td tag" w
 <td$1>$2</td>
-endsnippet
-
-snippet ul "html ul tag" w
-<ul$1>$2
-</ul>
-endsnippet
-
-snippet ulc "html ul tag with class" w
-<ul `!p
-if 'jsx' in snip.ft:
-	snip.rv = 'className'
-else:
-	snip.rv = 'class'
-`="$1"$2>$3
-</ul>
-endsnippet
-
-snippet li "html li tag" w
-<li$1>$2</li>
-endsnippet
-
-snippet lic "html li tag with class" w
-<li `!p
-if 'jsx' in snip.ft:
-	snip.rv = 'className'
-else:
-	snip.rv = 'class'
-`="$1"$2>$3</li>
 endsnippet
 
 snippet label "html label tag" w
