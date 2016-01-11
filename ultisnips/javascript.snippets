@@ -12,6 +12,11 @@ if (require.main === module) {
 }
 endsnippet
 
+snippet def "function definition" b
+function $1($2) {$3
+}
+endsnippet
+
 snippet cls "es6 class" w
 class $1`!p
 #indent = get_indent(snip, shift=0)
@@ -24,6 +29,11 @@ endsnippet
 snippet ctor "class constructor" b
 constructor($1) {
 	super($1);$2
+}
+endsnippet
+
+snippet defs "class method definition" b
+$1($2) {$3
 }
 endsnippet
 

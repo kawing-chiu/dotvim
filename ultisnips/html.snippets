@@ -72,7 +72,7 @@ add_str_if(snip, t[1], ' ')
 </div>
 endsnippet
 
-snippet class "class=" w
+snippet class" "class=" w
 class="$1"
 endsnippet
 
@@ -113,6 +113,16 @@ snippet li "html li tag" w
 add_str_if(snip, t[1], ' ')
 `$1>$2</li>
 endsnippet
+
+snippet "h(\d)" "html h tag" wr
+<`!p
+tag = "h" + match.group(1)
+snip.rv = tag
+``!p
+add_str_if(snip, t[1], ' ')
+`$1>$2</`!p snip.rv = tag`>
+endsnippet
+
 
 ########################################
 
@@ -166,34 +176,6 @@ endsnippet
 #`="$1" type="${2:button}">$3</button>
 #endsnippet
 
-
-snippet "h(\d)" "html h tag" r
-<`!p 
-tag = "h" + match.group(1)
-snip.rv = tag
-`$1>$2</`!p snip.rv = tag`>
-endsnippet
-
-snippet "h(\d)c" "html h tag with class" r
-<`!p 
-tag = "h" + match.group(1)
-snip.rv = tag
-` `!p
-if 'jsx' in snip.ft:
-	snip.rv = 'className'
-else:
-	snip.rv = 'class'
-`="$1"$2>$3</`!p snip.rv = tag`>
-endsnippet
-
-#snippet "h(\d)'" "html h tag" r
-#<`!p 
-#tag = "h" + match.group(1)
-#snip.rv = tag
-#``!p
-#add_str_if(snip, t[1], ' ')
-#`$1>$2</`!p snip.rv = tag`>
-#endsnippet
 
 snippet form "html form tag" w
 <form$1>$2

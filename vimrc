@@ -138,7 +138,7 @@ let g:jedi#completions_enabled = 0
 
 autocmd FileType python setlocal omnifunc=jedi#completions
 
-let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from\s.\+import .\+, \|^\s*from \|^\s*import \)\w*'
 
 " when using vim-python3, the following is not needed
 "py << EOF

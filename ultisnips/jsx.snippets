@@ -13,6 +13,10 @@ snippet class{ "class={}" w
 className={$1}
 endsnippet
 
+snippet id{ "id={}" w
+id={$1}
+endsnippet
+
 snippet ref" "ref=" w
 ref="$1"
 endsnippet
@@ -21,8 +25,8 @@ snippet ref{ "ref={}" w
 ref={$1}
 endsnippet
 
-snippet classNames "classNames() function" w
-classNames($1)
+snippet onclick{ "onClick={}" w
+onClick={$1}
 endsnippet
 
 snippet dangerouslySetInnerHTML "dangerouslySetInnerHTML=" w
@@ -52,6 +56,16 @@ snippet willunmount "componentWillUnmount()" b
 componentWillUnmount() {
 	${1:;}
 }
+endsnippet
+
+###
+# classnames
+snippet classNames "classNames() function" w
+classNames($1)
+endsnippet
+
+snippet c "c()" w
+c($1)
 endsnippet
 
 ###

@@ -12,5 +12,39 @@ snippet doc "css comment multiline" b
  */
 endsnippet
 
+snippet @media "@media rule" b
+@media ($1) {$2
+}
+endsnippet
 
+snippet composes "css-module composes" b
+composes: $0
+endsnippet
 
+snippet composesf "css-module composes from" b
+composes: $1 from $2
+endsnippet
+
+snippet @value "css-module @value" b
+@value $1: $2
+endsnippet
+
+snippet @valuef "css-module @value from" b
+@value $1 from $2
+endsnippet
+
+snippet :global "css-module :global" w
+:global $0
+endsnippet
+
+snippet :global( "css-module :global" w
+:global($1)
+endsnippet
+
+snippet :local "css-module :local" w
+:local $0
+endsnippet
+
+snippet :local( "css-module :local" w
+:local($1)
+endsnippet
