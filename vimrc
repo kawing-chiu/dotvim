@@ -78,6 +78,9 @@ let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#enable_auto_select = 1
 let g:neocomplete#auto_completion_start_length = 2
 
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
 if !exists('g:neocomplete#force_omni_input_patterns')
   let g:neocomplete#force_omni_input_patterns = {}
 endif
@@ -138,7 +141,12 @@ let g:jedi#completions_enabled = 0
 
 autocmd FileType python setlocal omnifunc=jedi#completions
 
-let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from\s.\+import .\+, \|^\s*from \|^\s*import \)\w*'
+let g:neocomplete#sources#omni#input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from\s.\+import .\+, \|^\s*from \|^\s*import \)\w*'
+" use the above 'normal' mode instead of 'force' mode
+"let g:neocomplete#force_omni_input_patterns.python = '\%([^.  
+"\t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from\s.\+import .\+, \|^\s*from 
+"\|^\s*import \)\w*'
+
 
 " when using vim-python3, the following is not needed
 "py << EOF
