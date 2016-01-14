@@ -6,6 +6,28 @@ snippet shebang "shebang" b
 #!/usr/bin/env python
 endsnippet
 
+snippet encoding "python 2 encoding" b
+# encoding: utf-8
+endsnippet
+
+snippet inpm "import numpy, pandas, matplotlib" b
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+endsnippet
+
+snippet fsql "from sqlalchemy import ..." b
+from sqlalchemy import $0
+endsnippet
+
+snippet fsqlengine "from sqlalchemy import create_engine" b
+from sqlalchemy import create_engine
+endsnippet
+
+snippet fsqlmeta "from sqlalchemy import MetaData" b
+from sqlalchemy import MetaData
+endsnippet
+
 snippet py3 "python 3 file template" b
 #!/usr/bin/env python3
 """$1
@@ -42,15 +64,11 @@ $0
 
 endsnippet
 
-snippet py2-enc "python 2 encoding" w
-# encoding: utf-8
-endsnippet
-
-snippet py2-future "python 2 __future__ import" w
+snippet py2-future "python 2 __future__ import" b
 from __future__ import print_function, division, unicode_literals
 endsnippet
 
-snippet py2-io "python 2 io import" w
+snippet py2-io "python 2 io import" b
 from io import open
 endsnippet
 
@@ -81,11 +99,11 @@ __author__ = ("${1:Zhao Jiarong} ${2:<kawing.chiu.sysu@gmail.com>}")
 endsnippet
 
 snippet ifm "if main" bw
-def run():
+def main():
 	${0:pass}
 
 if __name__ == '__main__':
-	run()
+	main()
 endsnippet
 
 snippet ifma "if main with arg parsing" bw
@@ -95,11 +113,11 @@ def _parse_args():
 	args = parser.parse_args()
 	return args
 
-def run():
+def main():
 	args = _parse_args()$0
 
 if __name__ == '__main__':
-	run()
+	main()
 endsnippet
 
 snippet add_argument "add argument to parser" w
