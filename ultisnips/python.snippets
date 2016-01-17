@@ -37,6 +37,10 @@ snippet fsqlmeta "from sqlalchemy import MetaData" b
 from sqlalchemy import MetaData
 endsnippet
 
+snippet glb "globals()[...] = ..." b
+globals()['$1'] = $1
+endsnippet
+
 snippet py3 "python 3 file template" b
 #!/usr/bin/env python3
 """$1
