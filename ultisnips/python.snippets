@@ -41,6 +41,14 @@ snippet glb "globals()[...] = ..." b
 globals()['$1'] = $1
 endsnippet
 
+snippet se "sys.exit()" b
+sys.exit()
+endsnippet
+
+snippet pr "print('...', ....)" b
+print("$1:", $1)
+endsnippet
+
 snippet py3 "python 3 file template" b
 #!/usr/bin/env python3
 """$1
