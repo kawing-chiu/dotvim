@@ -10,12 +10,21 @@ snippet encoding "python 2 encoding" b
 # encoding: utf-8
 endsnippet
 
+snippet __all "__all__" b
+__all__ = [$1]
+endsnippet
+
 snippet i "import" b
 import $0
 endsnippet
 
 snippet f "from ... import ..." b
 from $0
+endsnippet
+
+snippet inp "import numpy, pandas" b
+import numpy as np
+import pandas as pd
 endsnippet
 
 snippet inpm "import numpy, pandas, matplotlib" b
