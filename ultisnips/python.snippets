@@ -50,12 +50,24 @@ snippet glb "globals()[...] = ..." b
 globals()['$1'] = $1
 endsnippet
 
-snippet se "sys.exit()" b
+snippet sye "sys.exit()" b
 sys.exit()
 endsnippet
 
 snippet pr "print('...', ....)" b
 print("$1:", $1)
+endsnippet
+
+snippet pdt "pdb.set_trace()" b
+pdb.set_trace()
+endsnippet
+
+snippet ipdt "ipdb.set_trace()" b
+ipdb.set_trace()
+endsnippet
+
+snippet s. "self." b
+self.$0
 endsnippet
 
 snippet py3 "python 3 file template" b
@@ -215,6 +227,14 @@ endsnippet
 
 snippet __init "__init__ method" b
 def __init__(self`!p
+add_str_if(snip, t[2], ", ")
+refresh(snip)
+`$2):
+	${0:pass}
+endsnippet
+
+snippet __repr "__repr__ method" b
+def __repr__(self`!p
 add_str_if(snip, t[2], ", ")
 refresh(snip)
 `$2):

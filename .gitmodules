@@ -1,27 +1,27 @@
 [submodule "plugins/neocomplete"]
 	path = plugins/neocomplete
-	url = git@github.com:Shougo/neocomplete.vim.git
+	url = https://github.com/Shougo/neocomplete.vim.git
 [submodule "plugins/ultisnips"]
 	path = plugins/ultisnips
-	url = git@github.com:SirVer/ultisnips.git
+	url = https://github.com/SirVer/ultisnips.git
 [submodule "plugins/ctrlp"]
 	path = plugins/ctrlp
-	url = git@github.com:kien/ctrlp.vim.git
+	url = https://github.com/kien/ctrlp.vim.git
 [submodule "plugins/nerdtree"]
 	path = plugins/nerdtree
-	url = git@github.com:scrooloose/nerdtree.git
+	url = https://github.com/scrooloose/nerdtree.git
 [submodule "plugins/tagbar"]
 	path = plugins/tagbar
-	url = git@github.com:majutsushi/tagbar.git
+	url = https://github.com/majutsushi/tagbar.git
 [submodule "plugins/vim-jsx"]
 	path = plugins/vim-jsx
-	url = git@github.com:mxw/vim-jsx.git
+	url = https://github.com/mxw/vim-jsx.git
 [submodule "plugins/vim-javascript"]
 	path = plugins/vim-javascript
-	url = git@github.com:pangloss/vim-javascript.git
+	url = https://github.com/pangloss/vim-javascript.git
 [submodule "plugins/jedi"]
 	path = plugins/jedi
-	url = git@github.com:davidhalter/jedi-vim.git
+	url = https://github.com/davidhalter/jedi-vim.git
 [submodule "plugins/vim-clang"]
 	path = plugins/vim-clang
-	url = git@github.com:justmao945/vim-clang.git
+	url = https://github.com/justmao945/vim-clang.git

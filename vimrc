@@ -20,7 +20,7 @@ autocmd FileType rst set textwidth=79
 syntax on
 filetype plugin indent on
 
-autocmd BufEnter * :syntax sync fromstart
+autocmd BufEnter * syntax sync fromstart
 autocmd BufRead,BufNewFile *.tpl set filetype=jinja
 
 set fileencodings^=utf8,gb18030
@@ -175,11 +175,13 @@ let g:neocomplete#force_omni_input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)\w*
 let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\w\+\|\h\w*::\w*'
 
 
+
+
 " other plugins
 
 " The taglist plugin
-let g:tlist_tex_settings = 'latex;s:sections;g:graphics;l:labels'
-let g:tlist_php_settings = 'php;c:class;f:function'
+"let g:tlist_tex_settings = 'latex;s:sections;g:graphics;l:labels'
+"let g:tlist_php_settings = 'php;c:class;f:function'
 
 " tern not quite working
 " The tern_for_vim plugin
