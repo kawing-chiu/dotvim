@@ -1,16 +1,16 @@
-" GUI related settings
+""" GUI related settings
 set guifont=WenQuanYi\ Micro\ Hei\ Mono\ 16
 set winaltkeys=no
 set mouse=
 
-" The pathogen plugin
+""" The pathogen plugin
 let g:pathogen_disabled = []
 call add(g:pathogen_disabled, 'some_plugin')
 
 call pathogen#infect('plugins/{}')
 call pathogen#helptags()
 
-" Common options
+""" Common options
 set hls ic scs is
 set sts=4 sw=4 et
 
@@ -37,7 +37,8 @@ set formatoptions+=aorw
 
 set timeoutlen=300
 
-" Key mappings
+
+""" Key mappings
 nnoremap <C-a> :set paste! paste?<CR>
 
 nnoremap <C-]> g<C-]>
@@ -60,11 +61,52 @@ nnoremap <C-x>cpp :set filetype=cpp filetype?<CR>
 nnoremap <C-x>c :set filetype=c filetype?<CR>
 nnoremap <C-x>jinja :set filetype=jinja filetype?<CR>
 
-nnoremap <C-x>wrap :set textwidth=79 formatoptions+=ta formatoptions-=c<CR>
+"nnoremap <C-x>wrap :set textwidth=79 formatoptions+=ta formatoptions-=c<CR>
+
+nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <C-n>n :NERDTreeFind<CR>
+nnoremap <C-n>t :tabe<CR>:NERDTreeToggle<CR>
+nnoremap <C-n>p :tabe<CR>:CtrlP<CR>
+nnoremap <C-n>v :tabe<CR>:e $MYVIMRC<CR>
+nnoremap <C-n>vv :source $MYVIMRC<CR>
+nnoremap <C-n>ss :Obsession ~/.vim/sessions/default<CR>
+nnoremap <C-n>s :call My_Prompt_Save_Session()<CR>
+nnoremap <C-n>l :source ~/.vim/sessions/default<CR>
+nnoremap <C-n>ll :call My_Prompt_Load_Session()<CR>
+
+nnoremap <C-k> :TagbarToggle<CR>
+
+nnoremap -j :let g:NERDTreeQuitOnOpen = 1 - g:NERDTreeQuitOnOpen<CR>:let g:NERDTreeQuitOnOpen<CR>
 
 " not so important ones:
-inoremap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
+"inoremap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
 
+
+""" Functions
+function! My_Prompt_Save_Session()
+  call inputsave()
+  let session_name = input("Save session: ")
+  call inputrestore()
+  redraw
+  let file = '~/.vim/sessions/' . session_name
+  execute 'Obsession' file
+endfunction
+
+function! My_Prompt_Load_Session()
+  call inputsave()
+  let session_name = input("Load session: ")
+  call inputrestore()
+  redraw
+  let file = "~/.vim/sessions/" . session_name
+  if !filereadable(expand(file))
+    echo "Session file " . file . " does not exist."
+  else
+    execute 'source' file
+  endif
+endfunction
+
+
+""" Plugins
 
 " netrw
 let g:netrw_liststyle = 3
@@ -99,12 +141,12 @@ let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/ultisnips']
 let g:UltiSnipsExpandTrigger = "<C-Tab>"
 
 let g:ulti_expand_res = 0
-function Ultisnips_Try_Expand()
+function! My_Ultisnips_Try_Expand()
   call UltiSnips#ExpandSnippet()
   return g:ulti_expand_res
 endfunction
 
-function Neocomplete_Select_Candidate()
+function! My_Neocomplete_Select_Candidate()
   if pumvisible()
     return neocomplete#close_popup()
   else
@@ -112,25 +154,18 @@ function Neocomplete_Select_Candidate()
   endif
 endfunction
 
-inoremap <silent> <Tab> <C-r>=(Ultisnips_Try_Expand() > 0) ? "" : Neocomplete_Select_Candidate()<CR>
+inoremap <silent> <Tab> <C-r>=(My_Ultisnips_Try_Expand() > 0) ? "" : My_Neocomplete_Select_Candidate()<CR>
 " Interestingly, the following will not work:
-" inoremap <expr> <Tab> (Ultisnips_Try_Expand() > 0) ? "" : Neocomplete_Select_Candidate()
+" inoremap <expr> <Tab> (My_Ultisnips_Try_Expand() > 0) ? "" : 
+" My_Neocomplete_Select_Candidate()
 
 " ctrlp
 let g:ctrlp_working_path_mode = 'a'
 
 " nerdtree
-nnoremap <C-n> :NERDTreeToggle<CR>
-nnoremap <C-n>n :NERDTreeFind<CR>
-nnoremap <C-n>t :tabe<CR>:NERDTreeToggle<CR>
-nnoremap <C-n>p :tabe<CR>:CtrlP<CR>
-
-nnoremap <C-n>j :let g:NERDTreeQuitOnOpen = 1 - g:NERDTreeQuitOnOpen<CR>:let g:NERDTreeQuitOnOpen<CR>
-
 let g:NERDTreeQuitOnOpen = 1
 
 " tagbar
-nnoremap <C-k> :TagbarToggle<CR>
 let g:tagbar_sort = 0
 
 " vim-jsx

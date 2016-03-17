@@ -3,6 +3,7 @@
 *.swp
 *.pyc
 /tags
+/sessions/
 
 /plugins/*
 !/plugins/neocomplete
