@@ -3,7 +3,6 @@
 *.swp
 *.pyc
 /tags
-/sessions/
 
 /plugins/*
 !/plugins/neocomplete
@@ -16,3 +15,6 @@
 !/plugins/jedi
 !/plugins/vim-clang
 !/plugins/vim-obsession
+
+/sessions/*
+!/sessions/touch
