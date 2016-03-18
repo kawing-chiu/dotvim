@@ -65,8 +65,8 @@ nnoremap <C-x>jinja :set filetype=jinja filetype?<CR>
 
 nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <C-n>n :NERDTreeFind<CR>
-nnoremap <C-n>t :tabe<CR>:NERDTreeToggle<CR>
-nnoremap <C-n>p :tabe<CR>:CtrlP<CR>
+nnoremap <C-n>t :tabe %<CR>:NERDTreeFind<CR>
+nnoremap <C-n>p :tabe %<CR>:CtrlP<CR>
 nnoremap <C-n>v :tabe<CR>:e $MYVIMRC<CR>
 nnoremap <C-n>vv :source $MYVIMRC<CR>
 nnoremap <C-n>ss :Obsession ~/.vim/sessions/default<CR>
@@ -104,6 +104,7 @@ function! My_Prompt_Load_Session()
     execute 'source' file
   endif
 endfunction
+
 
 
 """ Plugins
