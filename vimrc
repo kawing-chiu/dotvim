@@ -14,7 +14,7 @@ call pathogen#helptags()
 set hls ic scs is
 set sts=4 sw=4 et
 
-autocmd FileType tex,javascript,html set sts=2 sw=2
+autocmd FileType tex,javascript,html,yaml set sts=2 sw=2
 autocmd FileType rst set textwidth=79
 
 syntax on
