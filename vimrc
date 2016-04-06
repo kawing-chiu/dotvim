@@ -79,6 +79,7 @@ nnoremap <C-k> :TagbarToggle<CR>
 nnoremap -j :let g:NERDTreeQuitOnOpen = 1 - g:NERDTreeQuitOnOpen<CR>:let g:NERDTreeQuitOnOpen<CR>
 nnoremap -p :set paste! paste?<CR>
 nnoremap -n :set nu! nu?<CR>
+nnoremap -l :set list! list?<CR>
 
 " not so important ones:
 "inoremap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
