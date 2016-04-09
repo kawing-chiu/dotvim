@@ -30,6 +30,10 @@ snippet ( "(...)" i
 ($1)
 endsnippet
 
+snippet < "<...>" i
+<$1>
+endsnippet
+
 snippet " "double quote" i
 "$1"
 endsnippet
@@ -251,6 +255,14 @@ endsnippet
 
 snippet __init "__init__ method" b
 def __init__(self`!p
+add_str_if(snip, t[2], ", ")
+refresh(snip)
+`$2):
+	${0:pass}
+endsnippet
+
+snippet __call "__call__ method" b
+def __call__(self`!p
 add_str_if(snip, t[2], ", ")
 refresh(snip)
 `$2):

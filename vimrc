@@ -76,6 +76,12 @@ nnoremap <C-n>ll :call My_Prompt_Load_Session()<CR>
 
 nnoremap <C-k> :TagbarToggle<CR>
 
+" not necessary, but shows how to use v:count and condition in mapping...
+nnoremap <expr> = (v:count == 0 ? v:count : '') . 'gt'
+" the same as above, but much simpler:
+"nnoremap = gt
+nnoremap + gT
+
 nnoremap -j :let g:NERDTreeQuitOnOpen = 1 - g:NERDTreeQuitOnOpen<CR>:let g:NERDTreeQuitOnOpen<CR>
 nnoremap -p :set paste! paste?<CR>
 nnoremap -n :set nu! nu?<CR>
