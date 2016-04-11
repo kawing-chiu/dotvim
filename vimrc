@@ -91,7 +91,7 @@ nnoremap -l :set list! list?<CR>
 "inoremap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
 
 
-""" Functions
+""" Helper functions
 function! My_Prompt_Save_Session()
   call inputsave()
   let session_name = input("Save session: ")
@@ -114,6 +114,99 @@ function! My_Prompt_Load_Session()
   endif
 endfunction
 
+
+""" Tabline
+set tabline=%!My_Tab_Line()
+
+function! My_Tab_Line()
+  let s = '' " complete tabline goes here
+
+  for t in range(tabpagenr('$'))
+    let cur_tab = tabpagenr()
+    " set tab number for mouse click (copied from the doc)
+    let s .= '%' . (t+1) . 'T'
+
+    if (t+1) == cur_tab
+      let s .= '%#TabLineSel#'
+    else
+      let s .= '%#TabLine#'
+    endif
+
+    let s .= ' ' . (t+1)
+
+    " get buffer infos
+    let bf_names = ''
+    let n_modified = 0
+    let bf_list = tabpagebuflist(t+1)
+    let bf_num = len(bf_list)  "counter to avoid last ','
+    let i = 0
+    for b in bf_list
+      if getbufvar(b, "&modified")
+        let n_modified += 1
+      endif
+
+      let name_to_add = ''
+      let btype = getbufvar(b, "&buftype")
+      let bname = bufname(b)
+      "echom 'num:' b 'name:' bufname(b) 'buftype:' btype
+      if btype == 'help'
+        let name_to_add .= ':h-' . fnamemodify(bname, ':t:s/.txt$//')
+      elseif btype == 'quickfix'
+        continue
+      elseif bname == ''
+        let name_to_add .= '[New]'
+      elseif bname =~# 'NERD_tree'
+        let name_to_add .= '[N]'
+      elseif bname =~# '__Tagbar__'
+        let name_to_add .= '[K]'
+      elseif bname =~# 'ControlP'
+        let name_to_add .= '[P]'
+      elseif bname =~# '__init__\.py$'
+        let tmp = fnamemodify(bname, ':h:t')
+        if len(tmp) > 5
+          let tmp = substitute(tmp, '^\([^_ .]\{,5}\).*$', '\1', '')
+        endif
+        let tmp .= '/[init]'
+        let name_to_add .= tmp
+      else
+        let known_exts = ['py', 'js', 'jsx']
+        let ext = fnamemodify(bname, ':e')
+        if index(known_exts, ext) >= 0
+          let show_ext = 0
+          let tmp = fnamemodify(bname, ':t:r')
+        else
+          let show_ext = 1
+          let tmp = fnamemodify(bname, ':t')
+        endif
+        if len(tmp) > 10
+          let tmp = substitute(tmp, '^\([^_ .]\{,5}\).*$', '\1', '')
+          if show_ext
+            echom tmp 'show_ext' show_ext
+            let tmp .= '.' . ext
+          endif
+        endif
+        let name_to_add .= tmp
+      endif
+
+      let i += 1
+      let bf_names .= ' ' . name_to_add
+    endfor
+
+    if n_modified > 0
+      let s .= '+'
+    endif
+    let s .= bf_names
+    let s .= ' '
+  endfor
+
+  let s .= '%#TabLineFill#%T'
+  " right-align the label to close the current tab page
+  "if tabpagenr('$') > 1
+  "  let s .= '%=%#TabLine#%999Xclose'
+  "endif
+
+  return s
+endfunction
 
 
 """ Plugins
