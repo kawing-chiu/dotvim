@@ -183,6 +183,8 @@ function! My_Tab_Line()
           let tmp = substitute(oldtmp, '^\([^_ .]\{,5}\).*$', '\1', '')
           if len(tmp) <=3
             let tmp = substitute(oldtmp, '^\([^ .]\{,7}\).*$', '\1', '')
+          elseif tmp == 'test'
+            let tmp = substitute(oldtmp, '^\([^ .]\{,9}\).*$', '\1', '')
           endif
           if show_ext
             echom tmp 'show_ext' show_ext
