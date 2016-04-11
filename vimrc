@@ -121,24 +121,40 @@ set tabline=%!My_Tab_Line()
 function! My_Tab_Line()
   let s = '' " complete tabline goes here
 
-  for t in range(tabpagenr('$'))
-    let cur_tab = tabpagenr()
-    " set tab number for mouse click (copied from the doc)
-    let s .= '%' . (t+1) . 'T'
+  let columns = &columns
+  let total_length = 0
 
+  let cur_tab = tabpagenr()
+  let cur_tab_begin = 0
+  let cur_tab_end = 0
+
+  let tabs = []
+
+  for t in range(tabpagenr('$'))
+    " set tab number for mouse click (copied from the doc)
+    let tab = {}
+    let prefix = ''
+    let body = ''
+
+    let prefix .= '%' . (t+1) . 'T'
     if (t+1) == cur_tab
-      let s .= '%#TabLineSel#'
+      let prefix .= '%#TabLineSel#'
+      let cur_tab_begin = total_length
     else
-      let s .= '%#TabLine#'
+      let prefix .= '%#TabLine#'
     endif
 
-    let s .= ' ' . (t+1)
+    let s .= prefix
+    let tab.prefix = prefix
+    let tab.begin = total_length
+
+    let body .= ' ' . (t+1)
 
     " get buffer infos
     let bf_names = ''
     let n_modified = 0
     let bf_list = tabpagebuflist(t+1)
-    let bf_num = len(bf_list)  "counter to avoid last ','
+    let bf_num = len(bf_list)
     let i = 0
     for b in bf_list
       if getbufvar(b, "&modified")
@@ -187,7 +203,6 @@ function! My_Tab_Line()
             let tmp = substitute(oldtmp, '^\([^ .]\{,9}\).*$', '\1', '')
           endif
           if show_ext
-            echom tmp 'show_ext' show_ext
             let tmp .= '.' . ext
           endif
         endif
@@ -198,12 +213,69 @@ function! My_Tab_Line()
       let bf_names .= ' ' . name_to_add
     endfor
 
+    "echom bf_names
     if n_modified > 0
-      let s .= '+'
+      let body .= '+'
+      let total_length += len(bf_names) + 4
+    else
+      let total_length += len(bf_names) + 3
     endif
-    let s .= bf_names
-    let s .= ' '
+    if (t+1) == cur_tab
+      let cur_tab_end = total_length
+    endif
+    "echom total_length cur_tab_begin cur_tab_end
+    let body .= bf_names
+    let body .= ' '
+
+    let s .= body
+    let tab.body = body
+    let tab.end = total_length
+    call add(tabs, tab)
   endfor
+
+  "echom string(tabs)
+
+  if total_length > columns
+    let cur_tab_length = cur_tab_end - cur_tab_begin
+    let tmp = (columns - cur_tab_length) * 1.0 / 2
+    let show_range_begin = float2nr(ceil(cur_tab_begin - tmp))
+    let show_range_end = float2nr(ceil(cur_tab_end + tmp))
+    "echom total_length string(show_range_begin) string(show_range_end)
+    if show_range_begin < 0
+      let delta = 0 - show_range_begin
+      let show_range_begin = 0
+      let show_range_end = show_range_end + delta
+    elseif show_range_end > total_length
+      let delta = show_range_end - total_length
+      let show_range_end = total_length
+      let show_range_begin = show_range_begin - delta
+    endif
+    "echom total_length string(show_range_begin) string(show_range_end)
+
+    " reassemble the tabs
+    let s = ''
+    for tab in tabs
+      "echom string(tab)
+      if tab.end <= show_range_begin || tab.begin >= show_range_end
+        "echom 1
+        continue
+      elseif (tab.begin+1) < show_range_begin && tab.end > show_range_begin
+        let delta = tab.end - show_range_begin
+        let new_body = tab.body[(delta+2):]
+        let tab.body = new_body
+        "tab.body[0] = '<'
+        "echom 2 delta new_body
+      elseif tab.begin < show_range_end && tab.end > show_range_end
+        let delta = show_range_end - tab.begin
+        let new_body = tab.body[:(delta-1)]
+        let tab.body = new_body
+        "echom 3 delta new_body
+      endif
+      "echom string(tab)
+      let s .= tab.prefix
+      let s .= tab.body
+    endfor
+  endif
 
   let s .= '%#TabLineFill#%T'
   " right-align the label to close the current tab page
