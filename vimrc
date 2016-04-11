@@ -179,7 +179,11 @@ function! My_Tab_Line()
           let tmp = fnamemodify(bname, ':t')
         endif
         if len(tmp) > 10
-          let tmp = substitute(tmp, '^\([^_ .]\{,5}\).*$', '\1', '')
+          let oldtmp = tmp
+          let tmp = substitute(oldtmp, '^\([^_ .]\{,5}\).*$', '\1', '')
+          if len(tmp) <=3
+            let tmp = substitute(oldtmp, '^\([^ .]\{,7}\).*$', '\1', '')
+          endif
           if show_ext
             echom tmp 'show_ext' show_ext
             let tmp .= '.' . ext
