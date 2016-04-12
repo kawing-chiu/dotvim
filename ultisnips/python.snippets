@@ -142,29 +142,7 @@ snippet py2-io "python 2 io import" b
 from io import open
 endsnippet
 
-snippet license-agpl "AGPL license statement" w
-# Copyright (C) `!p
-import datetime
-snip.rv += str(datetime.date.today().year)
-` Zhao Jiarong <kawing.chiu.sysu at gmail dot com>
-#
-# This file is part of $1.
-# 
-# $1 is free software: you can redistribute it and/or modify it under
-# the terms of the GNU Affero General Public License as published by the Free
-# Software Foundation, either version 3 of the License, or (at your option) any
-# later version.
-# 
-# $1 is distributed in the hope that it will be useful, but WITHOUT
-# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
-# details.
-# 
-# You should have received a copy of the GNU Affero General Public License
-# along with $1. If not, see <http://www.gnu.org/licenses/>.
-endsnippet
-
-snippet __author__ "author declaration" w
+snippet __author "author declaration" w
 __author__ = ("${1:Zhao Jiarong} ${2:<kawing.chiu.sysu@gmail.com>}")
 endsnippet
 
@@ -189,11 +167,6 @@ def main():
 if __name__ == '__main__':
 	main()
 endsnippet
-
-snippet add_argument "add argument to parser" w
-parser.add_argument($1)
-endsnippet
-
 
 snippet doc "docstring" w
 """$1`!p
@@ -298,6 +271,36 @@ endsnippet
 snippet __delete "__delete__ method" b
 def __delete__(self, instance):
 	${0:pass}
+endsnippet
+
+snippet fixture "pytest fixture decorator" b
+@pytest.fixture($1)
+endsnippet
+
+snippet add_argument "add argument to parser" b
+parser.add_argument($1)
+endsnippet
+
+snippet license-agpl "AGPL license statement" b
+# Copyright (C) `!p
+import datetime
+snip.rv += str(datetime.date.today().year)
+` Zhao Jiarong <kawing.chiu.sysu at gmail dot com>
+#
+# This file is part of $1.
+# 
+# $1 is free software: you can redistribute it and/or modify it under
+# the terms of the GNU Affero General Public License as published by the Free
+# Software Foundation, either version 3 of the License, or (at your option) any
+# later version.
+# 
+# $1 is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
+# details.
+# 
+# You should have received a copy of the GNU Affero General Public License
+# along with $1. If not, see <http://www.gnu.org/licenses/>.
 endsnippet
 
 #########

@@ -81,6 +81,7 @@ nnoremap <expr> = (v:count == 0 ? v:count : '') . 'gt'
 " the same as above, but much simpler:
 "nnoremap = gt
 nnoremap + gT
+nnoremap _ :tabe<CR>
 
 nnoremap -j :let g:NERDTreeQuitOnOpen = 1 - g:NERDTreeQuitOnOpen<CR>:let g:NERDTreeQuitOnOpen<CR>
 nnoremap -p :set paste! paste?<CR>
