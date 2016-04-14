@@ -94,8 +94,16 @@ snippet s. "self." w
 self.$0
 endsnippet
 
+snippet s_ "self._" w
+self._$0
+endsnippet
+
 snippet s.. "self.xxx = xxx" w
 self.$1 = $1
+endsnippet
+
+snippet s__ "self._xxx = xxx" w
+self._$1 = $1
 endsnippet
 
 snippet py3 "python 3 file template" b
@@ -254,6 +262,11 @@ endsnippet
 
 snippet __del "__del__ method" b
 def __del__(self):
+	${0:pass}
+endsnippet
+
+snippet __getattr "__getattr__ method" b
+def __getattr__(self, name):
 	${0:pass}
 endsnippet
 

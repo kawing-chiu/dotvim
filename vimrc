@@ -14,6 +14,8 @@ call pathogen#helptags()
 set hls ic scs is
 set sts=4 sw=4 et
 
+:let mapleader = "\\"
+
 autocmd FileType tex,javascript,html,yaml set sts=2 sw=2
 autocmd FileType rst set textwidth=79
 
@@ -80,7 +82,9 @@ nnoremap <C-k> :TagbarToggle<CR>
 nnoremap <expr> = (v:count == 0 ? v:count : '') . 'gt'
 " the same as above, but much simpler:
 "nnoremap = gt
+nnoremap K gt
 nnoremap + gT
+nnoremap J gT
 nnoremap _ :tabe<CR>
 
 nnoremap -j :let g:NERDTreeQuitOnOpen = 1 - g:NERDTreeQuitOnOpen<CR>:let g:NERDTreeQuitOnOpen<CR>
@@ -360,11 +364,16 @@ let g:jedi#completions_enabled = 0
 
 autocmd FileType python setlocal omnifunc=jedi#completions
 
-let g:neocomplete#sources#omni#input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from\s.\+import .\+, \|^\s*from \|^\s*import \)\w*'
-" use the above 'normal' mode instead of 'force' mode
-"let g:neocomplete#force_omni_input_patterns.python = '\%([^.  
-"\t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from\s.\+import .\+, \|^\s*from 
-"\|^\s*import \)\w*'
+let g:neocomplete#sources#omni#input_patterns.python = '\h\w*\|[^. \t]\.\w*'
+" 'force' mode
+let g:neocomplete#force_omni_input_patterns.python =
+  \ '\%(^\s*@\|^\s*from .\+import \|^\s*from .\+import .*, \|^\s*from \|^\s*import \)\w*'
+
+let g:jedi#goto_command = "<leader>]"
+let g:jedi#goto_assignments_command = "<leader>["
+let g:jedi#usages_command = "<leader>p"
+let g:jedi#documentation_command = "<leader>d"
+let g:jedi#rename_command = "<leader>r"
 
 
 " when using vim-python3, the following is not needed
