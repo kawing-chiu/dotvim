@@ -37,6 +37,8 @@ set grepprg=ack\ --smart-case
 set formatoptions-=t
 set formatoptions+=aorw
 
+set backspace=indent,eol,start
+
 set timeoutlen=300
 
 
@@ -89,8 +91,8 @@ nnoremap _ :tabe<CR>
 
 nnoremap -j :let g:NERDTreeQuitOnOpen = 1 - g:NERDTreeQuitOnOpen<CR>:let g:NERDTreeQuitOnOpen<CR>
 nnoremap -p :set paste! paste?<CR>
-nnoremap -n :set nu! nu?<CR>
-nnoremap -l :set list! list?<CR>
+nnoremap -n :setl nu! nu?<CR>
+nnoremap -l :setl list! list?<CR>
 
 " not so important ones:
 "inoremap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
@@ -202,10 +204,10 @@ function! My_Tab_Line()
         if len(tmp) > 10
           let oldtmp = tmp
           let tmp = substitute(oldtmp, '^\([^_ .]\{,5}\).*$', '\1', '')
-          if len(tmp) <=3
+          if len(tmp) <= 3
             let tmp = substitute(oldtmp, '^\([^ .]\{,7}\).*$', '\1', '')
-          elseif tmp == 'test'
-            let tmp = substitute(oldtmp, '^\([^ .]\{,9}\).*$', '\1', '')
+          elseif len(tmp) == 4
+            let tmp = substitute(oldtmp, '^\([^ .]\{,8}\).*$', '\1', '')
           endif
           if show_ext
             let tmp .= '.' . ext

@@ -51,11 +51,15 @@ import numpy as np
 import pandas as pd
 endsnippet
 
+snippet inm "import numpy, matplotlib" b
+import numpy as np
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+endsnippet
+
 snippet inpm "import numpy, pandas, matplotlib" b
 import numpy as np
 import pandas as pd
-import matplotlib as mpl
-import matplotlib.pyplot as plt
 endsnippet
 
 snippet fsql "from sqlalchemy import ..." b
@@ -242,6 +246,19 @@ refresh(snip)
 	${0:pass}
 endsnippet
 
+snippet __new "__new__ method" b
+def __new__(cls`!p
+add_str_if(snip, t[2], ", ")
+refresh(snip)
+`$2):
+	${0:pass}
+endsnippet
+
+snippet __del "__del__ method" b
+def __del__(self):
+	${0:pass}
+endsnippet
+
 snippet __call "__call__ method" b
 def __call__(self`!p
 add_str_if(snip, t[2], ", ")
@@ -260,13 +277,48 @@ def __str__(self):
 	${0:pass}
 endsnippet
 
-snippet __del "__del__ method" b
-def __del__(self):
+snippet __len "__len__ method" b
+def __len__(self):
+	${0:pass}
+endsnippet
+
+snippet __iter "__iter__ method" b
+def __iter__(self):
+	${0:pass}
+endsnippet
+
+snippet __next "__next__ method" b
+def __next__(self):
 	${0:pass}
 endsnippet
 
 snippet __getattr "__getattr__ method" b
 def __getattr__(self, name):
+	${0:pass}
+endsnippet
+
+snippet __setattr "__setattr__ method" b
+def __setattr__(self, name, value):
+	${0:pass}
+endsnippet
+
+snippet __delattr "__delattr__ method" b
+def __delattr__(self, name):
+	${0:pass}
+endsnippet
+
+snippet __getitem "__getitem__ method" b
+def __getitem__(self, key):
+	${0:pass}
+endsnippet
+
+snippet __setitem "__setitem__ method" b
+def __setitem__(self, key, value):
+	${0:pass}
+endsnippet
+
+snippet __delitem "__delitem__ method" b
+def __delitem__(self, key):
 	${0:pass}
 endsnippet
 
