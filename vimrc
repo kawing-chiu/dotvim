@@ -93,6 +93,7 @@ nnoremap -j :let g:NERDTreeQuitOnOpen = 1 - g:NERDTreeQuitOnOpen<CR>:let g:NERDT
 nnoremap -p :set paste! paste?<CR>
 nnoremap -n :setl nu! nu?<CR>
 nnoremap -l :setl list! list?<CR>
+nnoremap -s :call My_Toggle_Statusline()<CR>
 
 " not so important ones:
 "inoremap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
@@ -121,6 +122,26 @@ function! My_Prompt_Load_Session()
   endif
 endfunction
 
+function! My_Toggle_Statusline()
+  if !exists('g:show_status_line')
+    let g:show_status_line = 1
+  else
+    let g:show_status_line = 1 - g:show_status_line
+  endif
+  if g:show_status_line
+    set laststatus=2
+    set statusline=%F
+    set statusline+=%y
+    set statusline+=%r
+    set statusline+=%=
+    set statusline+=%c,
+    set statusline+=%l/%L
+    set statusline+=\ \ \ \ \ \ \ %P
+  else
+    set laststatus=1
+    set statusline=
+  endif
+endfunction
 
 """ Tabline
 set tabline=%!My_Tab_Line()
@@ -405,42 +426,7 @@ let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\
 
 
 
-" other plugins
 
-" The taglist plugin
-"let g:tlist_tex_settings = 'latex;s:sections;g:graphics;l:labels'
-"let g:tlist_php_settings = 'php;c:class;f:function'
-
-" tern not quite working
-" The tern_for_vim plugin
-"autocmd FileType javascript nnoremap <buffer> <C-]> :TernDef<CR>
-"autocmd FileType javascript nnoremap <buffer> <C-t> <C-o>
-
-
-" 快捷键
-
-" Run Python interpreter
-":vnoremap <F5> :!python<Enter>
-
-"" 下面以Alt键开头的快捷键还不能在terminal下使用，需要改进
-"" xelatex编译快捷键
-"nnoremap <M-x> :silent !(atril %:p:h/pdf/%:t.pdf &)<CR>
-"nnoremap <M-c> :silent !(cd %:p:h; xelatex -output-directory=pdf %:t &)<CR>
-"" 在insert mode下开新行/跳到下一个词的输入位置
-"inoremap <M-o> <C-[>o
-"inoremap <M-j> <C-[>Ea<Space>
-"" \myitem系列快捷键
-"inoremap <M-i> \myitem[]<C-o>h<C-o>l
-"inoremap <M-I> \myitem<C-[>o
-"" \lstlisting系列快捷键
-"inoremap <M-l> \begin{lstlisting}<Enter>
-"inoremap <M-L> \end{lstlisting}<Enter>
-"inoremap <M-k> \lst<Bar><Bar><C-[>i
-"nnoremap <M-k> i\lst<Bar><Esc>Ea<Bar><Esc>
-"" 增加toc高亮快捷键
-"nnoremap <M-d> mt$a-d-<C-[>`t
-"nnoremap <M-t> mt$a-t-<C-[>`t
-"nnoremap <M-r> mt$xxx`t
 
 
 " vim: set sts=2 sw=2 et:
