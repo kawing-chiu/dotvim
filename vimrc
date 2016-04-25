@@ -134,7 +134,7 @@ function! My_Toggle_Statusline()
     set statusline+=%y
     set statusline+=%r
     set statusline+=%=
-    set statusline+=\ \ \ \ %c,
+    set statusline+=%7.c,
     set statusline+=%l/%L
     set statusline+=\ \ \ \ %P
   else
