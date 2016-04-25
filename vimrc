@@ -134,9 +134,9 @@ function! My_Toggle_Statusline()
     set statusline+=%y
     set statusline+=%r
     set statusline+=%=
-    set statusline+=%c,
+    set statusline+=\ \ \ \ %c,
     set statusline+=%l/%L
-    set statusline+=\ \ \ \ \ \ \ %P
+    set statusline+=\ \ \ \ %P
   else
     set laststatus=1
     set statusline=
