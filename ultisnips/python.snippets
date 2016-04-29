@@ -2,24 +2,10 @@ global !p
 from ultisnips_helpers import *
 endglobal
 
+priority 1
+
 snippet shebang "shebang" b
 #!/usr/bin/env python
-endsnippet
-
-snippet encoding "python 2 encoding" b
-# encoding: utf-8
-endsnippet
-
-snippet __all "__all__" b
-__all__ = [$1]
-endsnippet
-
-snippet i "import" b
-import $0
-endsnippet
-
-snippet f "from" b
-from $0
 endsnippet
 
 snippet [ "[...]" i
@@ -40,6 +26,17 @@ endsnippet
 
 snippet ' "single quote" i
 '$1'
+endsnippet
+
+
+## import and export
+
+snippet i "import" b
+import $0
+endsnippet
+
+snippet f "from" b
+from $0
 endsnippet
 
 snippet in "import numpy" b
@@ -74,6 +71,9 @@ snippet fsqlmeta "from sqlalchemy import MetaData" b
 from sqlalchemy import MetaData, Table
 endsnippet
 
+
+## convenient debug structures
+
 snippet glb "globals()[...] = ..." b
 globals()['$1'] = $1
 endsnippet
@@ -82,7 +82,11 @@ snippet exit "sys.exit()" b
 import sys; sys.exit()
 endsnippet
 
-snippet pr "print('...', ....)" b
+snippet p "print()" b
+print($1)
+endsnippet
+
+snippet pr "print('...:', ...)" b
 print("$1:", $1)
 endsnippet
 
@@ -93,6 +97,9 @@ endsnippet
 snippet ipdb "ipdb.set_trace()" b
 import ipdb; ipdb.set_trace()
 endsnippet
+
+
+## language structures
 
 snippet s. "self." w
 self.$0
@@ -108,54 +115,6 @@ endsnippet
 
 snippet s__ "self._xxx = xxx" w
 self._$1 = $1
-endsnippet
-
-snippet py3 "python 3 file template" b
-#!/usr/bin/env python3
-"""$1
-"""
-$2
-
-
-$0
-
-endsnippet
-
-snippet py "python file template" b
-#!/usr/bin/env python
-"""$1
-"""
-$2
-
-
-$0
-
-endsnippet
-
-snippet py2 "python 2 file template" b
-#!/usr/bin/env python2
-# encoding: utf-8
-"""$1
-"""
-from __future__ import print_function, division, unicode_literals
-from io import open
-$2
-
-
-$0
-
-endsnippet
-
-snippet py2-future "python 2 __future__ import" b
-from __future__ import print_function, division, unicode_literals
-endsnippet
-
-snippet py2-io "python 2 io import" b
-from io import open
-endsnippet
-
-snippet __author "author declaration" w
-__author__ = ("${1:Zhao Jiarong} ${2:<kawing.chiu.sysu@gmail.com>}")
 endsnippet
 
 snippet ifm "if main" bw
@@ -236,6 +195,31 @@ endsnippet
 snippet cls2 "class definition py2 version" b
 class $1(${2:object}):
 	${0:pass}
+endsnippet
+
+snippet super "super() function" b
+super($1, self).$2($3)
+endsnippet
+
+priority 2
+snippet "\*{2}" "**kwargs" ir
+**kwargs
+endsnippet
+priority 1
+
+snippet "\*{1}" "*args" ir
+*args
+endsnippet
+
+
+## __xxx__
+
+snippet __all "__all__" b
+__all__ = [$1]
+endsnippet
+
+snippet __author "author declaration" w
+__author__ = ("${1:Zhao Jiarong} ${2:<kawing.chiu.sysu@gmail.com>}")
 endsnippet
 
 snippet __init "__init__ method" b
@@ -338,6 +322,60 @@ def __delete__(self, instance):
 	${0:pass}
 endsnippet
 
+
+## new file
+
+snippet py3 "python 3 file template" b
+#!/usr/bin/env python3
+"""$1
+"""
+$2
+
+
+$0
+
+endsnippet
+
+snippet py "python file template" b
+#!/usr/bin/env python
+"""$1
+"""
+$2
+
+
+$0
+
+endsnippet
+
+snippet py2 "python 2 file template" b
+#!/usr/bin/env python2
+# encoding: utf-8
+"""$1
+"""
+from __future__ import print_function, division, unicode_literals
+from io import open
+$2
+
+
+$0
+
+endsnippet
+
+snippet py2-encoding "python 2 encoding" b
+# encoding: utf-8
+endsnippet
+
+snippet py2-future "python 2 __future__ import" b
+from __future__ import print_function, division, unicode_literals
+endsnippet
+
+snippet py2-io "python 2 io import" b
+from io import open
+endsnippet
+
+
+## miscellaneous
+
 snippet fixture "pytest fixture decorator" b
 @pytest.fixture($1)
 endsnippet
@@ -368,110 +406,3 @@ snip.rv += str(datetime.date.today().year)
 # along with $1. If not, see <http://www.gnu.org/licenses/>.
 endsnippet
 
-#########
-# some functions, still testing
-
-#snippet add_args "add arguments to parser" b
-#def add_arguments(parser):
-#	${1:arg_add}$2
-#
-#$0
-#endsnippet
-#
-#snippet parse_args "arg parse function" b
-#def _parse_args():
-#	parser = ArgumentParser(description="$1")`!p
-#indent = get_indent(snip, 1)
-#add_str_if_not_beginswith(snip, t[2], "\n", "\n" + indent)`$2
-#	${3:#}add_arguments(parser)
-#	args = parser.parse_args()
-#	return args
-#
-#args = _parse_args()
-#
-#$0
-#endsnippet
-
-#snippet arg_add "add an argument" b
-#parser.add_argument("$1",`!p
-#add_str_if_not_beginswith(snip, t[2], " ", " \"")
-#`$2`!p
-#indent = get_indent(snip, 2)
-#add_str_if_not_beginswith(snip, t[2], " ", "\",")
-#add_str(snip, "\n" + indent)
-#`help="$3"`!p
-#add_str_if(snip, t[4], ",\n" + indent)
-#`$4)
-#endsnippet
-
-#snippet create_dir "directory creation func" b
-#def _create_dir(*paths):
-#	for path in paths:
-#		try:
-#			os.makedirs(path)
-#		except OSError as e:
-#			if not os.path.isdir(path):
-#				log.error("Directory '{}' cannot be created.".format(path))
-#				raise
-#
-#$0
-#endsnippet
-
-#snippet init_log "logging initialization" b
-#_default_log_path = ${1:"log/"}
-#
-#def _init_log(log_path):
-#	log = logging.getLogger(__name__)
-#	log.setLevel(logging.DEBUG)
-#
-#	ch = logging.StreamHandler()
-#	ch.setFormatter(logging.Formatter("%(levelname)s: %(message)s"))
-#	log.addHandler(ch)
-#
-#	log_path_ready = True
-#	try:
-#		os.makedirs(os.path.abspath(log_path))
-#	except OSError as e:
-#		if not os.path.isdir(log_path):
-#			log_path_ready = False
-#	log_file = os.path.splitext(os.path.basename(__file__))[0] + ".py.log"
-#	log_file = os.path.join(log_path, log_file)
-#
-#	if log_path_ready:
-#		fh = logging.handlers.RotatingFileHandler(log_file, maxBytes=5 * 1024 * 1024,
-#				backupCount=3, delay=True)
-#		fh.setFormatter(logging.Formatter("%(asctime)s %(process)d - %(levelname)s - "
-#				"%(name)s - %(message)s"))
-#		log.addHandler(fh)
-#	else:
-#		log.warning("Log path '{}' not usable, "
-#				"logging to file is disabled.".format(log_path))
-#
-#	return log, ch
-#
-#log, console_handler = _init_log(_default_log_path)
-#
-#
-#$0
-#endsnippet
-
-####
-# almost works
-# testing
-#snippet test "function definition" b
-#def $1($2):`!p
-#indent = get_indent(snip)
-#prefix = '\n' + indent + '"""'
-#add_str_if_not_beginswith(snip, t[3], "\n", prefix)
-#`$3`!p
-#if '\n' not in t[3]:
-#    suffix = '"""' 
-#else:
-#    suffix = prefix
-##refresh(snip)
-#if t[3]: #and is_ascii(t[3][0:1]):
-#    add_str_if_not_beginswith(snip, t[3], "\n", suffix)
-#`
-#	${0:pass}
-#endsnippet
-###
