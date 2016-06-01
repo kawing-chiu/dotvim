@@ -14,10 +14,11 @@ call pathogen#helptags()
 set hls ic scs is
 set sts=4 sw=4 et
 
-:let mapleader = "\\"
+let mapleader = "\\"
 
 autocmd FileType tex,javascript,html,yaml set sts=2 sw=2
 autocmd FileType rst set textwidth=79
+autocmd FileType yaml setl indentexpr= autoindent
 
 syntax on
 filetype plugin indent on

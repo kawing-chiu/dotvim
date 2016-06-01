@@ -207,6 +207,12 @@ priority 2
 snippet "\*{2}" "**kwargs" ir
 **kwargs
 endsnippet
+
+priority 3
+snippet "\*{3}" "*args, **kwargs" ir
+*args, **kwargs
+endsnippet
+
 priority 1
 
 snippet "\*{1}" "*args" ir
@@ -230,6 +236,10 @@ add_str_if(snip, t[2], ", ")
 refresh(snip)
 `$2):
 	${0:pass}
+endsnippet
+
+snippet super_init "super().__init__()" b
+super($1, self).__init__($2)
 endsnippet
 
 snippet __new "__new__ method" b
@@ -276,6 +286,25 @@ endsnippet
 snippet __next "__next__ method" b
 def __next__(self):
 	${0:pass}
+endsnippet
+
+snippet __hash "__hash__ method" b
+def __hash__(self):
+	${0:pass}
+endsnippet
+
+snippet __eq "__eq__ method" b
+def __eq__(self, other):
+	${0:pass}
+endsnippet
+
+snippet __getattribute "__getattribute__ method" b
+def __getattribute__(self, name):
+	${0:pass}
+endsnippet
+
+snippet obj_getattr "object.__getattribute__()" i
+object.__getattribute__(self, $1)
 endsnippet
 
 snippet __getattr "__getattr__ method" b
