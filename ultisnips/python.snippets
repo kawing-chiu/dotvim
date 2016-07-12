@@ -69,8 +69,8 @@ snippet fsqlengine "from sqlalchemy import create_engine" b
 from sqlalchemy import create_engine, text
 endsnippet
 
-snippet fsqlmeta "from sqlalchemy import MetaData" b
-from sqlalchemy import MetaData, Table
+snippet fsqlmeta "from sqlalchemy import MetaData etc" b
+from sqlalchemy import MetaData, Table, Column
 endsnippet
 
 
@@ -199,8 +199,12 @@ class $1(${2:object}):
 	${0:pass}
 endsnippet
 
-snippet super "super() function" b
+snippet super "super() function" w
 super($1, self).$2($3)
+endsnippet
+
+snippet super_init "super().__init__()" b
+super($1, self).__init__($2)
 endsnippet
 
 priority 2
@@ -238,15 +242,21 @@ refresh(snip)
 	${0:pass}
 endsnippet
 
-snippet super_init "super().__init__()" b
-super($1, self).__init__($2)
-endsnippet
-
 snippet __new "__new__ method" b
 def __new__(cls`!p
 add_str_if(snip, t[2], ", ")
 refresh(snip)
 `$2):
+	${0:pass}
+endsnippet
+
+snippet __new_meta "__new__ method for meta class" b
+def __new__(meta, name, bases, namespace):
+	${0:pass}
+endsnippet
+
+snippet __init_meta "__init__ method for meta class" b
+def __init__(cls, name, bases, namespace):
 	${0:pass}
 endsnippet
 
@@ -298,6 +308,11 @@ def __eq__(self, other):
 	${0:pass}
 endsnippet
 
+snippet __contains "__contains__ method" b
+def __contains__(self, item):
+	${0:pass}
+endsnippet
+
 snippet __getattribute "__getattribute__ method" b
 def __getattribute__(self, name):
 	${0:pass}
@@ -337,6 +352,11 @@ def __delitem__(self, key):
 	${0:pass}
 endsnippet
 
+snippet __missing "__missing__ method" b
+def __missing__(self, key):
+	${0:pass}
+endsnippet
+
 # descriptor methods
 snippet __get "__get__ method" b
 def __get__(self, instance, owner):
@@ -350,6 +370,17 @@ endsnippet
 
 snippet __delete "__delete__ method" b
 def __delete__(self, instance):
+	${0:pass}
+endsnippet
+
+# pickle methods
+snippet __setstate "__setstate__ method" b
+def __setstate__(self, state):
+	${0:pass}
+endsnippet
+
+snippet __getstate "__getstate__ method" b
+def __getstate__(self):
 	${0:pass}
 endsnippet
 
