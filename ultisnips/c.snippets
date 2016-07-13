@@ -2,6 +2,33 @@ global !p
 from ultisnips_helpers import *
 endglobal
 
+snippet " "double quote" i
+"$1"
+endsnippet
+
+snippet { "{}" i
+{$1}
+endsnippet
+
+snippet < "<>" i
+<$1>
+endsnippet
+
+snippet i "#include <...>" b
+#include <$1>
+endsnippet
+
+snippet ii "#include '...'" b
+#include "$1"
+endsnippet
+
+snippet pr "printf function" w
+printf("$1"`!p
+add_str_if(snip, t[2], ", ")
+refresh(snip)
+`$2);
+endsnippet
+
 snippet main "C main function" w
 int main() {
 	${0:;}
@@ -24,13 +51,13 @@ endsnippet
 
 snippet for "for loop" b
 for ($1; $2; $3) {
-	$4
+	${0:;}
 }
 endsnippet
 
 snippet if "if statement" b
 if ($1) {
-	$2
+	${0:;}
 }
 endsnippet
 
@@ -40,10 +67,6 @@ endsnippet
 
 snippet size_t "size_t" w
 size_t $0
-endsnippet
-
-snippet inc "#include" b
-#include <$1>
 endsnippet
 
 snippet /* "long comment" b
@@ -130,9 +153,3 @@ snippet stdbool.h "#include <stdbool.h>" b
 #include <stdbool.h>
 endsnippet
 
-snippet printf "printf function" w
-printf("$1"`!p
-add_str_if(snip, t[2], ", ")
-refresh(snip)
-`$2);
-endsnippet
