@@ -22,20 +22,20 @@ snippet ii "#include '...'" b
 #include "$1"
 endsnippet
 
-snippet pr "printf function" w
+snippet printf "printf function" w
 printf("$1"`!p
 add_str_if(snip, t[2], ", ")
 refresh(snip)
 `$2);
 endsnippet
 
-snippet main "C main function" w
+snippet ifm "C main function" w
 int main() {
 	${0:;}
 }
 endsnippet
 
-snippet maina "C main function with arguments" w
+snippet ifma "C main function with arguments" w
 int main(int argc, char **argv) {
 	${0:;}
 }
@@ -44,7 +44,8 @@ endsnippet
 snippet def "function definition" b
 $1($2)`!p
 add_str_if(snip, t[3], " ")
-`$3 {
+`$3
+{
 	${0:;}
 }
 endsnippet
@@ -105,7 +106,7 @@ snippet incl "#include quotes version" b
 #include "$1"
 endsnippet
 
-snippet header-guard "header guard" b
+snippet hg "header guard" b
 #ifndef `!p
 import os
 buffer_file = get_buffer_file()

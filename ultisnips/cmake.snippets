@@ -8,12 +8,20 @@ snippet mes "message()" b
 message($1)
 endsnippet
 
+snippet pr "print('...:', ...)" b
+message("$1=${$1}")
+endsnippet
+
 snippet " "double quote" i
 "$1"
 endsnippet
 
 snippet { "{}" i
 {$1}
+endsnippet
+
+snippet ( "()" i
+($1)
 endsnippet
 
 snippet $ "variable reference" i

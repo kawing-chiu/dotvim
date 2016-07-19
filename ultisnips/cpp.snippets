@@ -96,8 +96,13 @@ snippet cls "class definition" b
 class $1`!p
 add_str_if(snip, t[2], " : ")
 refresh(snip)
-`$2 {
+`$2
+{
+public:
 	${0:;}
+
+private:
+
 };
 endsnippet
 
@@ -105,9 +110,11 @@ snippet tpl "template definition" w
 template<$1>$0
 endsnippet
 
-snippet namespace "namespace definition" b
-namespace $1 {$0
-}
+snippet ns "namespace definition" b
+namespace $1
+{$0
+
+} // namespace $1
 endsnippet
 
 snippet dynamic_cast "dynamic_cast" w
