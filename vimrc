@@ -58,6 +58,8 @@ nnoremap gk k
 
 imap <C-a> <C-o><C-a>
 
+nnoremap <F5> <C-l>
+
 nnoremap <C-h> 25zh
 nnoremap <C-l> 25zl
 
@@ -72,6 +74,7 @@ nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <C-n>n :NERDTreeFind<CR>
 nnoremap <C-n>t :tabe %<CR>:NERDTreeFind<CR>
 nnoremap <C-n>p :tabe %<CR>:CtrlP<CR>
+nmap <C-n>k _<C-k><C-w>l
 nnoremap <C-n>v :tabe<CR>:e $MYVIMRC<CR>
 nnoremap <C-n>vv :source $MYVIMRC<CR>
 nnoremap <C-n>ss :Obsession ~/.vim/sessions/default<CR>
@@ -88,7 +91,8 @@ nnoremap <expr> = (v:count == 0 ? v:count : '') . 'gt'
 nnoremap K gt
 nnoremap + gT
 nnoremap J gT
-nnoremap _ :tabe<CR>
+"nnoremap _ :tabe<CR>
+nnoremap _ <C-w>v<C-w>T
 
 nnoremap -j :let g:NERDTreeQuitOnOpen = 1 - g:NERDTreeQuitOnOpen<CR>:let g:NERDTreeQuitOnOpen<CR>
 nnoremap -p :set paste! paste?<CR>

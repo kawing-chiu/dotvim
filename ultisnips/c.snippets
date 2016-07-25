@@ -10,6 +10,10 @@ snippet { "{}" i
 {$1}
 endsnippet
 
+snippet ( "()" i
+($1)
+endsnippet
+
 snippet < "<>" i
 <$1>
 endsnippet
@@ -42,9 +46,11 @@ int main(int argc, char **argv) {
 endsnippet
 
 snippet def "function definition" b
-$1($2)`!p
-add_str_if(snip, t[3], " ")
-`$3
+$1`!p
+add_str_if(snip, t[1], " ")
+`$2($3)`!p
+add_str_if(snip, t[4], " ")
+`$4
 {
 	${0:;}
 }
@@ -53,6 +59,19 @@ endsnippet
 snippet for "for loop" b
 for ($1; $2; $3) {
 	${0:;}
+}
+endsnippet
+
+snippet switch "switch statement" b
+switch ($1) {
+	case $2:`!p
+indent = get_indent(snip, shift=2)
+prefix = '\n' + indent
+add_str_if(snip, t[3], prefix)
+`$3
+		break;$0
+	default:
+		break;
 }
 endsnippet
 
@@ -100,10 +119,6 @@ endsnippet
 
 snippet #def "#define" b
 #define $0
-endsnippet
-
-snippet incl "#include quotes version" b
-#include "$1"
 endsnippet
 
 snippet hg "header guard" b
