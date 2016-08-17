@@ -61,6 +61,10 @@ snippet map "#include <map>" b
 #include <map>
 endsnippet
 
+snippet unordered_map "#include <unordered_map>" b
+#include <unordered_map>
+endsnippet
+
 snippet new "#include <new>" b
 #include <new>
 endsnippet
@@ -73,8 +77,20 @@ snippet string "#include <string>" b
 #include <string>
 endsnippet
 
+snippet cstring "#include <cstring>" b
+#include <cstring>
+endsnippet
+
+snippet cstdlib "#include <cstdlib>" b
+#include <cstdlib>
+endsnippet
+
 snippet numeric "#include <numeric>" b
 #include <numeric>
+endsnippet
+
+snippet cassert "#include <cassert>" b
+#include <cassert>
 endsnippet
 
 snippet condition_variable "#include <condition_variable>" b
@@ -83,6 +99,10 @@ endsnippet
 
 snippet chrono "#include <chrono>" b
 #include <chrono>
+endsnippet
+
+snippet boost_string "#include <boost/algorithm/string.hpp>" b
+#include <boost/algorithm/string.hpp>
 endsnippet
 
 snippet ustd "using namespace std" b
@@ -106,6 +126,18 @@ for ($1) {
 }
 endsnippet
 
+snippet try "try block" b
+try {
+	${0:;}
+}
+endsnippet
+
+snippet catch "catch block" w
+catch ($1) {
+	${0:;}
+}
+endsnippet
+
 snippet cls "class definition" b
 class $1`!p
 add_str_if(snip, t[2], " : ")
@@ -113,8 +145,22 @@ refresh(snip)
 `$2
 {
 public:
-	$1($3);
-	$4~$1();$0
+	$1();
+	virtual ~$1();$0
+
+private:
+
+};
+endsnippet
+
+snippet struct "struct definition" b
+struct $1`!p
+add_str_if(snip, t[2], " : ")
+refresh(snip)
+`$2
+{
+public:
+	${0:;}
 
 private:
 
@@ -167,24 +213,52 @@ refresh(snip)
 }
 endsnippet
 
-snippet u "using namespace" b
-using namespace $1;
+snippet what "std::exception::what" b
+const char *what() const noexcept;
+endsnippet
+
+snippet init "common init function for ctor" b
+void init($1);
 endsnippet
 
 snippet c "const" w
 const $0
 endsnippet
 
+snippet a "auto" w
+auto $0
+endsnippet
+
 snippet v "virtual" w
 virtual $0
+endsnippet
+
+snippet e "explicit" w
+explicit $0
+endsnippet
+
+snippet m "mutable" w
+mutable $0
+endsnippet
+
+snippet f "friend" w
+friend $0
 endsnippet
 
 snippet s "std::" w
 std::
 endsnippet
 
+snippet u "using" w
+using $0
+endsnippet
+
 snippet tpl "template definition" w
 template<$1>$0
+endsnippet
+
+snippet uns "using namespace" b
+using namespace $1;
 endsnippet
 
 snippet ns "namespace definition" b
@@ -197,8 +271,44 @@ refresh(snip)
 } // namespace $1
 endsnippet
 
+snippet op "operator" w
+operator $0
+endsnippet
+
 snippet up "unique_ptr" w
 std::unique_ptr<$1>
+endsnippet
+
+snippet sp "shared_ptr" w
+std::shared_ptr<$1>
+endsnippet
+
+snippet os "ostringstream" w
+std::ostringstream $0
+endsnippet
+
+snippet st "string" w
+std::string $0
+endsnippet
+
+snippet tu "tuple<>" w
+std::tuple<$1> $0
+endsnippet
+
+snippet ve "vector<>" w
+std::vector<$1> $0
+endsnippet
+
+snippet um "unordered_map<>" w
+std::unordered_map<$1> $0
+endsnippet
+
+snippet mtu "make_tuple()" w
+std::make_tuple($1)
+endsnippet
+
+snippet tie "tie()" w
+std::tie($1)
 endsnippet
 
 snippet dynamic_cast "dynamic_cast" w
@@ -210,12 +320,18 @@ override $0
 endsnippet
 
 snippet << "cout << ... << endl;" b
-cout << "$1"`!p
+std::cout << "$1"`!p
 add_str_if(snip, t[2], " << ")
 refresh(snip)
-`$2 << endl;
+`$2 << std::endl;
 endsnippet
 
+snippet cerr "cerr << ... << endl;" b
+std::cerr << "$1"`!p
+add_str_if(snip, t[2], " << ")
+refresh(snip)
+`$2 << std::endl;
+endsnippet
 
 
 

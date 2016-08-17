@@ -32,6 +32,7 @@ set fileencodings^=utf8,gb18030
 set tags=./tags;,~/.tags.python
 
 set completeopt-=preview
+set completeopt+=longest
 "set grepprg=ack\ -k\ --smart-case
 set grepprg=ack
 
