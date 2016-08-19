@@ -418,8 +418,8 @@ let g:jedi#rename_command = "<leader>r"
 " vim-clang
 " don't forget to install clang
 let g:clang_auto = 0
-let g:clang_c_completeopt = 'menuone'
-let g:clang_cpp_completeopt = 'menuone'
+let g:clang_c_completeopt = 'menuone,longest'
+let g:clang_cpp_completeopt = 'menuone,longest'
 
 let g:clang_dotfile = '.vim-clang'
 let g:clang_check_syntax_auto = 1
@@ -430,7 +430,8 @@ let g:clang_cpp_options = '-std=c++11 -Wall -Wextra -Wno-unused-parameter -Wno-u
 let g:neocomplete#force_omni_input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)\w*'
 "let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] 
 "*\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\w\+\|\h\w*::\w*'
+let g:neocomplete#sources#omni#input_patterns.cpp = '\h\w*::\w*'
+let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\w\+'
 
 
 

@@ -21,6 +21,10 @@ snippet thread "#include <thread>" b
 #include <thread>
 endsnippet
 
+snippet future "#include <future>" b
+#include <future>
+endsnippet
+
 snippet atomic "#include <atomic>" b
 #include <atomic>
 endsnippet
@@ -132,11 +136,26 @@ try {
 }
 endsnippet
 
+priority 2
+snippet &e "const xxx &e" i
+const ${1:std::exception} &e
+endsnippet
+
+priority 1
+
 snippet catch "catch block" w
 catch ($1) {
 	${0:;}
 }
 endsnippet
+
+priority 2
+snippet }catch "} catch block" w
+} catch ($1) {
+	${0:;}
+endsnippet
+
+priority 1
 
 snippet cls "class definition" b
 class $1`!p
@@ -251,6 +270,10 @@ endsnippet
 
 snippet u "using" w
 using $0
+endsnippet
+
+snippet un "using namespace" b
+using namespace $0
 endsnippet
 
 snippet tpl "template definition" w
