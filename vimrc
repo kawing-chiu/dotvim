@@ -33,11 +33,12 @@ set tags=./tags;,~/.tags.python
 
 set completeopt-=preview
 set completeopt+=longest
+
 "set grepprg=ack\ -k\ --smart-case
 set grepprg=ack
 
 set formatoptions-=t
-set formatoptions+=aorw
+set formatoptions+=aorwmn
 
 set backspace=indent,eol,start
 

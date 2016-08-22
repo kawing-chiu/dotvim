@@ -314,6 +314,10 @@ snippet st "string" w
 std::string $0
 endsnippet
 
+snippet ts "to_string()" w
+std::to_string($1)
+endsnippet
+
 snippet tu "tuple<>" w
 std::tuple<$1> $0
 endsnippet
@@ -336,6 +340,10 @@ endsnippet
 
 snippet dynamic_cast "dynamic_cast" w
 dynamic_cast<$1>($2)
+endsnippet
+
+snippet static_cast "static_cast" w
+static_cast<$1>($2)
 endsnippet
 
 snippet override "override" w
