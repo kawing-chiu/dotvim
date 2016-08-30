@@ -425,15 +425,18 @@ let g:clang_cpp_completeopt = 'menuone,longest'
 let g:clang_dotfile = '.vim-clang'
 let g:clang_check_syntax_auto = 1
 
-let g:clang_c_options = '-std=gnu99 -Wall -Wextra -Wno-unused-parameter -Wno-unused-variable -Wno-unused-private-field'
-let g:clang_cpp_options = '-std=c++11 -Wall -Wextra -Wno-unused-parameter -Wno-unused-variable -Wno-unused-private-field'
+let g:clang_c_options = '-std=gnu99 -Wall -Wextra -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function -Wno-unused-private-field'
+let g:clang_cpp_options = '-std=c++11 -Wall -Wextra -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function -Wno-unused-private-field'
 
 let g:neocomplete#force_omni_input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)\w*'
 "let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] 
 "*\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-let g:neocomplete#sources#omni#input_patterns.cpp = '\h\w*::\w*'
+let g:neocomplete#sources#omni#input_patterns.cpp = '\w*::\w*'
 let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\w\+'
 
+
+" powerline
+"let g:powerline_pycmd = 'py3'
 
 
 

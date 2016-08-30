@@ -41,6 +41,10 @@ snippet memory "#include <memory>" b
 #include <memory>
 endsnippet
 
+snippet bitset "#include <bitset>" b
+#include <bitset>
+endsnippet
+
 snippet utility "#include <utility>" b
 #include <utility>
 endsnippet
@@ -105,8 +109,16 @@ snippet chrono "#include <chrono>" b
 #include <chrono>
 endsnippet
 
+snippet codecvt "#include <codecvt>" b
+#include <codecvt>
+endsnippet
+
 snippet boost_string "#include <boost/algorithm/string.hpp>" b
 #include <boost/algorithm/string.hpp>
+endsnippet
+
+snippet boost_filesystem "#include <boost/filesystem.hpp>" b
+#include <boost/filesystem.hpp>
 endsnippet
 
 snippet ustd "using namespace std" b
@@ -173,17 +185,18 @@ private:
 endsnippet
 
 snippet struct "struct definition" b
-struct $1`!p
-add_str_if(snip, t[2], " : ")
-refresh(snip)
-`$2
+struct $1
 {
-public:
 	${0:;}
-
-private:
-
 };
+endsnippet
+
+snippet assert "assert()" w
+assert($1 && $2);
+endsnippet
+
+snippet static_assert "static_assert()" w
+static_assert($1, $2);
 endsnippet
 
 # no need to define defs, just use def
@@ -276,6 +289,10 @@ snippet un "using namespace" b
 using namespace $0
 endsnippet
 
+snippet n "namespace" b
+namespace $0
+endsnippet
+
 snippet tpl "template definition" w
 template<$1>$0
 endsnippet
@@ -350,11 +367,19 @@ snippet override "override" w
 override $0
 endsnippet
 
+snippet exit "std::exit()" b
+std::exit(EXIT_SUCCESS);
+endsnippet
+
 snippet << "cout << ... << endl;" b
 std::cout << "$1"`!p
 add_str_if(snip, t[2], " << ")
 refresh(snip)
 `$2 << std::endl;
+endsnippet
+
+snippet pr "debug print" w
+std::cout << "$1: " << $1 << std::endl;
 endsnippet
 
 snippet cerr "cerr << ... << endl;" b
