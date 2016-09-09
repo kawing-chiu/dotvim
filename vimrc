@@ -394,7 +394,8 @@ let g:jedi#completions_enabled = 0
 
 autocmd FileType python setlocal omnifunc=jedi#completions
 
-let g:neocomplete#sources#omni#input_patterns.python = '\h\w*\|[^. \t]\.\w*'
+let g:neocomplete#sources#omni#input_patterns.python =
+  \ '\h\w*\|[^. \t]\.\w*'
 " 'force' mode
 let g:neocomplete#force_omni_input_patterns.python =
   \ '\%(^\s*@\|^\s*from .\+import \|^\s*from .\+import .*, \|^\s*from \|^\s*import \)\w*'

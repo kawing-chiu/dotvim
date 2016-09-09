@@ -39,14 +39,6 @@ snippet f "from" b
 from $0
 endsnippet
 
-snippet in "import numpy" b
-import numpy as np
-endsnippet
-
-snippet ip "import numpy, pandas" b
-import pandas as pd
-endsnippet
-
 snippet inp "import numpy, pandas" b
 import numpy as np
 import pandas as pd
@@ -131,9 +123,23 @@ snippet s.. "self.xxx = xxx" w
 self.$1 = $1
 endsnippet
 
+priority 2
+snippet =s. "xxx = self.xxx" w
+$1 = self.$1
+endsnippet
+
+priority 1
+
 snippet s__ "self._xxx = xxx" w
 self._$1 = $1
 endsnippet
+
+priority 2
+snippet =s_ "xxx = self._xxx" w
+$1 = self._$1
+endsnippet
+
+priority 1
 
 snippet ifm "if main" bw
 def main():
@@ -141,6 +147,26 @@ def main():
 
 if __name__ == '__main__':
 	main()
+endsnippet
+
+snippet r "raise" b
+raise $0
+endsnippet
+
+snippet rfn "raise ... from None" b
+raise $1 from None
+endsnippet
+
+snippet rfe "raise ... from e" b
+raise $1 from e
+endsnippet
+
+snippet t "try" b
+try:$0
+endsnippet
+
+snippet e "except ... as e" b
+except $1 as e:
 endsnippet
 
 snippet ifma "if main with arg parsing" bw
