@@ -1,0 +1,10 @@
+global !p
+from ultisnips_helpers import *
+endglobal
+
+snippet cpy "copyright" b
+Copyright (C) `!p
+import datetime
+snip.rv += str(datetime.date.today().year)
+` Zhao Jiarong. All rights reserved.
+endsnippet
