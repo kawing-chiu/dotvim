@@ -28,6 +28,12 @@ snippet ' "single quote" i
 '$1'
 endsnippet
 
+priority 2
+snippet '': "dict entry" w
+'$1': $1,
+endsnippet
+
+priority 1
 
 ## import and export
 
@@ -276,8 +282,15 @@ snippet __all "__all__" b
 __all__ = [$1]
 endsnippet
 
-snippet __author "author declaration" w
-__author__ = ("${1:Zhao Jiarong} ${2:<kawing.chiu.sysu@gmail.com>}")
+snippet __author "author declaration" b
+__author__ = 'Zhao Jiarong'
+endsnippet
+
+snippet __copyright "copyright declaration" b
+__copyright__ = 'Copyright (C) `!p
+import datetime
+snip.rv += str(datetime.date.today().year)
+` Zhao Jiarong. All rights reserved.'
 endsnippet
 
 snippet __init "__init__ method" b
@@ -326,6 +339,10 @@ refresh(snip)
 	${0:pass}
 endsnippet
 
+snippet __slots "__slots__ class variable" b
+__slots__ = ($1)
+endsnippet
+
 snippet __repr "__repr__ method" b
 def __repr__(self):
 	${0:pass}
@@ -338,6 +355,11 @@ endsnippet
 
 snippet __len "__len__ method" b
 def __len__(self):
+	${0:pass}
+endsnippet
+
+snippet __bool "__bool__ method" b
+def __bool__(self):
 	${0:pass}
 endsnippet
 
