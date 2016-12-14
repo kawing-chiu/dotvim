@@ -107,6 +107,14 @@ snippet in "is None" w
 is None
 endsnippet
 
+snippet isi "isinstance()" w
+isinstance($1)
+endsnippet
+
+snippet iss "issubclass()" w
+issubclass($1)
+endsnippet
+
 snippet pdb "pdb.set_trace()" b
 import pdb; pdb.set_trace()
 endsnippet
@@ -115,6 +123,24 @@ snippet ipdb "ipdb.set_trace()" b
 import ipdb; ipdb.set_trace()
 endsnippet
 
+
+## convenient logging functions
+
+snippet info "log.info()" b
+log.info($1)
+endsnippet
+
+snippet warn "log.warning()" b
+log.warning($1)
+endsnippet
+
+snippet err "log.error()" b
+log.error($1)
+endsnippet
+
+snippet exc "log.exception()" b
+log.exception($1)
+endsnippet
 
 ## language structures
 
@@ -126,16 +152,12 @@ snippet s_ "self._" w
 self._$0
 endsnippet
 
-snippet ss "self._" w
-self._$0
-endsnippet
-
 snippet s.. "self.xxx = xxx" w
 self.$1 = $1
 endsnippet
 
 priority 2
-snippet =s. "xxx = self.xxx" w
+snippet ..s "xxx = self.xxx" w
 $1 = self.$1
 endsnippet
 
@@ -146,7 +168,7 @@ self._$1 = $1
 endsnippet
 
 priority 2
-snippet =s_ "xxx = self._xxx" w
+snippet __s "xxx = self._xxx" w
 $1 = self._$1
 endsnippet
 
@@ -380,6 +402,11 @@ endsnippet
 
 snippet __eq "__eq__ method" b
 def __eq__(self, other):
+	${0:pass}
+endsnippet
+
+snippet __lt "__lt__ method" b
+def __lt__(self, other):
 	${0:pass}
 endsnippet
 

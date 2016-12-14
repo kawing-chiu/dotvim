@@ -16,7 +16,7 @@ set sts=4 sw=4 et
 
 let mapleader = "\\"
 
-autocmd FileType tex,javascript,html,yaml set sts=2 sw=2
+autocmd FileType tex,javascript,html set sts=2 sw=2
 autocmd FileType rst set textwidth=79
 autocmd FileType yaml setl indentexpr= autoindent
 
@@ -57,6 +57,8 @@ nnoremap j gj
 nnoremap gj j
 nnoremap k gk
 nnoremap gk k
+
+nnoremap Y y$
 
 imap <C-a> <C-o><C-a>
 
