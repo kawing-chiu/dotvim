@@ -408,6 +408,27 @@ let g:jedi#usages_command = "<leader>p"
 let g:jedi#documentation_command = "<leader>d"
 let g:jedi#rename_command = "<leader>r"
 
+" syntastic
+"""
+" recommended settings
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+
+"let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+"""
+
+let g:syntastic_python_checkers = []
+let g:syntastic_c_checkers = []
+"let g:syntastic_c_checkers = ['clang_check']
+"let g:syntastic_clang_check_config_file = '.vim-clang'
+
+" vim-racer
+let g:racer_cmd = "racer"
+
 
 " when using vim-python3, the following is not needed
 "py << EOF
