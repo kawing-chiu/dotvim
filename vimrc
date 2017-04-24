@@ -82,9 +82,9 @@ nmap <C-n>k _<C-k><C-w>l
 nnoremap <C-n>v :tabe<CR>:e $MYVIMRC<CR>
 nnoremap <C-n>vv :source $MYVIMRC<CR>
 nnoremap <C-n>ss :Obsession ~/.vim/sessions/default<CR>
-nnoremap <C-n>s :call My_Prompt_Save_Session()<CR>
+nnoremap <C-n>s :call Prompt_Save_Session()<CR>
 nnoremap <C-n>l :source ~/.vim/sessions/default<CR>
-nnoremap <C-n>ll :call My_Prompt_Load_Session()<CR>
+nnoremap <C-n>ll :call Prompt_Load_Session()<CR>
 
 nnoremap <C-k> :TagbarToggle<CR>
 
@@ -102,14 +102,15 @@ nnoremap -j :let g:NERDTreeQuitOnOpen = 1 - g:NERDTreeQuitOnOpen<CR>:let g:NERDT
 nnoremap -p :set paste! paste?<CR>
 nnoremap -n :setl nu! nu?<CR>
 nnoremap -l :setl list! list?<CR>
-nnoremap -s :call My_Toggle_Statusline()<CR>
+nnoremap -s :call Toggle_Statusline()<CR>
+nnoremap -i :call Toggle_Formatoption()<CR>
 
 " not so important ones:
 "inoremap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
 
 
 """ Helper functions
-function! My_Prompt_Save_Session()
+function! Prompt_Save_Session()
   call inputsave()
   let session_name = input("Save session: ")
   call inputrestore()
@@ -118,7 +119,7 @@ function! My_Prompt_Save_Session()
   execute 'Obsession' file
 endfunction
 
-function! My_Prompt_Load_Session()
+function! Prompt_Load_Session()
   call inputsave()
   let session_name = input("Load session: ")
   call inputrestore()
@@ -131,7 +132,22 @@ function! My_Prompt_Load_Session()
   endif
 endfunction
 
-function! My_Toggle_Statusline()
+function! Toggle_Formatoption()
+  if !exists('g:format_option_for_list')
+    let g:format_option_for_list = 1
+  else
+    let g:format_option_for_list = 1 - g:format_option_for_list
+  endif
+  if g:format_option_for_list
+    set formatoptions-=a
+    set formatoptions-=w
+  else
+    set formatoptions+=a
+    set formatoptions+=w
+  endif
+endfunction
+
+function! Toggle_Statusline()
   if !exists('g:show_status_line')
     let g:show_status_line = 1
   else
@@ -153,9 +169,9 @@ function! My_Toggle_Statusline()
 endfunction
 
 """ Tabline
-set tabline=%!My_Tab_Line()
+set tabline=%!Tab_Line()
 
-function! My_Tab_Line()
+function! Tab_Line()
   let s = '' " complete tabline goes here
 
   let columns = &columns
@@ -359,12 +375,12 @@ let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/ultisnips']
 let g:UltiSnipsExpandTrigger = "<C-Tab>"
 
 let g:ulti_expand_res = 0
-function! My_Ultisnips_Try_Expand()
+function! Ultisnips_Try_Expand()
   call UltiSnips#ExpandSnippet()
   return g:ulti_expand_res
 endfunction
 
-function! My_Neocomplete_Select_Candidate()
+function! Neocomplete_Select_Candidate()
   if pumvisible()
     return neocomplete#close_popup()
   else
@@ -372,10 +388,10 @@ function! My_Neocomplete_Select_Candidate()
   endif
 endfunction
 
-inoremap <silent> <Tab> <C-r>=(My_Ultisnips_Try_Expand() > 0) ? "" : My_Neocomplete_Select_Candidate()<CR>
+inoremap <silent> <Tab> <C-r>=(Ultisnips_Try_Expand() > 0) ? "" : Neocomplete_Select_Candidate()<CR>
 " Interestingly, the following will not work:
-" inoremap <expr> <Tab> (My_Ultisnips_Try_Expand() > 0) ? "" : 
-" My_Neocomplete_Select_Candidate()
+" inoremap <expr> <Tab> (Ultisnips_Try_Expand() > 0) ? "" : 
+" Neocomplete_Select_Candidate()
 
 " ctrlp
 let g:ctrlp_working_path_mode = 'a'
@@ -423,6 +439,7 @@ let g:syntastic_check_on_wq = 0
 
 let g:syntastic_python_checkers = []
 let g:syntastic_c_checkers = []
+let g:syntastic_cpp_checkers = []
 "let g:syntastic_c_checkers = ['clang_check']
 "let g:syntastic_clang_check_config_file = '.vim-clang'
 

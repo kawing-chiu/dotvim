@@ -203,7 +203,7 @@ try:$0
 endsnippet
 
 snippet e "except ... as e" b
-except $1 as e:
+except ${1:Exception} as e:
 endsnippet
 
 snippet ifma "if main with arg parsing" bw
@@ -487,6 +487,11 @@ endsnippet
 
 snippet __getstate "__getstate__ method" b
 def __getstate__(self):
+	${0:pass}
+endsnippet
+
+snippet __reduce "__reduce__ method" b
+def __reduce__(self):
 	${0:pass}
 endsnippet
 
