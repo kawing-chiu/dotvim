@@ -2,7 +2,11 @@ global !p
 from ultisnips_helpers import *
 endglobal
 
-snippet shebang "bash shebang" w
+snippet shebang "bash shebang" b
 #!/usr/bin/env bash
 $0
+endsnippet
+
+snippet this_dir "THIS_DIR=" b
+THIS_DIR="$(cd "$(dirname "\$0")" && pwd)"
 endsnippet
