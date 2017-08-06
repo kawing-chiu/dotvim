@@ -45,6 +45,13 @@ snippet f "from" b
 from $0
 endsnippet
 
+snippet l "lambda" w
+lambda`!p
+add_str_if(snip, t[1], " ")
+refresh(snip)
+`$1: $2
+endsnippet
+
 snippet inp "import numpy, pandas" b
 import numpy as np
 import pandas as pd
@@ -207,17 +214,38 @@ except ${1:Exception} as e:
 endsnippet
 
 snippet ifma "if main with arg parsing" bw
+def main(args):
+	pass
+
+def _add_args(parser):
+	${1:pass}$0
+
 def _parse_args():
 	from argparse import ArgumentParser
-	parser = ArgumentParser(description="$1")$2
+	parser = ArgumentParser(description="")
+	_add_args(parser)
+	parser.set_defaults(func=main)
 	args = parser.parse_args()
-	return args
-
-def main():
-	args = _parse_args()$0
+	return args, parser
 
 if __name__ == '__main__':
-	main()
+	args, parser = _parse_args()
+	if not hasattr(args, 'func'):
+		parser.print_help()
+	else:
+		args.func(args)
+endsnippet
+
+snippet add_argument "add argument to parser" b
+parser.add_argument($1)
+endsnippet
+
+snippet add_subparsers "add subparsers to parser" b
+subparsers = parser.add_subparsers(dest='${1:sub_cmd}')
+endsnippet
+
+snippet add_parser "add parser to subparsers" b
+$1 = subparsers.add_parser('$2')
 endsnippet
 
 snippet doc "docstring" w
@@ -551,10 +579,6 @@ endsnippet
 
 snippet fixture "pytest fixture decorator" b
 @pytest.fixture($1)
-endsnippet
-
-snippet add_argument "add argument to parser" b
-parser.add_argument($1)
 endsnippet
 
 snippet license-agpl "AGPL license statement" b

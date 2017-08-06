@@ -97,6 +97,7 @@ nnoremap + gT
 nnoremap J gT
 "nnoremap _ :tabe<CR>
 nnoremap _ <C-w>v<C-w>T
+nnoremap Y y$
 
 nnoremap -j :let g:NERDTreeQuitOnOpen = 1 - g:NERDTreeQuitOnOpen<CR>:let g:NERDTreeQuitOnOpen<CR>
 nnoremap -p :set paste! paste?<CR>
