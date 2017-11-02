@@ -370,8 +370,14 @@ refresh(snip)
 	${0:pass}
 endsnippet
 
+snippet __prepare_meta "__prepare__ method for meta class" b
+@classmethod
+def __prepare__(meta, name, bases, **kwargs):
+	${0:pass}
+endsnippet
+
 snippet __new_meta "__new__ method for meta class" b
-def __new__(meta, name, bases, namespace):
+def __new__(meta, name, bases, namespace, **kwargs):
 	${0:pass}
 endsnippet
 

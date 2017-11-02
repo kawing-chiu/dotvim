@@ -480,6 +480,8 @@ let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\
 " powerline
 "let g:powerline_pycmd = 'py3'
 
+" python-mode
+let g:pymode_python = 'python3'
 
 
 

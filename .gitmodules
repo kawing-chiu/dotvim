@@ -28,3 +28,9 @@
 [submodule "plugins/vim-obsession"]
 	path = plugins/vim-obsession
 	url = https://github.com/tpope/vim-obsession.git
+[submodule "plugins/vim-flake8"]
+	path = plugins/vim-flake8
+	url = https://github.com/nvie/vim-flake8.git
+[submodule "plugins/vim-python-pep8-indent"]
+	path = plugins/vim-python-pep8-indent
+	url = https://github.com/Vimjas/vim-python-pep8-indent.git
