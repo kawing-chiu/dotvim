@@ -189,6 +189,7 @@ snippet ifm "if main" bw
 def main():
 	${0:pass}
 
+
 if __name__ == '__main__':
 	main()
 endsnippet
@@ -217,8 +218,10 @@ snippet ifma "if main with arg parsing" bw
 def main(args):
 	pass
 
+
 def _add_args(parser):
 	${1:pass}$0
+
 
 def _parse_args():
 	from argparse import ArgumentParser
@@ -227,6 +230,7 @@ def _parse_args():
 	parser.set_defaults(func=main)
 	args = parser.parse_args()
 	return args, parser
+
 
 if __name__ == '__main__':
 	args, parser = _parse_args()

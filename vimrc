@@ -83,8 +83,8 @@ nnoremap <C-n>v :tabe<CR>:e $MYVIMRC<CR>
 nnoremap <C-n>vv :source $MYVIMRC<CR>
 nnoremap <C-n>ss :Obsession ~/.vim/sessions/default<CR>
 nnoremap <C-n>s :call Prompt_Save_Session()<CR>
-nnoremap <C-n>l :source ~/.vim/sessions/default<CR>
-nnoremap <C-n>ll :call Prompt_Load_Session()<CR>
+nnoremap <C-n>ll :source ~/.vim/sessions/default<CR>
+nnoremap <C-n>l :call Prompt_Load_Session()<CR>
 
 nnoremap <C-k> :TagbarToggle<CR>
 
