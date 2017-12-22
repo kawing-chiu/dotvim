@@ -134,6 +134,11 @@ snippet ipdb "ipdb.set_trace()" b
 import ipdb; ipdb.set_trace()
 endsnippet
 
+snippet htrace "hunter.trace" b
+import hunter; from hunter import Q
+hunter.trace(Q(module_startswith='$1'))
+endsnippet
+
 
 ## convenient logging functions
 
