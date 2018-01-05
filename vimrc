@@ -38,7 +38,7 @@ set completeopt+=longest
 set grepprg=ack
 
 set formatoptions-=t
-set formatoptions+=aormMn
+set formatoptions+=ormMn
 
 set backspace=indent,eol,start
 
