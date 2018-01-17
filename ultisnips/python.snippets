@@ -134,7 +134,11 @@ snippet ipdb "ipdb.set_trace()" b
 import ipdb; ipdb.set_trace()
 endsnippet
 
-snippet htrace "hunter.trace" b
+snippet pstack "traceback.print_stack()" b
+import traceback; traceback.print_stack()
+endsnippet
+
+snippet htrace "hunter.trace()" b
 import hunter; from hunter import Q
 hunter.trace(Q(module_startswith='$1'))
 endsnippet
@@ -342,7 +346,7 @@ endsnippet
 ## __xxx__
 
 snippet __all "__all__" b
-__all__ = [$1]
+__all__ = ($1)
 endsnippet
 
 snippet __author "author declaration" b
