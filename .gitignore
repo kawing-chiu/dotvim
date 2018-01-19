@@ -12,7 +12,7 @@
 !/plugins/tagbar
 !/plugins/vim-jsx
 !/plugins/vim-javascript
-!/plugins/jedi
+!/plugins/jedi-vim
 !/plugins/vim-clang
 !/plugins/vim-obsession
 !/plugins/vim-flake8

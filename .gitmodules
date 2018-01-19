@@ -19,9 +19,6 @@
 [submodule "plugins/vim-javascript"]
 	path = plugins/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
-[submodule "plugins/jedi"]
-	path = plugins/jedi
-	url = https://github.com/davidhalter/jedi-vim.git
 [submodule "plugins/vim-clang"]
 	path = plugins/vim-clang
 	url = https://github.com/justmao945/vim-clang.git
@@ -34,3 +31,6 @@
 [submodule "plugins/vim-python-pep8-indent"]
 	path = plugins/vim-python-pep8-indent
 	url = https://github.com/Vimjas/vim-python-pep8-indent.git
+[submodule "plugins/jedi-vim"]
+	path = plugins/jedi-vim
+	url = https://github.com/davidhalter/jedi-vim.git
