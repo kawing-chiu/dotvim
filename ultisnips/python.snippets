@@ -28,6 +28,13 @@ snippet ' "single quote" i
 '$1'
 endsnippet
 
+priority 0
+snippet f "f-string" w
+f"$1"
+endsnippet
+
+priority 1
+
 priority 2
 snippet '': "dict entry" w
 '$1': $1,
@@ -75,6 +82,13 @@ from PySide import QtGui, QtCore
 from PySide.QtCore import Qt
 endsnippet
 
+snippet ipyqt "pyqt5 imports" b
+from PyQt5 import QtWidgets, QtCore
+
+QtCore.Signal = QtCore.pyqtSignal
+QtCore.Slot = QtCore.pyqtSlot
+endsnippet
+
 snippet fsql "from sqlalchemy import ..." b
 from sqlalchemy import $0
 endsnippet
@@ -106,8 +120,8 @@ snippet pr "print('...:', ...)" b
 print("$1:", $1)
 endsnippet
 
-snippet pf "print(..., flush=True)" b
-print($1, flush=True)
+snippet pf "print(f'...')" b
+print(f"$1")
 endsnippet
 
 snippet inn "is not None" w
@@ -276,6 +290,50 @@ refresh(snip)
 `
 endsnippet
 
+snippet gdoc "google-style docstring" b
+"""$1`!p
+indent = get_indent(snip, shift=0)
+prefix = '\n\n' + indent
+add_str_if(snip, t[2], prefix)
+`$2`!p
+add_str(snip, '\n')
+`
+Args:`!p
+prefix = '\n' + get_indent(snip, shift=1)
+add_str_if(snip, t[3], prefix)
+`$3`!p
+add_str(snip, '\n')
+`
+Returns:`!p
+prefix = '\n' + get_indent(snip, shift=1)
+add_str_if(snip, t[4], prefix)
+`$4
+"""
+endsnippet
+
+snippet ndoc "numpy-style docstring" b
+"""$1`!p
+indent = get_indent(snip, shift=0)
+prefix = '\n\n' + indent
+add_str_if(snip, t[2], prefix)
+`$2`!p
+add_str(snip, '\n')
+`
+Parameters
+----------`!p
+prefix = '\n' + get_indent(snip, shift=0)
+add_str_if(snip, t[3], prefix)
+`$3`!p
+add_str(snip, '\n')
+`
+Returns
+-------`!p
+prefix = '\n' + get_indent(snip, shift=0)
+add_str_if(snip, t[4], prefix)
+`$4
+"""
+endsnippet
+
 snippet def "function definition" b
 def $1($2):
 	${0:pass}
@@ -396,6 +454,16 @@ endsnippet
 
 snippet __init_meta "__init__ method for meta class" b
 def __init__(cls, name, bases, namespace):
+	${0:pass}
+endsnippet
+
+snippet __enter "__enter__ method" b
+def __enter__(self):
+	${0:pass}
+endsnippet
+
+snippet __exit "__exit__ method" b
+def __exit__(self, exc_type, exc_value, traceback):
 	${0:pass}
 endsnippet
 

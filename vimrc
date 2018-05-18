@@ -105,6 +105,7 @@ nnoremap -n :setl nu! nu?<CR>
 nnoremap -l :setl list! list?<CR>
 nnoremap -s :call Toggle_Statusline()<CR>
 nnoremap -i :call Toggle_Formatoption()<CR>
+nnoremap -o :call Toggle_Colorcolumn()<CR>
 
 " not so important ones:
 "inoremap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
@@ -130,6 +131,14 @@ function! Prompt_Load_Session()
     echo "Session file " . file . " does not exist."
   else
     execute 'source' file
+  endif
+endfunction
+
+function! Toggle_Colorcolumn()
+  if &colorcolumn
+    setlocal colorcolumn=
+  else
+    setlocal colorcolumn=80
   endif
 endfunction
 
@@ -412,6 +421,7 @@ let g:jedi#auto_vim_configuration = 0
 let g:jedi#completions_enabled = 0
 
 autocmd FileType python setlocal omnifunc=jedi#completions
+autocmd FileType python setlocal indentkeys-=<:>
 
 let g:neocomplete#sources#omni#input_patterns.python =
   \ '\h\w*\|[^. \t]\.\w*'
