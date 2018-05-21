@@ -17,7 +17,7 @@ set sts=4 sw=4 et
 let mapleader = "\\"
 
 autocmd FileType tex,javascript,html set sts=2 sw=2
-autocmd FileType rst set textwidth=79
+autocmd FileType rst set textwidth=79 sts=3 sw=3
 autocmd FileType yaml setl indentexpr= autoindent
 
 syntax on
@@ -46,7 +46,9 @@ set timeoutlen=300
 
 
 """ Key mappings
-nnoremap <C-a> :set paste! paste?<CR>
+nnoremap <F9> :set paste! paste?<CR>
+imap <F9> <C-o><F9>
+set pastetoggle=<F9>
 
 nnoremap <C-]> g<C-]>
 nnoremap g<C-]> <C-]>
@@ -59,8 +61,6 @@ nnoremap k gk
 nnoremap gk k
 
 nnoremap Y y$
-
-imap <C-a> <C-o><C-a>
 
 nnoremap <F5> <C-l>
 
@@ -105,7 +105,13 @@ nnoremap -n :setl nu! nu?<CR>
 nnoremap -l :setl list! list?<CR>
 nnoremap -s :call Toggle_Statusline()<CR>
 nnoremap -i :call Toggle_Formatoption()<CR>
-nnoremap -o :call Toggle_Colorcolumn()<CR>
+nnoremap -u :call Toggle_Colorcolumn()<CR>
+
+
+"imap <C-a> <Nop>
+imap <C-a> <Esc>-ia
+nmap <C-a> -i
+
 
 " not so important ones:
 "inoremap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
@@ -143,17 +149,17 @@ function! Toggle_Colorcolumn()
 endfunction
 
 function! Toggle_Formatoption()
-  if !exists('g:format_option_for_list')
-    let g:format_option_for_list = 1
+  if !exists('g:_format_option_toggled')
+    let g:_format_option_toggled = 0
   else
-    let g:format_option_for_list = 1 - g:format_option_for_list
+    let g:_format_option_toggled = 1 - g:_format_option_toggled
   endif
-  if g:format_option_for_list
-    set formatoptions-=a
-    set formatoptions-=w
+  if g:_format_option_toggled
+    set formatoptions-=tav
+    echo "auto-format off"
   else
-    set formatoptions+=a
-    set formatoptions+=w
+    set formatoptions+=tav
+    echo "auto-format on"
   endif
 endfunction
 

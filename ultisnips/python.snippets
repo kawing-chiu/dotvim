@@ -311,7 +311,7 @@ add_str_if(snip, t[4], prefix)
 """
 endsnippet
 
-snippet ndoc "numpy-style docstring" b
+snippet nf "numpy-style function docstring" b
 """$1`!p
 indent = get_indent(snip, shift=0)
 prefix = '\n\n' + indent
@@ -331,6 +331,24 @@ Returns
 prefix = '\n' + get_indent(snip, shift=0)
 add_str_if(snip, t[4], prefix)
 `$4
+"""
+endsnippet
+
+snippet nc "numpy-style class docstring" b
+"""$1`!p
+indent = get_indent(snip, shift=0)
+prefix = '\n\n' + indent
+add_str_if(snip, t[2], prefix)
+`$2`!p
+add_str(snip, '\n')
+`
+Attributes
+----------`!p
+prefix = '\n' + get_indent(snip, shift=0)
+add_str_if(snip, t[3], prefix)
+`$3`!p
+add_str(snip, '\n')
+`
 """
 endsnippet
 

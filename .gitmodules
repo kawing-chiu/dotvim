@@ -34,3 +34,6 @@
 [submodule "plugins/jedi-vim"]
 	path = plugins/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim.git
+[submodule "plugins/vim-indent-object"]
+	path = plugins/vim-indent-object
+	url = https://github.com/michaeljsmith/vim-indent-object.git
