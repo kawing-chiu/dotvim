@@ -28,6 +28,15 @@ snippet ' "single quote" i
 '$1'
 endsnippet
 
+snippet ` "single backtick" i
+\`$1\`
+endsnippet
+
+priority 2
+snippet `` "double backtick" i
+\`\`$1\`\`
+endsnippet
+
 priority 0
 snippet f "f-string" w
 f"$1"
@@ -41,6 +50,14 @@ snippet '': "dict entry" w
 endsnippet
 
 priority 1
+
+snippet :meth ":meth: role" w
+:meth:\`$1\`
+endsnippet
+
+snippet :cls ":class: role" w
+:class:\`$1\`
+endsnippet
 
 ## import and export
 
@@ -311,6 +328,16 @@ add_str_if(snip, t[4], prefix)
 """
 endsnippet
 
+snippet Param "Parameters section" b
+Parameters
+----------
+endsnippet
+
+snippet Ret "Returns section" b
+Returns
+-------
+endsnippet
+
 snippet nf "numpy-style function docstring" b
 """$1`!p
 indent = get_indent(snip, shift=0)
@@ -400,6 +427,11 @@ super($1`!p
 add_str_if(snip, t[1], ", self")
 refresh(snip)
 `).$2($3)
+endsnippet
+
+snippet ExitStack "contextlib.ExitStack" b
+with ExitStack() as stack:
+	${0:pass}
 endsnippet
 
 priority 2
