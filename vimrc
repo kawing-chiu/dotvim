@@ -12,7 +12,7 @@ call pathogen#helptags()
 
 """ Common options
 set hls ic scs is
-set sts=4 sw=4 et
+set sts=4 sw=4 ts=4 et
 
 let mapleader = "\\"
 

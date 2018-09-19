@@ -37,3 +37,6 @@
 [submodule "plugins/vim-indent-object"]
 	path = plugins/vim-indent-object
 	url = https://github.com/michaeljsmith/vim-indent-object.git
+[submodule "plugins/vim-toml"]
+	path = plugins/vim-toml
+	url = https://github.com/cespare/vim-toml.git

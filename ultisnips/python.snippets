@@ -59,6 +59,10 @@ snippet :cls ":class: role" w
 :class:\`$1\`
 endsnippet
 
+snippet :obj ":obj: role" w
+:obj:\`$1\`
+endsnippet
+
 ## import and export
 
 snippet i "import" b
@@ -384,8 +388,21 @@ def $1($2):
 	${0:pass}
 endsnippet
 
+snippet adef "async function definition" b
+async def $1($2):
+	${0:pass}
+endsnippet
+
 snippet defs "instance method" b
 def $1(self`!p
+add_str_if(snip, t[2], ", ")
+refresh(snip)
+`$2):
+	${0:pass}
+endsnippet
+
+snippet adefs "async instance method" b
+async def $1(self`!p
 add_str_if(snip, t[2], ", ")
 refresh(snip)
 `$2):
