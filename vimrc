@@ -184,6 +184,8 @@ function! Toggle_Statusline()
   endif
 endfunction
 
+call Toggle_Statusline()
+
 """ Tabline
 set tabline=%!Tab_Line()
 

@@ -20,6 +20,22 @@ snippet < "<...>" i
 <$1>
 endsnippet
 
+snippet aw "await" w
+await $0
+endsnippet
+
+snippet as "async" w
+async $0
+endsnippet
+
+snippet asw "async with" w
+async with $0
+endsnippet
+
+snippet asf "async for" w
+async for $0
+endsnippet
+
 snippet " "double quote" i
 "$1"
 endsnippet
@@ -69,8 +85,8 @@ snippet i "import" b
 import $0
 endsnippet
 
-snippet f "from" b
-from $0
+snippet f "f-string" w
+f"$1"
 endsnippet
 
 snippet l "lambda" w
@@ -131,6 +147,11 @@ endsnippet
 
 snippet exit "sys.exit()" b
 import sys; sys.exit()
+endsnippet
+
+snippet print_exc "traceback.print_exc()" b
+import traceback
+traceback.print_exc()
 endsnippet
 
 snippet p "print()" b
@@ -238,15 +259,19 @@ if __name__ == '__main__':
 	main()
 endsnippet
 
-snippet r "raise" b
+snippet r "return" b
+return $0
+endsnippet
+
+snippet rr "raise" b
 raise $0
 endsnippet
 
-snippet rfn "raise ... from None" b
+snippet rrn "raise ... from None" b
 raise $1 from None
 endsnippet
 
-snippet rfe "raise ... from e" b
+snippet rre "raise ... from e" b
 raise $1 from e
 endsnippet
 
@@ -254,9 +279,16 @@ snippet t "try" b
 try:$0
 endsnippet
 
-snippet e "except ... as e" b
+snippet e "except ..." b
+except ${1:Exception}:
+endsnippet
+
+priority 2
+snippet ee "except ... as e" b
 except ${1:Exception} as e:
 endsnippet
+
+priority 1
 
 snippet ifma "if main with arg parsing" bw
 def main(args):
@@ -411,6 +443,14 @@ endsnippet
 
 snippet defc "class method" b
 def $1(cls`!p
+add_str_if(snip, t[2], ", ")
+refresh(snip)
+`$2):
+	${0:pass}
+endsnippet
+
+snippet adefc "async class method" b
+async def $1(cls`!p
 add_str_if(snip, t[2], ", ")
 refresh(snip)
 `$2):
