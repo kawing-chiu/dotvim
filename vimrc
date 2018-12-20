@@ -35,7 +35,10 @@ set completeopt-=preview
 set completeopt+=longest
 
 "set grepprg=ack\ -k\ --smart-case
-set grepprg=ack
+"set grepprg=ack
+" The xargs part is used to filter out non-exist files. Ack has a -s option
+" for this, but currently does not work due to some bug.
+let &grepprg = 'git ls-files -co --exclude-standard -z \| xargs -0 ls -d 2>/dev/null \| ack -x'
 
 set formatoptions-=t
 set formatoptions+=ormMn
@@ -360,13 +363,13 @@ endfunction
 
 """ Plugins
 
-" netrw
+"" netrw
 let g:netrw_liststyle = 3
 let g:netrw_winsize = 25
 let g:netrw_browse_split = 4
 let g:netrw_banner = 0
 
-" neocomplete
+"" neocomplete
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#enable_auto_select = 1
@@ -386,7 +389,7 @@ inoremap <expr> <C-l> neocomplete#complete_common_string()
 "inoremap <expr> <S-Tab> pumvisible() ? neocomplete#close_popup() : "\<S-Tab>"
 inoremap <expr> <CR> pumvisible() ? neocomplete#cancel_popup()."\<CR>" : "\<CR>"
 
-" ultisnips
+"" ultisnips
 let g:UltiSnipsEditSplit = 'vertical'
 let g:UltiSnipsSnippetsDir = '~/.vim/ultisnips'
 let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/ultisnips']
@@ -411,19 +414,22 @@ inoremap <silent> <Tab> <C-r>=(Ultisnips_Try_Expand() > 0) ? "" : Neocomplete_Se
 " inoremap <expr> <Tab> (Ultisnips_Try_Expand() > 0) ? "" : 
 " Neocomplete_Select_Candidate()
 
-" ctrlp
+"" ctrlp
 let g:ctrlp_working_path_mode = 'a'
+" List files using git. If vcs other than git is used, it has to be added
+" here.
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 
-" nerdtree
+"" nerdtree
 let g:NERDTreeQuitOnOpen = 1
 
-" tagbar
+"" tagbar
 let g:tagbar_sort = 0
 
-" vim-jsx
+"" vim-jsx
 let g:jsx_ext_required = 0
 
-" jedi
+"" jedi
 " don't forget to run `git submodule update --init` inside jedi's directory
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#completions_enabled = 0
@@ -443,7 +449,7 @@ let g:jedi#usages_command = "<leader>p"
 let g:jedi#documentation_command = "<leader>d"
 let g:jedi#rename_command = "<leader>r"
 
-" syntastic
+"" syntastic
 """
 " recommended settings
 "set statusline+=%#warningmsg#
@@ -462,7 +468,7 @@ let g:syntastic_cpp_checkers = []
 "let g:syntastic_c_checkers = ['clang_check']
 "let g:syntastic_clang_check_config_file = '.vim-clang'
 
-" vim-racer
+"" vim-racer
 let g:racer_cmd = "racer"
 
 
@@ -476,7 +482,7 @@ let g:racer_cmd = "racer"
 "]
 "EOF
 
-" vim-clang
+"" vim-clang
 " don't forget to install clang
 let g:clang_auto = 0
 let g:clang_c_completeopt = 'menuone,longest'
@@ -495,10 +501,10 @@ let g:neocomplete#sources#omni#input_patterns.cpp = '\w*::\w*'
 let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\w\+'
 
 
-" powerline
+"" powerline
 "let g:powerline_pycmd = 'py3'
 
-" python-mode
+"" python-mode
 let g:pymode_python = 'python3'
 
 
