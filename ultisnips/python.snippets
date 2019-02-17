@@ -250,28 +250,19 @@ endsnippet
 
 priority 1
 
-snippet ifm "if main" bw
-def main():
-	${0:pass}
-
-
-if __name__ == '__main__':
-	main()
-endsnippet
-
-snippet r "return" b
+snippet re "return" b
 return $0
 endsnippet
 
-snippet rr "raise" b
+snippet r "raise" b
 raise $0
 endsnippet
 
-snippet rrn "raise ... from None" b
+snippet rfn "raise ... from None" b
 raise $1 from None
 endsnippet
 
-snippet rre "raise ... from e" b
+snippet rfe "raise ... from e" b
 raise $1 from e
 endsnippet
 
@@ -289,6 +280,15 @@ except ${1:Exception} as e:
 endsnippet
 
 priority 1
+
+snippet ifm "if main" bw
+def main():
+	${0:pass}
+
+
+if __name__ == '__main__':
+	main()
+endsnippet
 
 snippet ifma "if main with arg parsing" bw
 def main(args):
@@ -315,6 +315,35 @@ if __name__ == '__main__':
 	else:
 		args.func(args)
 endsnippet
+
+snippet ifmc "if main with click" bw
+@click.group()
+def cli():
+	pass
+
+
+if __name__ == '__main__':
+	cli()
+endsnippet
+
+snippet @cc "@cli.command" b
+@cli.command()
+endsnippet
+
+snippet @co "@click.option" b
+@click.option($1)
+endsnippet
+
+snippet @ca "@click.argument" b
+@click.argument($1)
+endsnippet
+
+priority 2
+snippet @as "@attr.s" b
+@attr.s
+endsnippet
+
+priority 1
 
 snippet add_argument "add argument to parser" b
 parser.add_argument($1)
