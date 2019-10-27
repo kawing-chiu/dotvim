@@ -34,11 +34,11 @@ set tags=./tags;,~/.tags.python
 set completeopt-=preview
 set completeopt+=longest
 
-"set grepprg=ack\ -k\ --smart-case
+set grepprg=ack\ -k\ --smart-case
 "set grepprg=ack
 " The xargs part is used to filter out non-exist files. Ack has a -s option
 " for this, but currently does not work due to some bug.
-let &grepprg = 'git ls-files -co --exclude-standard -z \| xargs -0 ls -d 2>/dev/null \| ack -x'
+" let &grepprg = 'git ls-files -co --exclude-standard -z \| xargs -0 ls -d 2>/dev/null \| ack -x --smart-case'
 
 set formatoptions-=t
 set formatoptions+=ormMn
@@ -508,6 +508,8 @@ let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\
 let g:pymode_python = 'python3'
 
 
+"" gutentags
+let g:gutentags_dont_load = 1
 
 
 

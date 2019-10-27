@@ -43,3 +43,6 @@
 [submodule "plugins/vim-gutentags"]
 	path = plugins/vim-gutentags
 	url = https://github.com/ludovicchabant/vim-gutentags.git
+[submodule "plugins/vim-polyglot"]
+	path = plugins/vim-polyglot
+	url = https://github.com/sheerun/vim-polyglot.git

@@ -20,6 +20,7 @@
 !/plugins/vim-indent-object
 !/plugins/vim-toml
 !/plugins/vim-gutentags
+!/plugins/vim-polyglot
 
 /sessions/*
 !/sessions/touch

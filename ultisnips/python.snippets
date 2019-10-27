@@ -79,6 +79,20 @@ snippet :obj ":obj: role" w
 :obj:\`$1\`
 endsnippet
 
+## attrs
+snippet @as "@attr.s" b
+@attr.s
+endsnippet
+
+snippet ab "attr.ib()" w
+attr.ib($1)
+endsnippet
+
+snippet post_init "__attrs_post_init__" b
+def __attrs_post_init__(self):
+	${0:pass}
+endsnippet
+
 ## import and export
 
 snippet i "import" b
@@ -202,19 +216,19 @@ endsnippet
 
 ## convenient logging functions
 
-snippet info "log.info()" b
+snippet li "log.info()" w
 log.info($1)
 endsnippet
 
-snippet warn "log.warning()" b
+snippet lw "log.warning()" w
 log.warning($1)
 endsnippet
 
-snippet err "log.error()" b
+snippet le "log.error()" w
 log.error($1)
 endsnippet
 
-snippet exc "log.exception()" b
+snippet lx "log.exception()" w
 log.exception($1)
 endsnippet
 
