@@ -18,7 +18,6 @@
 !/plugins/vim-flake8
 !/plugins/vim-python-pep8-indent
 !/plugins/vim-indent-object
-!/plugins/vim-toml
 !/plugins/vim-polyglot
 
 /sessions/*
