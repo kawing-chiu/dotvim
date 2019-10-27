@@ -10,13 +10,10 @@
 !/plugins/ctrlp
 !/plugins/nerdtree
 !/plugins/tagbar
-!/plugins/vim-jsx
-!/plugins/vim-javascript
 !/plugins/jedi-vim
 !/plugins/vim-clang
 !/plugins/vim-obsession
 !/plugins/vim-flake8
-!/plugins/vim-python-pep8-indent
 !/plugins/vim-indent-object
 !/plugins/vim-polyglot
 

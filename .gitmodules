@@ -13,12 +13,6 @@
 [submodule "plugins/tagbar"]
 	path = plugins/tagbar
 	url = https://github.com/majutsushi/tagbar.git
-[submodule "plugins/vim-jsx"]
-	path = plugins/vim-jsx
-	url = https://github.com/mxw/vim-jsx.git
-[submodule "plugins/vim-javascript"]
-	path = plugins/vim-javascript
-	url = https://github.com/pangloss/vim-javascript.git
 [submodule "plugins/vim-clang"]
 	path = plugins/vim-clang
 	url = https://github.com/justmao945/vim-clang.git
@@ -28,9 +22,6 @@
 [submodule "plugins/vim-flake8"]
 	path = plugins/vim-flake8
 	url = https://github.com/nvie/vim-flake8.git
-[submodule "plugins/vim-python-pep8-indent"]
-	path = plugins/vim-python-pep8-indent
-	url = https://github.com/Vimjas/vim-python-pep8-indent.git
 [submodule "plugins/jedi-vim"]
 	path = plugins/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim.git
