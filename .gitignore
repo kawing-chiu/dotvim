@@ -19,7 +19,6 @@
 !/plugins/vim-python-pep8-indent
 !/plugins/vim-indent-object
 !/plugins/vim-toml
-!/plugins/vim-gutentags
 !/plugins/vim-polyglot
 
 /sessions/*
